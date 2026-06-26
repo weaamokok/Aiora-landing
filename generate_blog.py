@@ -3,7 +3,7 @@
 import os, json, textwrap
 from datetime import date, timedelta
 
-BASE_URL = "https://weaamokok.github.io/glowr-landing"
+BASE_URL = "https://weaamokok.github.io/Aiora-landing"
 OUT_DIR  = os.path.join(os.path.dirname(__file__), "blog")
 START_DATE = date(2025, 1, 1)
 

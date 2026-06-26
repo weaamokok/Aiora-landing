@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://weaamokok.github.io/glowr-landing/sitemap.xml
+Sitemap: https://weaamokok.github.io/Aiora-landing/sitemap.xml
