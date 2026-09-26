@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import { copy } from '../i18n';
+import { SUPPORT_EMAIL, localePath, type Locale } from '../i18n/locales';
+import Prose from '../components/Prose.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+const d = t.deleteAccount;
+const mailto = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(d.emailSubject)}`;
+---
+<Base locale={locale} route="/delete-account" title={`${d.title} · Aiora`} description={d.description}>
+  <div class="page wrap">
+    <header>
+      <h1 class="display t-section">{d.title}</h1>
+      <p class="t-lede">{d.lede}</p>
+    </header>
+
+    <div class="ways">
+      <section class="way card" aria-labelledby="in-app-h">
+        <h2 id="in-app-h">{d.inAppTitle}</h2>
+        <ol>{d.inAppSteps.map((s) => <li>{s}</li>)}</ol>
+      </section>
+      <section class="way card" aria-labelledby="no-app-h">
+        <h2 id="no-app-h">{d.noAppTitle}</h2>
+        <p>{d.noAppBody}</p>
+        <a class="btn btn--primary" href={mailto}>{SUPPORT_EMAIL}</a>
+      </section>
+    </div>
+
+    <section aria-labelledby="what-h">
+      <h2 id="what-h" class="sub">{d.whatTitle}</h2>
+      <ul class="what">{d.what.map((w) => <li>{w}</li>)}</ul>
+    </section>
+
+    <aside class="subs" aria-labelledby="subs-h">
+      <h2 id="subs-h">{d.subsTitle}</h2>
+      <p><Prose text={d.subsBody} locale={locale} /></p>
+    </aside>
+
+    <p class="policy"><a class="link-arrow" href={localePath(locale, '/privacy')}>{t.footer.privacy}</a></p>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding-block: calc(var(--s-8) + 24px) var(--s-8);
+    max-width: calc(58rem + var(--gutter) * 2);
+  }
+
+  header .t-lede {
+    margin-top: var(--s-4);
+  }
+
+  .ways {
+    margin-top: var(--s-6);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--s-4);
+  }
+
+  .way {
+    padding: var(--s-5) var(--s-6);
+    border-radius: var(--r-lg);
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: var(--s-3);
+  }
+
+  .way h2,
+  .sub,
+  .subs h2 {
+    font-size: var(--step-2);
+  }
+
+  .way ol {
+    padding-inline-start: 1.3em;
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .way p {
+    color: var(--ink-2);
+  }
+
+  .way .btn {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .sub {
+    margin-top: var(--s-7);
+  }
+
+  .what {
+    margin-top: var(--s-3);
+    padding-inline-start: 1.2em;
+    display: grid;
+    gap: var(--s-2);
+    max-width: var(--measure);
+  }
+
+  .subs {
+    margin-top: var(--s-6);
+    padding: var(--s-5) var(--s-6);
+    border-radius: var(--r-lg);
+    background: var(--cream);
+  }
+
+  .subs p {
+    margin-top: var(--s-2);
+    max-width: var(--measure);
+  }
+
+  .subs :global(a),
+  .policy a {
+    color: var(--primary-text);
+    font-weight: 650;
+  }
+
+  .policy {
+    margin-top: var(--s-6);
+  }
+</style>

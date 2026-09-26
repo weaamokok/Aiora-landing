@@ -1,0 +1,339 @@
+---
+import Icon from '../Icon.astro';
+import Mark from '../Mark.astro';
+import { copy } from '../../i18n';
+import { localePath, type Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t, app } = copy(locale);
+
+// A week strip in the visitor's own language: Intl gives real weekday initials.
+const days = Array.from({ length: 7 }, (_, i) => {
+  const d = new Date(Date.UTC(2026, 8, 14 + i)); // a Monday-start week
+  return new Intl.DateTimeFormat(locale, { weekday: 'narrow', timeZone: 'UTC' }).format(d);
+});
+const done = [3, 3, 2, 3, 1, 0, 0];
+---
+<section class="evening section" data-tone="light" aria-labelledby="evening-title">
+  <div class="wrap">
+    <h2 id="evening-title" class="display t-section evening-title">{t.evening.title}</h2>
+
+    <div class="bento">
+      <!-- Home-screen widget -->
+      <article class="tile tile--widget rise">
+        <div class="widget" aria-hidden="true">
+          <p class="widget-head"><Mark size={20} /> {app.upNext}</p>
+          <ul>
+            {t.phone.upNext.map((r) => (
+              <li><span class="w-tick"></span>{r.title}</li>
+            ))}
+            <li><span class="w-tick w-tick--done"></span><s>{t.plan.day[0].title}</s></li>
+          </ul>
+        </div>
+        <h3><Icon name="widget" size={20} />{t.evening.widget.title}</h3>
+        <p>{t.evening.widget.body}</p>
+      </article>
+
+      <!-- The thoughts reminder, in the app's own words -->
+      <article class="tile tile--reminder rise">
+        <div class="notif" aria-hidden="true">
+          <Mark size={34} />
+          <span>
+            <strong>{app.reminderTitle}</strong>
+            <span>{app.reminderBodyOne}</span>
+          </span>
+          <time>{app.reminderWeekly}</time>
+        </div>
+        <h3><Icon name="bell" size={20} />{t.evening.reminder.title}</h3>
+        <p>{t.evening.reminder.body}</p>
+      </article>
+
+      <!-- Calendar week -->
+      <article class="tile tile--calendar rise">
+        <div class="week" aria-hidden="true">
+          {days.map((d, i) => (
+            <span class:list={['wday', { today: i === 4 }]}>
+              <span>{d}</span>
+              <i class="dots">{Array.from({ length: 3 }, (_, k) => <b class:list={{ on: k < done[i] }}></b>)}</i>
+            </span>
+          ))}
+        </div>
+        <h3><Icon name="calendar" size={20} />{t.evening.calendar.title}</h3>
+        <p>{t.evening.calendar.body}</p>
+      </article>
+
+      <!-- Streak share card -->
+      <article class="tile tile--share rise">
+        <div class="share" aria-hidden="true">
+          <Mark variant="glyph" size={26} />
+          <span class="share-streak">{t.evening.streakDays}</span>
+        </div>
+        <h3><Icon name="share" size={20} />{t.evening.share.title}</h3>
+        <p>{t.evening.share.body}</p>
+      </article>
+
+      <!-- Offline -->
+      <article class="tile tile--offline rise">
+        <h3><Icon name="wifi-off" size={20} />{t.evening.offline.title}</h3>
+        <p>{t.evening.offline.body}</p>
+      </article>
+    </div>
+
+    <p class="privacy">
+      <Icon name="lock" size={18} />
+      <span>{t.evening.privacy} <a href={localePath(locale, '/privacy')}>{t.evening.privacyLink}</a></span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .evening {
+    background: linear-gradient(var(--surface), var(--ground));
+  }
+
+  .evening-title {
+    max-width: 18ch;
+  }
+
+  .bento {
+    margin-top: var(--s-7);
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, auto);
+    gap: var(--s-4);
+  }
+
+  .tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: var(--s-5);
+    border-radius: var(--r-lg);
+    background: #fff;
+    box-shadow: var(--shadow-raised);
+    overflow: hidden;
+  }
+
+  .tile h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--step-1);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .tile h3 :global(svg) {
+    flex: none;
+    color: var(--primary-text);
+  }
+
+  .tile p {
+    color: var(--ink-2);
+    max-width: 40ch;
+  }
+
+  .tile--widget {
+    grid-column: span 3;
+    grid-row: span 2;
+    background: linear-gradient(160deg, #dfe9ee, #ece6f4);
+  }
+  .tile--reminder {
+    grid-column: span 3;
+  }
+  .tile--calendar {
+    grid-column: span 3;
+  }
+  .tile--share {
+    grid-column: span 2;
+    background: var(--dusk);
+    color: var(--dusk-ink);
+  }
+  .tile--share p {
+    color: var(--dusk-ink-2);
+  }
+  .tile--share h3 :global(svg) {
+    color: var(--dusk-lilac);
+  }
+  .tile--offline {
+    grid-column: span 4;
+  }
+
+  /* Widget */
+  .widget {
+    align-self: center;
+    width: min(100%, 300px);
+    margin-block: var(--s-4) auto;
+    padding: 16px;
+    border-radius: 26px;
+    background: rgb(255 255 255 / 0.9);
+    box-shadow: var(--shadow-floating);
+  }
+
+  .widget-head {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: var(--ink) !important;
+  }
+
+  .widget-head :global(svg) {
+    border-radius: 6px;
+  }
+
+  .widget ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    display: grid;
+    gap: 9px;
+    font-size: 0.92rem;
+    font-weight: 560;
+  }
+
+  .widget li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .widget s {
+    color: var(--ink-2);
+  }
+
+  .w-tick {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1.5px rgb(28 43 47 / 0.3);
+  }
+
+  .w-tick--done {
+    background: var(--done);
+    box-shadow: none;
+  }
+
+  /* Notification */
+  .notif {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: start;
+    margin-bottom: auto;
+    padding: 14px;
+    border-radius: 20px;
+    background: var(--surface);
+    font-size: 0.9rem;
+  }
+
+  .notif :global(svg) {
+    border-radius: 8px;
+  }
+
+  .notif strong,
+  .notif span span {
+    display: block;
+  }
+
+  .notif time {
+    font-size: 0.75rem;
+    color: var(--ink-2);
+  }
+
+  /* Week */
+  .week {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: auto;
+  }
+
+  .wday {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    border-radius: 14px;
+    font-weight: 650;
+    font-size: 0.9rem;
+    color: var(--ink-2);
+  }
+
+  .wday.today {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .dots {
+    display: flex;
+    gap: 3px;
+  }
+
+  .dots b {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.2;
+  }
+
+  .dots b.on {
+    opacity: 1;
+    background: var(--mint);
+  }
+
+  .wday.today .dots b.on {
+    background: #fff;
+  }
+
+  /* Share */
+  .share {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: auto;
+    color: var(--dusk-lilac);
+  }
+
+  .share-streak {
+    font-family: var(--font-display);
+    font-weight: var(--display-weight);
+    font-size: var(--step-2);
+    color: var(--dusk-ink);
+  }
+
+  .privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: var(--s-6);
+    max-width: 60ch;
+    color: var(--ink-2);
+  }
+
+  .privacy :global(svg) {
+    flex: none;
+    margin-top: 0.25em;
+  }
+
+  .privacy a {
+    color: var(--primary-text);
+    font-weight: 650;
+  }
+
+  @media (max-width: 900px) {
+    .bento {
+      grid-template-columns: 1fr;
+    }
+    .tile {
+      grid-column: auto !important;
+      grid-row: auto !important;
+    }
+  }
+</style>

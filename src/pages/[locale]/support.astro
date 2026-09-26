@@ -1,0 +1,10 @@
+---
+import View from '../../views/Support.astro';
+import { nonDefaultLocales, type Locale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  return nonDefaultLocales.map((locale) => ({ params: { locale } }));
+}
+const locale = Astro.params.locale as Locale;
+---
+<View locale={locale} />

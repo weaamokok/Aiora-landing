@@ -1,0 +1,391 @@
+---
+import { copy, fmt } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t, app } = copy(locale);
+
+const questions = [app.aboutYouQuestion, app.workQuestion, app.daysQuestion, app.goalsQuestion, app.photosQuestion];
+const current = 2; // "How do your days usually go?"
+const slots = (['morning', 'afternoon', 'evening'] as const).map((key) => ({
+  key,
+  label: t.plan.slots[key],
+  rows: t.plan.day.filter((d) => d.slot === key),
+}));
+const goals = Object.values(app.goalSuggestions as Record<string, string>).slice(0, 5);
+---
+<section class="plan section" data-tone="light" aria-labelledby="plan-title">
+  <div class="wrap plan-grid">
+    <div class="plan-copy">
+      <h2 id="plan-title" class="display t-section">{t.plan.title}</h2>
+      <p class="t-lede plan-body">{t.plan.body}</p>
+      <p class="plan-free">{t.plan.free}</p>
+      <p class="plan-note">{t.plan.notChat}</p>
+    </div>
+
+    <div class="plan-visual" aria-hidden="true">
+      <!-- The stepper, mid-flow: segmented progress, one question, the scale control. -->
+      <div class="stepper card rise">
+        <div class="segments">
+          {questions.map((_, i) => <span class:list={['seg', { on: i <= current }]}></span>)}
+        </div>
+        <p class="stepper-count">{fmt(t.plan.stepOf, { current: current + 1, total: questions.length })}</p>
+        <p class="stepper-q">{questions[current]}</p>
+        <div class="scale">
+          <span class="scale-line"></span>
+          {t.plan.activityOptions.map((o, i) => (
+            <span class:list={['scale-stop', { on: i === 0 }]}>
+              <i></i>
+              <span>{o}</span>
+            </span>
+          ))}
+        </div>
+        <div class="goal-chips">
+          {goals.map((g, i) => <span class:list={['goal-chip', { on: i === 1 || i === 4 }]}>{g}</span>)}
+        </div>
+      </div>
+
+      <!-- …and the day it becomes. -->
+      <div class="day card rise">
+        <p class="day-generating">
+          <span class="spark">✦</span>
+          <span class="gen-steps">
+            {(app.generatingSteps as string[]).map((s) => <span>{s}</span>)}
+          </span>
+        </p>
+        {slots.map((slot) => (
+          <div class="slot">
+            <p class="slot-label">{slot.label}</p>
+            <ul>
+              {slot.rows.map((r) => (
+                <li class="day-row">
+                  <span class="day-time">{r.time}</span>
+                  <span class="day-tick"></span>
+                  <span>
+                    <span class="day-title">{r.title}</span>
+                    <span class="day-meta">{r.meta}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .plan {
+    background: var(--surface);
+  }
+
+  .plan-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: var(--s-7);
+    align-items: center;
+  }
+
+  .plan-body {
+    margin-top: var(--s-4);
+  }
+
+  .plan-free {
+    display: inline-block;
+    margin-top: var(--s-5);
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    background: #dde7e5;
+    color: #2f5a4b;
+    font-weight: 650;
+  }
+
+  .plan-note {
+    margin-top: var(--s-4);
+    max-width: 42ch;
+    color: var(--ink-2);
+  }
+
+  .plan-visual {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .stepper {
+    grid-column: 1 / span 6;
+    grid-row: 1;
+    z-index: 1;
+    margin-top: var(--s-7);
+    padding: var(--s-5);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-modal);
+  }
+
+  /* The day card sits behind the stepper by one column; its content starts past
+     the overlap so nothing it says is covered. */
+  .day {
+    grid-column: 6 / span 7;
+    grid-row: 1;
+    padding: var(--s-5);
+    padding-top: var(--s-4);
+    padding-inline-start: calc(var(--s-5) + 8.33%);
+    border-radius: var(--r-lg);
+    background: #fbfbfd;
+  }
+
+  .segments {
+    display: flex;
+    gap: 4px;
+  }
+
+  .seg {
+    flex: 1;
+    height: 4px;
+    border-radius: 4px;
+    background: rgb(28 43 47 / 0.1);
+  }
+
+  .seg.on {
+    background: var(--primary);
+  }
+
+  .stepper-count {
+    margin-top: var(--s-4);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+
+  .stepper-q {
+    margin-top: 2px;
+    font-family: var(--font-display);
+    font-weight: var(--display-weight);
+    font-size: var(--step-2);
+    line-height: 1.1;
+  }
+
+  .scale {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: var(--s-5);
+  }
+
+  .scale-line {
+    position: absolute;
+    top: 9px;
+    inset-inline: 16%;
+    height: 2px;
+    background: rgb(28 43 47 / 0.12);
+  }
+
+  .scale-stop {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ink-2);
+  }
+
+  .scale-stop i {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: inset 0 0 0 2px rgb(28 43 47 / 0.2);
+  }
+
+  .scale-stop.on {
+    color: var(--ink);
+    font-weight: 650;
+  }
+
+  .scale-stop.on i {
+    background: var(--lilac-deep);
+    box-shadow: 0 0 0 5px rgb(138 99 184 / 0.2);
+  }
+
+  .goal-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: var(--s-5);
+  }
+
+  .goal-chip {
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    background: var(--surface);
+    font-size: 0.82rem;
+    font-weight: 560;
+  }
+
+  .goal-chip.on {
+    background: var(--lilac-deep);
+    color: #fff;
+  }
+
+  .day-generating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 1.6em;
+    overflow: hidden;
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--lilac-text);
+  }
+
+  .gen-steps {
+    display: grid;
+  }
+
+  .gen-steps span {
+    grid-area: 1 / 1;
+  }
+
+  .gen-steps span:not(:last-child) {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .spark {
+      animation: twinkle 2.4s ease-in-out infinite;
+    }
+
+    .gen-steps span {
+      display: block !important;
+      opacity: 0;
+      animation: gen 8s linear infinite;
+    }
+
+    .gen-steps span:nth-child(2) {
+      animation-delay: 2s;
+    }
+    .gen-steps span:nth-child(3) {
+      animation-delay: 4s;
+    }
+    .gen-steps span:nth-child(4) {
+      animation-delay: 6s;
+    }
+  }
+
+  @keyframes twinkle {
+    50% {
+      opacity: 0.35;
+      scale: 0.8;
+    }
+  }
+
+  @keyframes gen {
+    0%,
+    100% {
+      opacity: 0;
+      translate: 0 6px;
+    }
+    3%,
+    22% {
+      opacity: 1;
+      translate: 0 0;
+    }
+    25% {
+      opacity: 0;
+      translate: 0 -6px;
+    }
+  }
+
+  .slot + .slot {
+    margin-top: var(--s-4);
+  }
+
+  .slot-label {
+    margin-top: var(--s-3);
+    font-size: var(--step--1);
+    font-weight: 650;
+    color: var(--ink-2);
+  }
+
+  .slot ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .day-row {
+    display: grid;
+    grid-template-columns: 3.2em 18px 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+  }
+
+  .day-row + .day-row {
+    border-top: 1px solid rgb(28 43 47 / 0.07);
+  }
+
+  .day-time {
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-2);
+  }
+
+  .day-tick {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1.5px rgb(28 43 47 / 0.3);
+  }
+
+  .day-title,
+  .day-meta {
+    display: block;
+  }
+
+  .day-title {
+    font-weight: 620;
+    line-height: 1.3;
+  }
+
+  .day-meta {
+    font-size: 0.8rem;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 900px) {
+    .plan-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .plan-visual {
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+
+    .stepper,
+    .day {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 0;
+    }
+
+    .day {
+      padding-inline-start: var(--s-5);
+    }
+
+    .stepper {
+      margin-inline-end: 12%;
+    }
+
+    .day {
+      margin-inline-start: 8%;
+      margin-top: -32px;
+      padding-top: 52px;
+    }
+  }
+</style>

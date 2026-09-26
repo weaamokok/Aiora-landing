@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import { copy } from '../i18n';
+import { SUPPORT_EMAIL, localePath, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+const p = t.faqPage;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: p.groups.flatMap((g) =>
+    g.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })),
+  ),
+};
+---
+<Base locale={locale} route="/faq" title={`${p.title} · Aiora`} description={p.description} jsonLd={jsonLd}>
+  <div class="page wrap">
+    <header class="page-head">
+      <h1 class="display t-section">{p.title}</h1>
+      <p class="t-lede">{p.lede}</p>
+      <nav class="jump" aria-label={p.title}>
+        {p.groups.map((g, i) => <a href={`#group-${i}`}>{g.title}</a>)}
+      </nav>
+    </header>
+
+    {p.groups.map((g, i) => (
+      <section class="group" id={`group-${i}`} aria-labelledby={`group-${i}-h`}>
+        <h2 id={`group-${i}-h`} class="group-title">{g.title}</h2>
+        <Faq items={g.items} />
+      </section>
+    ))}
+
+    <aside class="still">
+      <div>
+        <h2>{p.stillTitle}</h2>
+        <p>{p.stillBody}</p>
+      </div>
+      <div class="still-actions">
+        <a class="btn btn--primary" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+        <a class="link-arrow" href={localePath(locale, '/support')}>{t.footer.support}</a>
+      </div>
+    </aside>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding-block: calc(var(--s-8) + 24px) var(--s-8);
+    max-width: calc(58rem + var(--gutter) * 2);
+  }
+
+  .page-head .t-lede {
+    margin-top: var(--s-4);
+  }
+
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: var(--s-5);
+  }
+
+  .jump a {
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    background: #fff;
+    box-shadow: var(--shadow-raised);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--step--1);
+  }
+
+  .group {
+    margin-top: var(--s-7);
+    scroll-margin-top: 96px;
+  }
+
+  .group-title {
+    font-size: var(--step-2);
+    margin-bottom: var(--s-2);
+  }
+
+  .still {
+    margin-top: var(--s-8);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-5);
+    padding: var(--s-6);
+    border-radius: var(--r-lg);
+    background: var(--ground);
+  }
+
+  .still h2 {
+    font-size: var(--step-2);
+  }
+
+  .still p {
+    color: var(--ink-2);
+  }
+
+  .still-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-4);
+  }
+
+  .still .btn {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+</style>

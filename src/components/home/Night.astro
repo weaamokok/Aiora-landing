@@ -1,0 +1,133 @@
+---
+import StoreBadges from '../StoreBadges.astro';
+import QrCode from '../QrCode.astro';
+import Mark from '../Mark.astro';
+import Faq from '../Faq.astro';
+import { copy } from '../../i18n';
+import { localePath, type Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+---
+<section class="night section on-dark" data-tone="dark" aria-labelledby="faq-title">
+  <div class="wrap night-faq">
+    <h2 id="faq-title" class="display t-title">{t.night.faqTitle}</h2>
+    <div>
+      <Faq items={t.homeFaq} tone="dark" />
+      <a class="link-arrow all-q" href={localePath(locale, '/faq')}>{t.night.allQuestions}</a>
+    </div>
+  </div>
+
+  <div class="wrap closing" id="get">
+    <span class="closing-mark" aria-hidden="true"><Mark variant="glyph" size={44} /></span>
+    <h2 class="display t-hero closing-title">{t.night.closing}</h2>
+    <p class="t-lede closing-body">{t.night.closingBody}</p>
+    <div class="closing-actions">
+      <StoreBadges locale={locale} onDark />
+      <div class="closing-qr">
+        <QrCode url="https://aioraspace.com/get/" label={t.store.qrBody} size={104} />
+        <p><strong>{t.store.qrTitle}</strong><span>{t.store.qrBody}</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .night {
+    background: linear-gradient(#121417, #0c0e10);
+  }
+
+  .night-faq {
+    display: grid;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  .all-q {
+    margin-top: var(--s-5);
+    color: var(--dusk-lilac);
+  }
+
+  .closing {
+    margin-top: var(--s-8);
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    scroll-margin-top: 40px;
+  }
+
+  .closing-mark {
+    color: var(--dusk-lilac);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .closing-mark {
+      animation: breathe 5s ease-in-out infinite;
+    }
+  }
+
+  @keyframes breathe {
+    50% {
+      scale: 0.85;
+      opacity: 0.6;
+      rotate: 20deg;
+    }
+  }
+
+  .closing-title {
+    margin-top: var(--s-4);
+    max-width: 14ch;
+  }
+
+  .closing-body {
+    margin-top: var(--s-4);
+    margin-inline: auto;
+  }
+
+  .closing-actions {
+    margin-top: var(--s-6);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-6);
+  }
+
+  .closing-qr {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    text-align: start;
+  }
+
+  .closing-qr p {
+    max-width: 18ch;
+    font-size: var(--step--1);
+    color: var(--dusk-ink-2);
+  }
+
+  .closing-qr strong {
+    display: block;
+    color: var(--dusk-ink);
+  }
+
+  /* A QR code on the phone you'd scan it with is pointless. */
+  :global(html[data-platform='ios']) .closing-qr,
+  :global(html[data-platform='android']) .closing-qr {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .night-faq {
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+    .closing-qr {
+      display: none;
+    }
+  }
+</style>

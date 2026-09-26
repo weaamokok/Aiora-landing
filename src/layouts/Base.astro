@@ -1,0 +1,100 @@
+---
+import '@fontsource-variable/roboto-flex';
+import '@fontsource/lilita-one';
+import '@fontsource/lalezar';
+import '@fontsource-variable/cairo';
+import '../styles/global.css';
+
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { locales, localeMeta, localePath, defaultLocale, type Locale } from '../i18n/locales';
+import { copy } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  /** Unlocalized route, e.g. '/' or '/faq'. Drives canonical + hreflang. */
+  route: string;
+  title?: string;
+  description?: string;
+  /** Pages that exist only in English (none today) pass ['en']. */
+  availableIn?: readonly Locale[];
+  /** Search engines shouldn't index transactional pages. */
+  noindex?: boolean;
+  ogImage?: string;
+  jsonLd?: object | object[];
+  /** Page ground for the top of the page, so the nav reads correctly before JS. */
+  tone?: 'light' | 'dark';
+}
+
+const {
+  locale,
+  route,
+  availableIn = locales,
+  noindex = false,
+  jsonLd,
+  tone = 'light',
+} = Astro.props;
+
+const { t } = copy(locale);
+const meta = localeMeta[locale];
+const title = Astro.props.title ?? t.meta.title;
+const description = Astro.props.description ?? t.meta.description;
+const site = Astro.site!;
+const canonical = new URL(localePath(locale, route), site).href;
+const ogImage = new URL(Astro.props.ogImage ?? `/og/${locale}.png`, site).href;
+const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+<!doctype html>
+<html lang={meta.tag} dir={meta.dir} data-tone={tone}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {!noindex &&
+      availableIn.map((l) => (
+        <link rel="alternate" hreflang={localeMeta[l].tag} href={new URL(localePath(l, route), site).href} />
+      ))}
+    {!noindex && availableIn.includes(defaultLocale) && (
+      <link rel="alternate" hreflang="x-default" href={new URL(localePath(defaultLocale, route), site).href} />
+    )}
+
+    <meta name="theme-color" content="#eae6f2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121417" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- iOS Smart App Banner: the native "Open / Get" strip Safari draws itself. -->
+    <meta name="apple-itunes-app" content="app-id=6776340428" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aiora" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={meta.og} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {ld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.nav.skip}</a>
+    <Nav locale={locale} route={route} availableIn={availableIn} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} route={route} availableIn={availableIn} />
+    <script>
+      import '../scripts/store-links';
+      import '../scripts/nav-tone';
+      import '../scripts/lang-menu';
+    </script>
+  </body>
+</html>

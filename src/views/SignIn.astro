@@ -1,0 +1,165 @@
+---
+import Base from '../layouts/Base.astro';
+import StoreBadges from '../components/StoreBadges.astro';
+import { copy } from '../i18n';
+import { localePath, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+const s = t.signIn;
+
+// Web sign-in with Apple / Google needs a web client id on each side (AIO-60).
+// Until those are configured, the buttons simply aren't drawn.
+const googleClientId = import.meta.env.PUBLIC_GOOGLE_WEB_CLIENT_ID as string | undefined;
+const appleServicesId = import.meta.env.PUBLIC_APPLE_SERVICES_ID as string | undefined;
+---
+<Base locale={locale} route="/plus/sign-in" title={`${s.title} · Aiora`} description={s.description} noindex>
+  <div class="auth wrap">
+    <div class="auth-card card">
+      <h1 class="display t-title">{s.title}</h1>
+      <p class="lede">{s.lede}</p>
+
+      <form
+        class="auth-form"
+        data-sign-in-form
+        data-next={localePath(locale, '/plus')}
+        data-errors={JSON.stringify({ auth: s.failed, network: s.network, unavailable: s.network, invalid: s.failed })}
+        data-working={s.working}
+        data-google={googleClientId ?? ''}
+        data-apple={appleServicesId ?? ''}
+      >
+        {(googleClientId || appleServicesId) && (
+          <div class="social">
+            {appleServicesId && <button type="button" class="btn btn--ghost social-btn" data-apple-btn> {s.apple}</button>}
+            {googleClientId && <div data-google-btn class="google-slot"></div>}
+            <p class="or"><span>{s.or}</span></p>
+          </div>
+        )}
+
+        <label>
+          <span>{s.email}</span>
+          <input type="email" name="email" autocomplete="email" required inputmode="email" />
+        </label>
+        <label>
+          <span>{s.password}</span>
+          <input type="password" name="password" autocomplete="current-password" required minlength="6" />
+        </label>
+        <p class="error" data-error role="alert"></p>
+        <button class="btn btn--primary submit" type="submit" data-submit>{s.submit}</button>
+        <p class="hint">{s.forgot}</p>
+      </form>
+    </div>
+
+    <aside class="no-account">
+      <p>{s.noAccount}</p>
+      <StoreBadges locale={locale} />
+    </aside>
+  </div>
+</Base>
+
+<script>
+  import '../scripts/sign-in';
+</script>
+
+<style>
+  .auth {
+    padding-block: calc(var(--s-8) + 24px) var(--s-8);
+    max-width: calc(30rem + var(--gutter) * 2);
+    display: grid;
+    gap: var(--s-6);
+  }
+
+  .auth-card {
+    padding: var(--s-6);
+    border-radius: var(--r-lg);
+  }
+
+  .lede {
+    margin-top: var(--s-2);
+    color: var(--ink-2);
+  }
+
+  .auth-form {
+    margin-top: var(--s-5);
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  label {
+    display: grid;
+    gap: 6px;
+    font-weight: 600;
+    font-size: var(--step--1);
+  }
+
+  input {
+    min-height: 50px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: var(--r-md);
+    background: var(--surface);
+    font-size: 1rem;
+    font-weight: 450;
+  }
+
+  input:focus-visible {
+    outline: 2px solid var(--lilac-deep);
+    outline-offset: 0;
+  }
+
+  .error {
+    min-height: 1.4em;
+    color: #b3261e;
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+
+  .error:empty {
+    min-height: 0;
+  }
+
+  .submit {
+    width: 100%;
+  }
+
+  .hint {
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    text-align: center;
+  }
+
+  .social {
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .social-btn {
+    width: 100%;
+    color: var(--ink);
+  }
+
+  .or {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    color: var(--ink-2);
+    font-size: var(--step--1);
+  }
+
+  .or::before,
+  .or::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgb(28 43 47 / 0.12);
+  }
+
+  .no-account {
+    display: grid;
+    gap: var(--s-4);
+    color: var(--ink-2);
+  }
+</style>

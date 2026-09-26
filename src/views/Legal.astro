@@ -1,0 +1,201 @@
+---
+import Base from '../layouts/Base.astro';
+import Prose from '../components/Prose.astro';
+import type { LegalDoc } from '../content/legal/types';
+import type { Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  route: string;
+  doc: LegalDoc;
+  /** The English original shown when a translation is missing. */
+  fallbackNote?: string;
+}
+const { locale, route, doc, fallbackNote } = Astro.props;
+---
+<Base locale={locale} route={route} title={`${doc.title} · Aiora`} description={doc.description}>
+  <article class="legal wrap">
+    <header class="legal-head">
+      <h1 class="display t-section">{doc.title}</h1>
+      <p class="updated">{doc.updated}</p>
+      {fallbackNote && <p class="fallback" lang="en">{fallbackNote}</p>}
+    </header>
+
+    <aside class="summary">
+      <h2>{doc.summaryTitle}</h2>
+      <ul>{doc.summary.map((s) => <li><Prose text={s} locale={locale} /></li>)}</ul>
+    </aside>
+
+    <div class="legal-grid">
+      <nav class="toc" aria-labelledby="toc-title">
+        <p id="toc-title" class="toc-title">{doc.contentsLabel}</p>
+        <ol>{doc.sections.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}</ol>
+      </nav>
+
+      <div class="legal-body">
+        {doc.sections.map((section) => (
+          <section id={section.id} aria-labelledby={`${section.id}-h`}>
+            <h2 id={`${section.id}-h`}>{section.title}</h2>
+            {section.body.map((block) =>
+              typeof block === 'string' ? (
+                <p><Prose text={block} locale={locale} /></p>
+              ) : 'list' in block ? (
+                <ul>{block.list.map((li) => <li><Prose text={li} locale={locale} /></li>)}</ul>
+              ) : (
+                <div class="table-scroll" tabindex="0">
+                  <table>
+                    <thead><tr>{block.table.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+                    <tbody>{block.table.rows.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody>
+                  </table>
+                </div>
+              ),
+            )}
+          </section>
+        ))}
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding-block: calc(var(--s-8) + 24px) var(--s-8);
+  }
+
+  .legal-head {
+    max-width: 48rem;
+  }
+
+  .updated {
+    margin-top: var(--s-3);
+    color: var(--ink-2);
+  }
+
+  .fallback {
+    margin-top: var(--s-4);
+    padding: 12px 16px;
+    border-radius: var(--r-md);
+    background: var(--cream);
+  }
+
+  .summary {
+    max-width: 48rem;
+    margin-top: var(--s-6);
+    padding: var(--s-5) var(--s-6);
+    border-radius: var(--r-lg);
+    background: var(--ground);
+  }
+
+  .summary h2 {
+    font-size: var(--step-1);
+  }
+
+  .summary ul {
+    margin-top: var(--s-3);
+    padding-inline-start: 1.2em;
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .legal-grid {
+    margin-top: var(--s-7);
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 48rem);
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  .toc {
+    position: sticky;
+    top: 96px;
+    font-size: var(--step--1);
+  }
+
+  .toc-title {
+    font-weight: 650;
+    margin-bottom: var(--s-3);
+  }
+
+  .toc ol {
+    padding-inline-start: 1.2em;
+    display: grid;
+    gap: 8px;
+    color: var(--ink-2);
+  }
+
+  .toc a {
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+
+  .legal-body section + section {
+    margin-top: var(--s-6);
+  }
+
+  .legal-body h2 {
+    font-size: var(--step-2);
+    line-height: 1.2;
+    scroll-margin-top: 96px;
+  }
+
+  .legal-body p,
+  .legal-body ul,
+  .table-scroll {
+    margin-top: var(--s-3);
+    max-width: var(--measure);
+  }
+
+  .legal-body ul {
+    padding-inline-start: 1.2em;
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .legal-body :global(a) {
+    color: var(--primary-text);
+    font-weight: 600;
+  }
+
+  .table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    border-radius: var(--r-md);
+    background: #fff;
+    box-shadow: var(--shadow-raised);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+  }
+
+  th,
+  td {
+    padding: 12px 16px;
+    text-align: start;
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: 650;
+    background: var(--surface-raised);
+  }
+
+  tr + tr td {
+    border-top: 1px solid rgb(28 43 47 / 0.08);
+  }
+
+  @media (max-width: 900px) {
+    .legal-grid {
+      grid-template-columns: 1fr;
+    }
+    .toc {
+      position: static;
+    }
+  }
+</style>

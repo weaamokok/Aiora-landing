@@ -1,0 +1,23 @@
+---
+// Renders the tiny markup legal and help copy uses: **bold**, and bare
+// aioraspace.com paths or email addresses, which become links. Everything else
+// is escaped text — no HTML from content files reaches the page.
+import { localePath, type Locale } from '../i18n/locales';
+
+interface Props {
+  text: string;
+  locale: Locale;
+}
+const { text, locale } = Astro.props;
+
+const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const html = escape(text)
+  .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  // Emails first; the domain pattern below skips anything preceded by "@".
+  .replace(/\b([a-z0-9._-]+@aioraspace\.com)\b/g, '<a href="mailto:$1">$1</a>')
+  .replace(/(?<![@\w.>"/:])(aioraspace\.com)(\/[a-z-]+)?\b/g, (_m, _d, path) =>
+    `<a href="${path ? localePath(locale, path) : localePath(locale, '/')}">aioraspace.com${path ?? ''}</a>`,
+  );
+---
+<Fragment set:html={html} />
