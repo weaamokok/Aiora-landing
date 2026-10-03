@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://weaamokok.github.io/Aiora-landing/sitemap.xml

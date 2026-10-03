@@ -1,0 +1,281 @@
+---
+import Icon from '../Icon.astro';
+import Mark from '../Mark.astro';
+import { copy } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+const icons = ['timer', 'stretch', 'water', 'calendar'] as const;
+const R = 118;
+const C = 2 * Math.PI * R;
+---
+<section class="focus section on-teal" data-tone="teal" data-focus aria-labelledby="focus-title">
+  <div class="wrap focus-grid">
+    <div class="focus-copy">
+      <h2 id="focus-title" class="display t-section">{t.focus.title}</h2>
+      <p class="t-lede focus-body">{t.focus.body}</p>
+      <ul class="focus-points">
+        {t.focus.points.map((p, i) => (
+          <li><Icon name={icons[i]} size={20} />{p}</li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="focus-visual" aria-hidden="true">
+      <!-- Lock Screen Live Activity -->
+      <div class="live rise">
+        <span class="live-mark"><Mark size={30} /></span>
+        <span class="live-text">
+          <span class="live-label">{t.focus.session}</span>
+          <span class="live-time" data-live-time>24:59</span>
+        </span>
+        <span class="live-bar"><span data-live-bar></span></span>
+        <span class="live-note">{t.focus.lockScreen}</span>
+      </div>
+
+      <!-- The ambient timer -->
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 260 260">
+          <circle cx="130" cy="130" r={R} class="ring-track" />
+          <circle cx="130" cy="130" r={R} class="ring-fill" data-ring style={`stroke-dasharray:${C};stroke-dashoffset:0`} data-circumference={C} />
+        </svg>
+        <div class="ring-center">
+          <span class="ring-label">{t.focus.session}</span>
+          <span class="ring-time" data-ring-time>25:00</span>
+        </div>
+        <span class="cue cue--stretch">
+          <Icon name="stretch" size={18} />
+          <span>{t.focus.stretch}</span>
+          <b data-cue="stretch" data-in={t.focus.in}>04:59</b>
+        </span>
+        <span class="cue cue--water">
+          <Icon name="water" size={18} />
+          <span>{t.focus.water}</span>
+          <b data-cue="water" data-in={t.focus.in}>09:59</b>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/focus-timer';
+</script>
+
+<style>
+  .focus {
+    background:
+      radial-gradient(70% 60% at 100% 0%, rgb(143 185 199 / 0.35), transparent 60%),
+      radial-gradient(60% 50% at 0% 100%, rgb(47 90 75 / 0.35), transparent 60%),
+      var(--primary);
+  }
+
+  .focus-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--s-7);
+    align-items: center;
+  }
+
+  .focus-body {
+    margin-top: var(--s-4);
+  }
+
+  .focus-points {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--s-6);
+    display: grid;
+    gap: var(--s-3);
+    font-weight: 560;
+  }
+
+  .focus-points li {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+  }
+
+  .focus-points :global(svg) {
+    flex: none;
+    opacity: 0.85;
+  }
+
+  .focus-visual {
+    display: grid;
+    justify-items: center;
+    gap: var(--s-6);
+  }
+
+  .live {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 10px;
+    width: min(100%, 360px);
+    padding: 14px 16px;
+    border-radius: 22px;
+    background: rgb(12 16 18 / 0.78);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    box-shadow: 0 20px 40px -20px rgb(0 0 0 / 0.5);
+  }
+
+  .live-mark :global(svg) {
+    border-radius: 8px;
+  }
+
+  .live-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .live-label {
+    font-weight: 600;
+    opacity: 0.8;
+  }
+
+  .live-time {
+    font-size: 1.5rem;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    color: var(--dusk-primary);
+  }
+
+  .live-bar {
+    grid-column: 1 / -1;
+    height: 5px;
+    border-radius: 5px;
+    background: rgb(255 255 255 / 0.15);
+    overflow: hidden;
+  }
+
+  .live-bar span {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background: var(--dusk-primary);
+    border-radius: 5px;
+  }
+
+  .live-note {
+    grid-column: 1 / -1;
+    font-size: 0.8rem;
+    opacity: 0.65;
+  }
+
+  .ring-wrap {
+    position: relative;
+    width: min(100%, 340px);
+    aspect-ratio: 1;
+  }
+
+  .ring {
+    width: 100%;
+    height: 100%;
+    rotate: -90deg;
+  }
+
+  .ring-track,
+  .ring-fill {
+    fill: none;
+    stroke-width: 10;
+  }
+
+  .ring-track {
+    stroke: rgb(255 255 255 / 0.16);
+  }
+
+  .ring-fill {
+    stroke: #fff;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+  }
+
+  .ring-center {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+  }
+
+  .ring-label {
+    font-weight: 600;
+    opacity: 0.8;
+  }
+
+  .ring-time {
+    font-family: var(--font-display);
+    font-weight: var(--display-weight);
+    font-size: clamp(3rem, 6vw, 4.2rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cue {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: var(--r-pill);
+    background: #fff;
+    color: var(--ink);
+    font-size: 0.88rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: var(--shadow-modal);
+  }
+
+  .cue b {
+    font-variant-numeric: tabular-nums;
+    color: var(--primary);
+  }
+
+  .cue--stretch {
+    top: 6%;
+    inset-inline-end: -12%;
+  }
+
+  .cue--water {
+    bottom: 8%;
+    inset-inline-start: -14%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .cue {
+      animation: float 6s ease-in-out infinite alternate;
+    }
+    .cue--water {
+      animation-delay: -3s;
+    }
+  }
+
+  @keyframes float {
+    to {
+      translate: 0 -8px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .focus-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cue--stretch {
+      inset-inline-end: -2%;
+    }
+
+    .cue--water {
+      inset-inline-start: -2%;
+    }
+  }
+</style>

@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import Mark from '../components/Mark.astro';
+import StoreBadges from '../components/StoreBadges.astro';
+import { copy } from '../i18n';
+import { localePath, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+const w = t.welcome;
+---
+<Base locale={locale} route="/plus/welcome" title={`${w.title} · Aiora`} description={w.description} noindex tone="dark">
+  <section class="welcome on-dark" data-tone="dark">
+    <div class="wrap inner">
+      <span class="mark"><Mark variant="glyph" size={56} /></span>
+      <h1 class="display t-hero">{w.heading}</h1>
+      <p class="t-lede">{w.body}</p>
+      <p class="pending" data-pending hidden>{w.pending}</p>
+      <a class="btn btn--light" href={`${localePath(locale, '/')}#get`} data-store-link>{w.open}</a>
+      <div class="no-app">
+        <p>{w.noApp}</p>
+        <StoreBadges locale={locale} onDark />
+      </div>
+      <a class="link-arrow manage" href={localePath(locale, '/account')}>{w.manage}</a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { getEntitlement, getSession, isPlus } from '../scripts/plus-api';
+  import { track } from '../scripts/analytics';
+  // The webhook usually lands before the redirect does, but not always. If the
+  // account doesn't show Plus yet, say so plainly instead of claiming it does.
+  if (getSession()) {
+    getEntitlement().then((r) => {
+      if (r.ok) track('plus_purchase_landed', { active: isPlus(r.value) });
+      if (r.ok && !isPlus(r.value)) {
+        const el = document.querySelector<HTMLElement>('[data-pending]');
+        if (el) el.hidden = false;
+      }
+    });
+  }
+</script>
+
+<style>
+  .welcome {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding-block: calc(var(--s-8) + 24px) var(--s-8);
+    background:
+      radial-gradient(50% 50% at 50% 100%, rgb(201 181 227 / 0.3), transparent 70%),
+      var(--dusk);
+  }
+
+  .inner {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: var(--s-4);
+    max-width: 44rem;
+  }
+
+  .mark {
+    color: var(--dusk-lilac);
+  }
+
+  .t-lede {
+    margin-inline: auto;
+  }
+
+  .pending {
+    max-width: 44ch;
+    padding: 12px 16px;
+    border-radius: var(--r-md);
+    background: rgb(255 255 255 / 0.06);
+    color: var(--dusk-ink-2);
+  }
+
+  .no-app {
+    margin-top: var(--s-5);
+    display: grid;
+    justify-items: center;
+    gap: var(--s-3);
+    color: var(--dusk-ink-2);
+  }
+
+  .manage {
+    margin-top: var(--s-4);
+    color: var(--dusk-lilac);
+  }
+</style>

@@ -1,0 +1,736 @@
+---
+import Phone from '../Phone.astro';
+import Icon from '../Icon.astro';
+import StoreBadges from '../StoreBadges.astro';
+import { copy } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t, app } = copy(locale);
+
+const chips = [
+  { target: 'task', label: app.chipTask, icon: 'check' },
+  { target: 'shopping', label: app.chipShopping, icon: 'bag' },
+  { target: 'weeklyGoal', label: app.chipWeeklyGoal, icon: 'target' },
+  { target: 'thought', label: app.chipThought, icon: 'bulb' },
+] as const;
+
+const saved = {
+  task: app.savedAsTask,
+  shopping: app.savedAsShopping,
+  weeklyGoal: app.savedAsWeeklyGoal,
+  thought: app.savedAsThought,
+};
+---
+<section class="hero" data-tone="light" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 id="hero-title" class="display t-hero hero-title">{app.promise}</h1>
+      <p class="t-lede hero-lede">{app.headline}</p>
+
+      <form
+        class="dump"
+        data-dump
+        data-lang={locale}
+        data-saved={JSON.stringify(saved)}
+        data-chip-labels={JSON.stringify({ task: app.chipTask, shopping: app.chipShopping, weeklyGoal: app.chipWeeklyGoal, thought: app.chipThought })}
+        data-idle={t.hero.idle}
+        autocomplete="off"
+      >
+        <label for="dump-input" class="visually-hidden">{t.hero.inputLabel}</label>
+        <div class="dump-field">
+          <textarea
+            id="dump-input"
+            name="thought"
+            rows="1"
+            maxlength="120"
+            placeholder={app.dumpHint}
+            enterkeyhint="done"
+            spellcheck="false"
+          ></textarea>
+          <button class="dump-save" type="submit" disabled aria-label={t.hero.save}>
+            <Icon name="arrow" size={22} class="dump-save-icon" />
+          </button>
+        </div>
+
+        <fieldset class="chips" data-chips>
+          <legend class="visually-hidden">{t.hero.chipsLabel}</legend>
+          {chips.map((c) => (
+            <label class="chip" data-target={c.target}>
+              <input type="radio" name="target" value={c.target} />
+              <Icon name={c.icon} size={16} />
+              <span>{c.label}</span>
+            </label>
+          ))}
+        </fieldset>
+
+        <p class="dump-status" data-status aria-live="polite">{t.hero.idle}</p>
+
+        <div class="examples">
+          <span class="examples-label">{t.hero.try}</span>
+          {t.hero.examples.map((ex) => (
+            <button type="button" class="example" data-example={ex}>{ex}</button>
+          ))}
+        </div>
+      </form>
+
+      <p class="local-note">
+        <Icon name="lock" size={14} />
+        <span>{t.hero.runsLocally}</span>
+      </p>
+
+      <StoreBadges locale={locale} class="hero-badges" />
+    </div>
+
+    <div class="hero-device">
+      <Phone class="hero-phone" label={t.hero.phoneLabel}>
+        <div class="app" data-phone>
+          <header class="app-head">
+            <span class="app-word">Aiora</span>
+            <span class="app-actions"><Icon name="plus" size={18} /><Icon name="more" size={18} /></span>
+          </header>
+
+          <div class="app-greeting">
+            <div>
+              <p class="app-hello" data-greeting data-greetings={JSON.stringify([app.greetingMorning, app.greetingAfternoon, app.greetingEvening])}>{app.greetingMorning}</p>
+              <p class="app-date" data-weekday>{t.phone.date} · 22°C</p>
+            </div>
+            <span class="app-avatar">A</span>
+          </div>
+
+          <div class="app-goals">
+            <div class="app-goals-row">
+              <span>{app.weeksGoals}</span>
+              <span class="app-goals-pct">{t.phone.goalsPercent} ›</span>
+            </div>
+            <div class="app-bar"><span style="inline-size:42%"></span></div>
+            <ul class="app-goal-list" data-slot="weeklyGoal">
+              {t.phone.goals.map((g) => <li>{g}</li>)}
+            </ul>
+          </div>
+
+          <div class="app-triage" data-slot="thought">
+            <p class="app-eyebrow">{app.triageEyebrow}</p>
+            <p class="app-thought" data-thought-text>{t.phone.thought}</p>
+            <div class="app-triage-actions">
+              <span class="app-btn app-btn--fill">+ {app.chipTask}</span>
+              <span class="app-btn app-btn--fill">+ {app.chipShopping}</span>
+              <span class="app-btn app-btn--line">{app.keepIt}</span>
+              <span class="app-btn app-btn--text">{app.letGo}</span>
+            </div>
+          </div>
+
+          <p class="app-section">{app.upNext}</p>
+          <ul class="app-list" data-slot="task">
+            {t.phone.upNext.map((row) => (
+              <li class="app-row">
+                <span class="app-tick"></span>
+                <span>
+                  <span class="app-row-title">{row.title}</span>
+                  <span class="app-row-meta">{row.meta}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="app-toast" data-toast role="status"></div>
+
+          <nav class="app-nav">
+            <span class="app-tabs">
+              <span class="app-tab is-active"><Icon name="home" size={20} />{t.phone.nav[0]}</span>
+              <span class="app-tab" data-slot="shopping"><Icon name="mindspace" size={20} />{t.phone.nav[1]}<i class="app-badge" data-shopping-badge hidden></i></span>
+              <span class="app-tab"><Icon name="calendar" size={20} />{t.phone.nav[2]}</span>
+            </span>
+            <span class="app-compose"><Icon name="compose" size={22} /></span>
+          </nav>
+        </div>
+      </Phone>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/mind-dump';
+</script>
+
+<style>
+  .hero {
+    background:
+      radial-gradient(60% 50% at 85% 20%, rgb(179 153 212 / 0.28), transparent 70%),
+      radial-gradient(50% 40% at 0% 100%, rgb(115 183 155 / 0.14), transparent 70%),
+      var(--ground);
+    padding-block: calc(var(--s-8) + 40px) var(--s-8);
+    overflow: clip;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: var(--s-7);
+  }
+
+  .hero-title {
+    max-width: 14ch;
+  }
+
+  .hero-lede {
+    margin-top: var(--s-4);
+  }
+
+  /* ─── The dump box ────────────────────────────────────────────────────── */
+  .dump {
+    margin-top: var(--s-6);
+    max-width: 34rem;
+    padding: var(--s-3);
+    background: #fff;
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-floating);
+  }
+
+  .dump-field {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--s-2);
+  }
+
+  .dump textarea {
+    flex: 1;
+    min-height: 56px;
+    max-height: 140px;
+    padding: 16px 14px;
+    border: 0;
+    border-radius: var(--r-md);
+    background: var(--surface);
+    resize: none;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    field-sizing: content;
+  }
+
+  .dump textarea::placeholder {
+    color: rgb(28 43 47 / 0.7);
+  }
+
+  .dump textarea:focus-visible {
+    outline: 2px solid var(--lilac-deep);
+    outline-offset: 0;
+    border-radius: var(--r-md);
+  }
+
+  .dump-save {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border: 0;
+    border-radius: var(--r-md);
+    background: var(--primary);
+    color: #fff;
+    transition:
+      transform var(--dur-fast) var(--ease-settle),
+      opacity var(--dur-fast) var(--ease-out);
+  }
+
+  .dump-save:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .dump-save:not(:disabled):active {
+    transform: scale(0.94);
+  }
+
+  :global([dir='rtl']) .dump-save :global(.dump-save-icon) {
+    transform: scaleX(-1);
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: var(--s-3) 2px 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .chip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: var(--r-pill);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 0.95rem;
+    font-weight: 560;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+  }
+
+  .chip input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .chip:has(input:focus-visible) {
+    outline: 3px solid var(--lilac-deep);
+    outline-offset: 2px;
+  }
+
+  /* The best guess is suggested, never chosen: a ring, not a fill. */
+  .chip[data-suggested] {
+    box-shadow: inset 0 0 0 1.5px var(--lilac-deep);
+    color: var(--lilac-deep);
+  }
+
+  .chip:has(input:checked) {
+    background: var(--lilac-deep);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  .dump-status {
+    min-height: 1.5em;
+    margin: var(--s-3) 4px 0;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+
+  .dump-status[data-state='saved'] {
+    color: var(--primary-text);
+    font-weight: 600;
+  }
+
+  .examples {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: var(--s-2) 2px 2px;
+    font-size: var(--step--1);
+  }
+
+  .examples-label {
+    color: var(--ink-2);
+    margin-inline-end: 2px;
+  }
+
+  .example {
+    min-height: 32px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: var(--r-pill);
+    background: transparent;
+    color: var(--primary-text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgb(68 112 127 / 0.4);
+    text-underline-offset: 3px;
+  }
+
+  .example:hover {
+    background: rgb(68 112 127 / 0.09);
+  }
+
+  .local-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    max-width: 34rem;
+    margin-top: var(--s-3);
+    padding-inline: 6px;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+
+  .local-note :global(svg) {
+    flex: none;
+    margin-top: 0.3em;
+  }
+
+  .hero :global(.hero-badges) {
+    margin-top: var(--s-6);
+  }
+
+  /* ─── The phone ───────────────────────────────────────────────────────── */
+  .hero-device {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero :global(.hero-phone) {
+    max-width: 360px;
+  }
+
+  .app {
+    position: absolute;
+    inset: 3.6em 0 0;
+    padding: 0.4em 1.2em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85em;
+  }
+
+  .app-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .app-word {
+    font-family: 'Lilita One', system-ui, sans-serif;
+    font-size: 1.9em;
+    line-height: 1;
+  }
+
+  .app-actions {
+    display: inline-flex;
+    gap: 1em;
+    padding: 0.65em 1em;
+    border-radius: 999px;
+    background: #fffffb;
+    box-shadow: 0 0 1.4em rgb(0 0 0 / 0.08);
+  }
+
+  .app-actions :global(svg) {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  .app-greeting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .app-hello {
+    font-size: 1.35em;
+    font-weight: 700;
+  }
+
+  .app-date {
+    font-size: 0.85em;
+    color: rgb(28 43 47 / 0.7);
+  }
+
+  .app-avatar {
+    display: grid;
+    place-items: center;
+    width: 2.8em;
+    height: 2.8em;
+    border-radius: 50%;
+    background: var(--lilac-deep);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .app-goals {
+    padding: 0.9em 1em;
+    border-radius: 1.1em;
+    background: #dde7e5;
+  }
+
+  .app-goals-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82em;
+    font-weight: 600;
+    color: rgb(28 43 47 / 0.7);
+  }
+
+  .app-bar {
+    height: 0.5em;
+    margin-top: 0.7em;
+    border-radius: 99px;
+    background: rgb(28 43 47 / 0.08);
+    overflow: hidden;
+  }
+
+  .app-bar span {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: var(--primary);
+  }
+
+  .app-goal-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin-top: 0.7em;
+  }
+
+  .app-goal-list li {
+    padding: 0.25em 0.7em;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 0.75);
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+
+  .app-triage {
+    padding: 1em;
+    border-radius: 1.1em;
+    background: #e5e0ee;
+  }
+
+  .app-eyebrow {
+    font-size: 0.68em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(28 43 47 / 0.7);
+  }
+
+  :global(:lang(ar)) .app-eyebrow {
+    letter-spacing: 0;
+  }
+
+  .app-thought {
+    margin: 0.4em 0 0.8em;
+    font-size: 1.12em;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+
+  .app-triage-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4em;
+  }
+
+  .app-btn {
+    padding: 0.5em 0.85em;
+    border-radius: 99px;
+    font-size: 0.8em;
+    font-weight: 650;
+    white-space: nowrap;
+  }
+
+  .app-btn--fill {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .app-btn--line {
+    box-shadow: inset 0 0 0 1px rgb(28 43 47 / 0.3);
+  }
+
+  .app-btn--text {
+    /* On the triage card's own lilac ground, --lilac-text lands at 4.4:1. */
+    color: #6f4b9b;
+  }
+
+  .app-section {
+    margin-top: 0.2em;
+    font-size: 1.05em;
+    font-weight: 700;
+  }
+
+  .app-list {
+    list-style: none;
+    margin-top: -0.4em;
+    padding: 0.2em 0.9em;
+    border-radius: 1.1em;
+    background: #f7f7f7;
+    box-shadow: 0 0.2em 0.8em rgb(0 0 0 / 0.05);
+  }
+
+  .app-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    padding: 0.75em 0;
+  }
+
+  .app-row + .app-row {
+    border-top: 1px solid rgb(28 43 47 / 0.08);
+  }
+
+  .app-tick {
+    flex: none;
+    width: 1.45em;
+    height: 1.45em;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1.5px rgb(28 43 47 / 0.35);
+  }
+
+  .app-row-title,
+  .app-row-meta {
+    display: block;
+  }
+
+  .app-row-title {
+    font-weight: 650;
+  }
+
+  .app-row-meta {
+    font-size: 0.82em;
+    color: rgb(28 43 47 / 0.7);
+  }
+
+  .app-toast {
+    position: absolute;
+    left: 50%;
+    bottom: 6.6em;
+    translate: -50% 0.6em;
+    max-width: calc(100% - 3em);
+    padding: 0.7em 1.2em;
+    border-radius: 99px;
+    background: rgb(28 43 47 / 0.88);
+    color: #fff;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    transition:
+      opacity var(--dur) var(--ease-out),
+      translate var(--dur) var(--ease-settle);
+    pointer-events: none;
+  }
+
+  .app-toast.is-on {
+    opacity: 1;
+    translate: -50% 0;
+  }
+
+  .app-nav {
+    position: absolute;
+    inset-inline: 1em;
+    bottom: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+
+  .app-tabs {
+    flex: 1;
+    display: flex;
+    padding: 0.35em;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 0.85);
+    box-shadow: 0 0 1.6em rgb(0 0 0 / 0.1);
+  }
+
+  .app-tab {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15em;
+    padding: 0.45em 0;
+    border-radius: 99px;
+    font-size: 0.7em;
+    font-weight: 600;
+    /* A real tab bar mutes its inactive labels further than this; on a web page
+       they are still text, so they stop at the 4.5:1 floor. The active tab is
+       told apart by its fill and colour, not by everything else fading out. */
+    color: rgb(28 43 47 / 0.78);
+  }
+
+  .app-tab :global(svg) {
+    width: 1.9em;
+    height: 1.9em;
+  }
+
+  .app-tab.is-active {
+    background: rgb(28 43 47 / 0.08);
+    color: var(--primary-text);
+  }
+
+  .app-badge {
+    position: absolute;
+    top: 0.4em;
+    inset-inline-end: 28%;
+    width: 0.75em;
+    height: 0.75em;
+    border-radius: 50%;
+    background: var(--priority-high);
+    box-shadow: 0 0 0 0.2em #fff;
+  }
+
+  .app-compose {
+    display: grid;
+    place-items: center;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.9);
+    box-shadow: 0 0 1.6em rgb(0 0 0 / 0.1);
+  }
+
+  .app-compose :global(svg) {
+    width: 1.6em;
+    height: 1.6em;
+  }
+
+  /* Freshly landed content glows for a moment so the eye finds it. */
+  .app :global(.is-new) {
+    animation: landed 1.6s var(--ease-out);
+  }
+
+  @keyframes landed {
+    0%,
+    30% {
+      box-shadow: 0 0 0 0.25em rgb(138 99 184 / 0.45);
+      background-color: #f2ecfa;
+    }
+  }
+
+  /* The flying copy of a thought, on its way from the box to the phone. */
+  :global(.flyer) {
+    position: fixed;
+    z-index: var(--z-toast);
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    background: var(--lilac-deep);
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: var(--shadow-modal);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+      max-width: 16ch;
+    }
+
+    .hero :global(.hero-phone) {
+      max-width: min(320px, 82vw);
+    }
+
+    /* The top of the home screen is where thoughts land; the rest of a tall
+       phone is empty scroll on a small screen, so it fades out instead. */
+    .hero-device {
+      max-height: min(560px, 130vw);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(#000 78%, transparent);
+      mask-image: linear-gradient(#000 78%, transparent);
+    }
+  }
+</style>

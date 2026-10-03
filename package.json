@@ -1,0 +1,26 @@
+{
+  "name": "aiora-site",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync:app": "node scripts/sync-from-app.mjs ../glow",
+    "test": "node --test tests/*.test.mjs",
+    "og": "node scripts/make-og.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/cairo": "^5.3.0",
+    "@fontsource-variable/roboto-flex": "^5.3.0",
+    "@fontsource/lalezar": "^5.3.0",
+    "@fontsource/lilita-one": "^5.3.0",
+    "astro": "^7.3.3"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^23.11.1",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.4",
+    "yaml": "^2.9.1"
+  }
+}

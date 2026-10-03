@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { copy } from '../i18n';
+import { SUPPORT_EMAIL, localePath, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+const s = t.support;
+const icons = ['sparkle', 'wifi-off', 'bell', 'lock'] as const;
+---
+<Base locale={locale} route="/support" title={`${s.title} · Aiora`} description={s.description}>
+  <div class="page wrap">
+    <header>
+      <h1 class="display t-section">{s.title}</h1>
+      <p class="t-lede">{s.lede}</p>
+    </header>
+
+    <section class="email card" aria-labelledby="email-h">
+      <h2 id="email-h">{s.emailTitle}</h2>
+      <p>{s.emailBody}</p>
+      <a class="btn btn--primary" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+    </section>
+
+    <section aria-labelledby="fixes-h">
+      <h2 id="fixes-h" class="sub">{s.fixesTitle}</h2>
+      <div class="fixes">
+        {s.fixes.map((f, i) => (
+          <article class="fix">
+            <span class="fix-icon"><Icon name={icons[i]} size={20} /></span>
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="more-h">
+      <h2 id="more-h" class="sub">{s.moreTitle}</h2>
+      <ul class="more">
+        <li><a class="link-arrow" href={localePath(locale, '/faq')}>{s.faqLink}</a></li>
+        <li><a class="link-arrow" href={localePath(locale, '/account')}>{s.accountLink}</a></li>
+        <li><a class="link-arrow" href={localePath(locale, '/delete-account')}>{s.deleteLink}</a></li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding-block: calc(var(--s-8) + 24px) var(--s-8);
+    max-width: calc(58rem + var(--gutter) * 2);
+  }
+
+  header .t-lede {
+    margin-top: var(--s-4);
+  }
+
+  .email {
+    margin-top: var(--s-6);
+    padding: var(--s-6);
+    border-radius: var(--r-lg);
+    display: grid;
+    gap: var(--s-3);
+    justify-items: start;
+  }
+
+  .email h2 {
+    font-size: var(--step-2);
+  }
+
+  .email p {
+    color: var(--ink-2);
+    max-width: 50ch;
+  }
+
+  .email .btn {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .sub {
+    margin-top: var(--s-7);
+    font-size: var(--step-2);
+  }
+
+  .fixes {
+    margin-top: var(--s-4);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--s-4);
+  }
+
+  .fix {
+    padding: var(--s-5);
+    border-radius: var(--r-lg);
+    background: var(--ground);
+  }
+
+  .fix-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #fff;
+    color: var(--lilac-text);
+  }
+
+  .fix h3 {
+    margin-top: var(--s-3);
+    font-size: var(--step-1);
+  }
+
+  .fix p {
+    margin-top: 4px;
+    color: var(--ink-2);
+  }
+
+  .more {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--s-3);
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .more a {
+    color: var(--primary-text);
+  }
+</style>

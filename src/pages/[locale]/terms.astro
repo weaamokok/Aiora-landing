@@ -1,0 +1,14 @@
+---
+import View from '../../views/Legal.astro';
+import { legal } from '../../content/legal';
+import { copy } from '../../i18n';
+import { nonDefaultLocales, type Locale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  return nonDefaultLocales.map((locale) => ({ params: { locale } }));
+}
+const locale = Astro.params.locale as Locale;
+const { doc, translated } = legal('terms', locale);
+const { t } = copy(locale);
+---
+<View locale={locale} route="/terms" doc={doc} fallbackNote={translated ? undefined : t.legalFallback} />

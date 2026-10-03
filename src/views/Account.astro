@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import { copy } from '../i18n';
+import { SUPPORT_EMAIL, localePath, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+const a = t.account;
+---
+<Base locale={locale} route="/account" title={`${a.title} · Aiora`} description={a.description} noindex>
+  <div class="page wrap">
+    <h1 class="display t-section">{a.title}</h1>
+    <p class="t-lede">{a.lede}</p>
+
+    <div
+      class="panel card"
+      data-account
+      data-locale={locale}
+      data-sign-in={`${localePath(locale, '/plus/sign-in')}?next=${encodeURIComponent(localePath(locale, '/account'))}`}
+      data-strings={JSON.stringify(a)}
+      aria-live="polite"
+    >
+      <p class="state" data-state>…</p>
+      <p class="detail" data-detail></p>
+      <div class="actions">
+        <button class="btn btn--primary" type="button" data-manage hidden>{a.manage}</button>
+        <a class="btn btn--primary" href={localePath(locale, '/plus')} data-get hidden>{a.getPlus}</a>
+      </div>
+      <noscript><p>{a.portalUnavailable}</p></noscript>
+    </div>
+
+    <p class="help">
+      <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+    </p>
+  </div>
+</Base>
+
+<script>
+  import { getEntitlement, getSession, isPlus, openBillingPortal } from '../scripts/plus-api';
+
+  const root = document.querySelector<HTMLElement>('[data-account]');
+  if (root) {
+    const s = JSON.parse(root.dataset.strings ?? '{}') as Record<string, string>;
+    const locale = root.dataset.locale ?? 'en';
+    const state = root.querySelector<HTMLElement>('[data-state]')!;
+    const detail = root.querySelector<HTMLElement>('[data-detail]')!;
+    const manage = root.querySelector<HTMLButtonElement>('[data-manage]')!;
+    const get = root.querySelector<HTMLElement>('[data-get]')!;
+    const fill = (tpl: string, vars: Record<string, string>) => tpl.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
+    const date = (iso: string) => new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).format(new Date(iso));
+
+    if (!getSession()) {
+      location.replace(root.dataset.signIn!);
+    } else {
+      getEntitlement().then((r) => {
+        if (!r.ok) {
+          if (r.reason === 'auth') location.replace(root.dataset.signIn!);
+          else state.textContent = s.portalUnavailable;
+          return;
+        }
+        const e = r.value;
+        if (!isPlus(e)) {
+          state.textContent = s.none;
+          get.hidden = false;
+          return;
+        }
+        state.textContent = s.active;
+        if (e.expires_at) detail.textContent = fill(e.will_renew ? s.renews : s.ends, { date: date(e.expires_at) });
+        if (e.source === 'app_store' || e.source === 'play_store') {
+          detail.textContent += ` ${fill(s.storeManaged, { store: e.source === 'app_store' ? s.appStore : s.googlePlay })}`;
+          return;
+        }
+        manage.hidden = false;
+        manage.addEventListener('click', async () => {
+          manage.disabled = true;
+          state.textContent = s.opening;
+          const portal = await openBillingPortal();
+          if (portal.ok) location.assign(portal.value);
+          else {
+            manage.disabled = false;
+            state.textContent = s.active;
+            detail.textContent = s.portalUnavailable;
+          }
+        });
+      });
+    }
+  }
+</script>
+
+<style>
+  .page {
+    padding-block: calc(var(--s-8) + 24px) var(--s-8);
+    max-width: calc(44rem + var(--gutter) * 2);
+  }
+
+  .t-lede {
+    margin-top: var(--s-4);
+  }
+
+  .panel {
+    margin-top: var(--s-6);
+    padding: var(--s-6);
+    border-radius: var(--r-lg);
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .state {
+    font-size: var(--step-1);
+    font-weight: 700;
+  }
+
+  .detail {
+    color: var(--ink-2);
+  }
+
+  .detail:empty {
+    display: none;
+  }
+
+  .actions {
+    margin-top: var(--s-2);
+  }
+
+  .help {
+    margin-top: var(--s-5);
+  }
+
+  .help a {
+    color: var(--primary-text);
+    font-weight: 600;
+  }
+</style>

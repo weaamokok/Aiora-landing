@@ -1,0 +1,32 @@
+---
+// The Aiora mark: the app icon's four-point sparkle in its rounded frame.
+// Redrawn as a vector from logo.png so it stays crisp at 16px and 160px.
+interface Props {
+  size?: number;
+  class?: string;
+  /** 'tile' = teal app-icon tile; 'glyph' = sparkle only, in currentColor. */
+  variant?: 'tile' | 'glyph';
+}
+const { size = 32, class: className, variant = 'tile' } = Astro.props;
+const star =
+  'M50 25C50 36 59 50 71 50C59 50 50 64 50 75C50 64 41 50 29 50C41 50 50 36 50 25Z';
+const rays = [
+  'M29.7 31.6L41.4 41.6L40 43Z',
+  'M70.3 31.6L60 43L58.6 41.6Z',
+  'M29.7 68.4L40 57L41.4 58.4Z',
+  'M70.3 68.4L58.6 58.4L60 57Z',
+];
+---
+{variant === 'tile' ? (
+  <svg class={className} width={size} height={size} viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <rect width="100" height="100" rx="27" fill="#4C7B8B" />
+    <rect x="15.5" y="15.5" width="69" height="69" rx="12.5" fill="none" stroke="#F4F4F4" stroke-width="3.1" />
+    <path d={star} fill="#F4F4F4" />
+    {rays.map((d) => <path d={d} fill="#F4F4F4" />)}
+  </svg>
+) : (
+  <svg class={className} width={size} height={size} viewBox="24 20 52 60" aria-hidden="true" focusable="false">
+    <path d={star} fill="currentColor" />
+    {rays.map((d) => <path d={d} fill="currentColor" />)}
+  </svg>
+)}

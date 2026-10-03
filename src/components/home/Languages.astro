@@ -1,0 +1,171 @@
+---
+import { copy } from '../../i18n';
+import { locales, localeMeta, localePath, type Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+// The visitor's language first, then the rest.
+const order = [locale, ...locales.filter((l) => l !== locale)];
+const lines = order.map((l) => ({ locale: l, text: copy(l).app.promise, meta: localeMeta[l] }));
+---
+<section class="langs section" data-tone="teal" aria-labelledby="langs-title">
+  <div class="wrap langs-grid">
+    <div>
+      <h2 id="langs-title" class="display t-title">{t.languages.title}</h2>
+      <p class="t-lede langs-body">{t.languages.body}</p>
+      <ul class="langs-list">
+        {lines.map((l) => (
+          <li>
+            <a href={localePath(l.locale, '/')} lang={l.meta.tag} hreflang={l.meta.tag} aria-current={l.locale === locale ? 'true' : undefined}>
+              {l.meta.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- The same promise, as the app says it in each language. -->
+    <div class="carousel" aria-label={t.languages.title}>
+      {lines.map((l, i) => (
+        <p class="line display" lang={l.meta.tag} dir={l.meta.dir} style={`--i:${i}`}>
+          {l.text}
+        </p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .langs {
+    background:
+      radial-gradient(60% 70% at 90% 50%, rgb(201 181 227 / 0.35), transparent 70%),
+      var(--lilac-deep);
+    color: #fff;
+  }
+
+  .langs-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--s-7);
+    align-items: center;
+  }
+
+  .langs-body {
+    margin-top: var(--s-3);
+    color: #fff;
+    opacity: 0.9;
+  }
+
+  .langs-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--s-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .langs-list a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    background: rgb(255 255 255 / 0.14);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .langs-list a:hover {
+    background: rgb(255 255 255 / 0.24);
+  }
+
+  .langs-list a[aria-current='true'] {
+    background: #fff;
+    color: var(--lilac-text);
+  }
+
+  /* Each line takes its own script's display face through :lang(). */
+  .line:lang(ar) {
+    font-family: 'Lalezar', 'Cairo Variable', sans-serif;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .line:lang(ru) {
+    font-family: 'Roboto Flex Variable', sans-serif;
+    font-weight: 820;
+    letter-spacing: -0.02em;
+  }
+
+  .line:lang(en),
+  .line:lang(fr),
+  .line:lang(es),
+  .line:lang(tr),
+  .line:lang(sw) {
+    font-family: 'Lilita One', 'Roboto Flex Variable', sans-serif;
+    font-weight: 400;
+  }
+
+  .carousel {
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .line {
+    font-size: var(--step-2);
+    line-height: 1.12;
+    opacity: 0.5;
+  }
+
+  .line:first-child {
+    font-size: var(--step-3);
+    opacity: 1;
+  }
+
+  /* With motion, the lines take turns in one place instead of stacking. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+    .carousel {
+      grid-template-areas: 'stack';
+      min-height: 3.6em;
+      font-size: var(--step-3);
+    }
+
+    .line,
+    .line:first-child {
+      grid-area: stack;
+      align-self: center;
+      font-size: var(--step-4);
+      opacity: 0;
+      animation: take-turns 21s var(--ease-out) infinite;
+      animation-delay: calc(var(--i) * 3s);
+    }
+  }
+
+  @keyframes take-turns {
+    0% {
+      opacity: 0;
+      translate: 0 18px;
+      filter: blur(6px);
+    }
+    3%,
+    11% {
+      opacity: 1;
+      translate: 0 0;
+      filter: blur(0);
+    }
+    14.2%,
+    100% {
+      opacity: 0;
+      translate: 0 -18px;
+      filter: blur(6px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .langs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

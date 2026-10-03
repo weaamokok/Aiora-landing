@@ -1,0 +1,302 @@
+---
+import Base from '../layouts/Base.astro';
+import DuskPlus from '../components/home/DuskPlus.astro';
+import Faq from '../components/Faq.astro';
+import Icon from '../components/Icon.astro';
+import { copy, fmt } from '../i18n';
+import { localePath, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t, app } = copy(locale);
+const p = t.plusPage;
+const days = t.plus.trialDays;
+---
+<Base locale={locale} route="/plus" title={`${p.title} · Aiora`} description={p.description} tone="dark">
+  <div class="plus-top">
+    <DuskPlus locale={locale} asHero showCta={false}>
+      <form
+        class="buy"
+        data-buy
+        data-locale={locale}
+        data-sign-in={localePath(locale, '/plus/sign-in')}
+        data-strings={JSON.stringify({
+          perYear: app.perYear,
+          perMonth: app.perMonth,
+          monthlyEquivalent: app.monthlyEquivalent,
+          signedInAs: p.signedInAs,
+          redirecting: p.redirecting,
+          checkoutFailed: p.checkoutFailed,
+          already: p.already,
+          unavailable: p.pricesUnavailable,
+        })}
+      >
+        <fieldset class="plans" data-plans hidden>
+          <legend class="visually-hidden">{p.buyTitle}</legend>
+          <label class="plan">
+            <input type="radio" name="plan" value="plus_annual_web" checked />
+            <span class="plan-name">{app.annual}</span>
+            <span class="plan-price" data-price="plus_annual_web"></span>
+            <span class="plan-sub" data-sub="plus_annual_web">{p.billedYearly}</span>
+          </label>
+          <label class="plan">
+            <input type="radio" name="plan" value="plus_monthly_web" />
+            <span class="plan-name">{app.monthly}</span>
+            <span class="plan-price" data-price="plus_monthly_web"></span>
+            <span class="plan-sub">{p.billedMonthly}</span>
+          </label>
+        </fieldset>
+
+        <p class="buy-status" data-status aria-live="polite">{p.loadingPrices}</p>
+
+        <div data-signed-out hidden>
+          <p class="buy-note">{p.signInNeeded}</p>
+          <a class="btn btn--light buy-cta" href={localePath(locale, '/plus/sign-in')}>{p.signIn}</a>
+        </div>
+
+        <div data-signed-in hidden>
+          <p class="buy-who"><span data-who></span> · <button type="button" class="linkish" data-sign-out>{p.signOut}</button></p>
+          <button class="btn btn--light buy-cta" type="submit" data-continue>
+            <span data-cta-annual>{fmt(app.startTrialCta, { days })}</span>
+            <span data-cta-monthly hidden>{app.startPlus}</span>
+          </button>
+          <p class="buy-fine" data-fine-annual>{app.noChargeToday}</p>
+        </div>
+
+        <noscript><p class="buy-note">{p.inAppNote}</p></noscript>
+      </form>
+    </DuskPlus>
+  </div>
+
+  <section class="compare section" aria-labelledby="compare-h">
+    <div class="wrap narrow">
+      <h2 id="compare-h" class="display t-title">{p.compareTitle}</h2>
+      <div class="table-scroll" tabindex="0">
+        <table>
+          <thead>
+            <tr><th scope="col"><span class="visually-hidden">{p.compareTitle}</span></th><th scope="col">{p.free}</th><th scope="col">{p.plus}</th></tr>
+          </thead>
+          <tbody>
+            {p.rows.map((r) => (
+              <tr>
+                <th scope="row">{r.label}</th>
+                {[r.free, r.plus].map((v) => (
+                  <td>
+                    {v === true ? (
+                      <span class="yes"><Icon name="check" size={18} /><span class="visually-hidden">✓</span></span>
+                    ) : v === false ? (
+                      <span class="no" aria-label="—">—</span>
+                    ) : (
+                      <span class="val">{v}</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="in-app">{p.inAppNote}</p>
+    </div>
+  </section>
+
+  <section class="section plus-faq" aria-labelledby="plus-faq-h">
+    <div class="wrap narrow">
+      <h2 id="plus-faq-h" class="display t-title">{t.night.faqTitle}</h2>
+      <Faq items={p.faq} />
+      <p class="legal-note">{p.legal} <a href={localePath(locale, '/terms')}>{t.footer.terms}</a></p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/plus-page';
+</script>
+
+<style>
+  .plus-top :global(.dusk) {
+    padding-top: calc(var(--s-8) + 40px);
+  }
+
+  .buy {
+    margin-top: var(--s-6);
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .plans {
+    display: grid;
+    gap: 10px;
+    border: 0;
+    padding: 0;
+  }
+
+  .plan {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 12px;
+    padding: 14px 16px;
+    border-radius: var(--r-md);
+    background: rgb(255 255 255 / 0.04);
+    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.12);
+    cursor: pointer;
+    transition: box-shadow var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .plan input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .plan:has(input:checked) {
+    background: rgb(201 181 227 / 0.12);
+    box-shadow: inset 0 0 0 2px var(--dusk-lilac);
+  }
+
+  .plan:has(input:focus-visible) {
+    outline: 3px solid var(--dusk-lilac);
+    outline-offset: 3px;
+  }
+
+  .plan-name {
+    font-weight: 650;
+  }
+
+  .plan-price {
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+  }
+
+  .plan-sub {
+    grid-column: 1 / -1;
+    font-size: var(--step--1);
+    color: var(--dusk-ink-2);
+  }
+
+  .buy-status {
+    font-size: var(--step--1);
+    color: var(--dusk-ink-2);
+  }
+
+  .buy-status:empty {
+    display: none;
+  }
+
+  .buy-note,
+  .buy-who,
+  .buy-fine {
+    font-size: var(--step--1);
+    color: var(--dusk-ink-2);
+  }
+
+  .buy-fine {
+    text-align: center;
+    margin-top: var(--s-2);
+  }
+
+  .buy-cta {
+    width: 100%;
+    margin-top: var(--s-3);
+  }
+
+  .linkish {
+    border: 0;
+    background: none;
+    padding: 0;
+    color: var(--dusk-lilac);
+    text-decoration: underline;
+  }
+
+  .narrow {
+    max-width: calc(52rem + var(--gutter) * 2);
+  }
+
+  .compare {
+    background: var(--surface);
+  }
+
+  .table-scroll {
+    margin-top: var(--s-6);
+    overflow-x: auto;
+    border-radius: var(--r-lg);
+    background: #fff;
+    box-shadow: var(--shadow-raised);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 30rem;
+  }
+
+  th,
+  td {
+    padding: 14px 18px;
+    text-align: start;
+  }
+
+  thead th {
+    font-weight: 700;
+    background: var(--surface-raised);
+  }
+
+  thead th:nth-child(3) {
+    color: var(--lilac-text);
+  }
+
+  tbody th {
+    font-weight: 520;
+  }
+
+  tbody tr + tr > * {
+    border-top: 1px solid rgb(28 43 47 / 0.07);
+  }
+
+  td {
+    width: 22%;
+    white-space: nowrap;
+  }
+
+  .yes {
+    color: var(--primary-text);
+  }
+
+  .no {
+    color: rgb(28 43 47 / 0.35);
+  }
+
+  .val {
+    font-size: var(--step--1);
+    font-weight: 600;
+    white-space: normal;
+  }
+
+  .in-app {
+    margin-top: var(--s-4);
+    color: var(--ink-2);
+  }
+
+  .plus-faq {
+    padding-top: 0;
+    background: var(--surface);
+  }
+
+  .legal-note {
+    margin-top: var(--s-6);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    max-width: var(--measure);
+  }
+
+  .legal-note a {
+    color: var(--primary-text);
+    font-weight: 600;
+  }
+</style>

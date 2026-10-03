@@ -1,0 +1,178 @@
+---
+import { copy } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+
+// Hand-placed, not random: every word has room, the centre band stays clear
+// for the headline, and near words (large, sharp) and far ones (small, soft)
+// alternate so the mess has depth. Positions are % of the section; `d` is depth.
+const slots = [
+  { x: 6, y: 9, d: 0.8 },
+  { x: 31, y: 4, d: 0.55 },
+  { x: 52, y: 11, d: 0.5 },
+  { x: 76, y: 5, d: 0.7 },
+  { x: 60, y: 24, d: 0.35 },
+  { x: 9, y: 25, d: 0.45 },
+  { x: 3, y: 44, d: 0.25 },
+  { x: 36, y: 28, d: 0.12 },
+  { x: 83, y: 38, d: 0.3 },
+  { x: 84, y: 55, d: 0.75 },
+  { x: 7, y: 59, d: 0.55 },
+  { x: 76, y: 88, d: 0.2 },
+  { x: 22, y: 74, d: 0.6 },
+  { x: 47, y: 84, d: 0.8 },
+  { x: 5, y: 85, d: 0.3 },
+  { x: 58, y: 70, d: 0.42 },
+  { x: 33, y: 93, d: 0.18 },
+  { x: 83, y: 22, d: 0.5 },
+];
+const words = t.noise.thoughts.slice(0, slots.length).map((text, i) => {
+  const { x, y, d } = slots[i];
+  return {
+    text,
+    left: x,
+    top: y,
+    size: 0.9 + d * 1.25,
+    weight: d > 0.66 ? 650 : d > 0.33 ? 520 : 420,
+    blur: d < 0.22 ? 2 : d < 0.36 ? 0.7 : 0,
+    alpha: 0.32 + d * 0.5,
+    drift: 5 + ((i * 7) % 6),
+    delay: -((i * 13) % 8),
+    far: d < 0.36,
+  };
+});
+---
+<section class="noise" data-tone="light" aria-labelledby="noise-title">
+  <div class="cloud" aria-hidden="true">
+    {words.map((w) => (
+      <span
+        class:list={['thought', { 'thought--far': w.far }]}
+        style={`--x:${w.left}%;--y:${w.top}%;--s:${w.size}rem;--w:${w.weight};--b:${w.blur}px;--a:${w.alpha};--d:${w.drift}s;--delay:${w.delay}s`}
+      >
+        {w.text}
+      </span>
+    ))}
+  </div>
+  <div class="noise-copy wrap">
+    <h2 id="noise-title" class="display t-section">{t.noise.title}</h2>
+    <p class="t-lede noise-body">{t.noise.body}</p>
+  </div>
+</section>
+
+<style>
+  .noise {
+    position: relative;
+    min-height: min(100svh, 860px);
+    display: grid;
+    place-items: center;
+    overflow: clip;
+    background: linear-gradient(var(--ground), var(--surface) 30%);
+    padding-block: var(--s-8);
+  }
+
+  .cloud {
+    position: absolute;
+    inset: 0;
+    max-width: 1400px;
+    margin-inline: auto;
+  }
+
+  .thought {
+    position: absolute;
+    inset-inline-start: var(--x);
+    top: var(--y);
+    font-size: var(--s);
+    font-weight: var(--w);
+    color: rgb(28 43 47 / var(--a));
+    filter: blur(var(--b));
+    white-space: nowrap;
+    line-height: 1.1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .thought {
+      animation: drift var(--d) ease-in-out var(--delay) infinite alternate;
+    }
+
+    @supports (animation-timeline: view()) {
+      /* As you scroll on, the noise pulls apart — the next section sorts it. */
+      .cloud {
+        animation: scatter linear both;
+        animation-timeline: view();
+        animation-range: exit 0% exit 90%;
+      }
+    }
+  }
+
+  @keyframes drift {
+    to {
+      translate: 0 -10px;
+    }
+  }
+
+  @keyframes scatter {
+    to {
+      opacity: 0.15;
+      scale: 1.12;
+      filter: blur(3px);
+    }
+  }
+
+  .noise-copy {
+    position: relative;
+    text-align: center;
+    display: grid;
+    justify-items: center;
+  }
+
+  /* A soft clearing behind the words keeps the headline legible over the mess. */
+  .noise-copy::before {
+    content: '';
+    position: absolute;
+    inset: -18% -4%;
+    z-index: -1;
+    background: radial-gradient(closest-side, var(--surface) 55%, transparent);
+  }
+
+  .noise-copy h2 {
+    max-width: 16ch;
+  }
+
+  .noise-body {
+    margin-top: var(--s-4);
+    max-width: 44ch;
+  }
+
+  /* At phone width there's no room to scatter around a headline, so the noise
+     becomes a dense, uneven cloud above it. The far layer would only collide. */
+  @media (max-width: 760px) {
+    .noise {
+      display: block;
+      min-height: 0;
+    }
+
+    .cloud {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 4px 14px;
+      padding: 0 var(--gutter) var(--s-6);
+    }
+
+    .thought {
+      position: static;
+      font-size: calc(var(--s) * 0.78);
+    }
+
+    .thought--far {
+      display: none;
+    }
+  }
+</style>

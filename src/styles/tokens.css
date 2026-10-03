@@ -1,0 +1,119 @@
+/*
+ * Design tokens — the app's theme (`glow/lib/core/theme`), carried to the web.
+ *
+ * No new brand colours. Every value here names the Dart token it came from, so
+ * when the app's palette moves, this file is the one place to follow it.
+ */
+
+:root {
+  /* ─── Colour: app tokens ─────────────────────────────────────────────── */
+  --surface: #f2f2f7;            /* AppColors.surface — L0 page */
+  --surface-raised: #f5f5f5;     /* AppColors.surfaceRaised — L1 */
+  --ink: #1c2b2f;                /* AppColors.onSurface */
+  --ink-2: rgb(28 43 47 / 0.72); /* secondary text; 0.72 keeps ≥4.5:1 on --ground */
+  --primary: #4c7b8b;            /* AppColors.primary (teal) */
+  --primary-ink: #ffffff;
+  --lilac: #b399d4;              /* AppColors.tertiary */
+  --lilac-deep: #8a63b8;         /* AppColors.tertiaryDeep — fills and selection (white on it: 4.6:1) */
+
+  /* Text variants. The fill colours above are the app's, but as *text* on a
+     near-white page they land at 4.2:1 — under the 4.5 body floor. These are
+     the same hues stepped down until they pass, and they are only ever used
+     for type. */
+  --primary-text: #44707f;       /* 4.9:1 on --surface, 5.4:1 on white */
+  --lilac-text: #7a54a8;         /* 5.3:1 on --surface-raised, 5.7:1 on white */
+  --mint: #73b79b;               /* AppColors.primaryContainer */
+  --done: #a2d7d8;               /* AppColors.completed */
+  --cream: #fff0dd;              /* AppColors.secondaryContainer — used as an accent only, never a page */
+  --priority-high: #ff8c61;      /* AppColors.priorityHigh */
+
+  /* The in-app landing ground: tertiary 13% over surface, blended opaque. */
+  --ground: #eae6f2;
+
+  /* Dark — the dusk paywall and night sections */
+  --dusk: #121417;               /* AppColors.darkSurface */
+  --dusk-raised: #1a1d21;        /* darkSurfaceRaised */
+  --dusk-floating: #22262b;      /* darkSurfaceFloating */
+  --dusk-ink: #e6eaec;           /* darkOnSurface */
+  --dusk-ink-2: #9ba6ac;         /* darkOnSurfaceMuted */
+  --dusk-lilac: #c9b5e3;         /* darkTertiary */
+  --dusk-primary: #8fb9c7;       /* darkPrimary */
+
+  /* ─── Shape: AppRadius ───────────────────────────────────────────────── */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+
+  /* ─── Elevation: AppUIConst raised / floating / modal ────────────────── */
+  --shadow-raised: 0 2px 10px rgb(0 0 0 / 0.05);
+  --shadow-floating: 0 0 28px rgb(0 0 0 / 0.1);
+  --shadow-modal: 0 8px 48px rgb(0 0 0 / 0.15);
+
+  /* ─── Type ───────────────────────────────────────────────────────────── */
+  --font-display: 'Lilita One', 'Roboto Flex Variable', system-ui, sans-serif;
+  --font-body: 'Roboto Flex Variable', 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.01em;
+  --display-leading: 1.04;
+  --body-leading: 1.55;
+
+  /* Fluid scale, ratio ≈1.28. Display tops out under 6rem. */
+  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1.02rem, 0.98rem + 0.2vw, 1.13rem);
+  --step-1: clamp(1.24rem, 1.16rem + 0.4vw, 1.44rem);
+  --step-2: clamp(1.5rem, 1.34rem + 0.8vw, 1.9rem);
+  --step-3: clamp(1.9rem, 1.6rem + 1.5vw, 2.8rem);
+  --step-4: clamp(2.3rem, 1.8rem + 2.6vw, 4rem);
+  --step-5: clamp(2.6rem, 1.9rem + 3.6vw, 5.25rem);
+
+  /* ─── Space: the app's 4pt grid, fluid at the large end ──────────────── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: clamp(40px, 5vw, 64px);
+  --s-8: clamp(64px, 9vw, 128px);
+  --gutter: clamp(16px, 4vw, 40px);
+  --page-max: 1200px;
+  --measure: 65ch;
+
+  /* ─── Motion: AppMotion ──────────────────────────────────────────────── */
+  /* settle — no overshoot: a critically damped spring, sampled at 29 points. */
+  --ease-settle: linear(0, 0.0302, 0.1017, 0.1934, 0.2919, 0.3889, 0.4796, 0.5617, 0.6343, 0.6972, 0.751, 0.7965, 0.8346, 0.8663, 0.8925, 0.914, 0.9316, 0.946, 0.9576, 0.967, 0.9746, 0.9807, 0.9856, 0.9895, 0.9927, 0.9952, 0.9972, 0.9987, 1);
+  /* momentum — damping 0.8 (bounce ≈ 0.2). Only for things that were thrown. */
+  --ease-momentum: linear(0, 0.0435, 0.146, 0.2757, 0.4112, 0.5394, 0.6529, 0.7485, 0.8258, 0.886, 0.931, 0.9635, 0.9858, 1.0002, 1.0088, 1.0132, 1.0148, 1.0145, 1.0132, 1.0113, 1.0092, 1.0072, 1.0054, 1.0039, 1.0027, 1.0017, 1.0009, 1.0004, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* ease-out-quint, for plain fades */
+  --dur-fast: 180ms;
+  --dur: 420ms;
+  --dur-slow: 700ms;
+
+  /* ─── Layers ─────────────────────────────────────────────────────────── */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-nav: 200;
+  --z-toast: 400;
+}
+
+/* Arabic: Lalezar for display, Cairo for body — AppTextStyles.displayFamily.
+   No negative tracking (it crowds joined letterforms) and looser leading. */
+:root:lang(ar) {
+  --font-display: 'Lalezar', 'Cairo Variable', system-ui, sans-serif;
+  --font-body: 'Cairo Variable', 'Roboto Flex Variable', system-ui, sans-serif;
+  --display-tracking: 0;
+  --display-leading: 1.35;
+  --body-leading: 1.75;
+}
+
+/* Lilita One has no Cyrillic. Rather than let every Russian headline fall back
+   glyph-by-glyph to a thin system face, Russian sets display in Roboto Flex at
+   a heavy, slightly condensed cut that sits next to Lilita's weight. */
+:root:lang(ru) {
+  --font-display: 'Roboto Flex Variable', system-ui, sans-serif;
+  --display-weight: 820;
+  --display-tracking: -0.02em;
+  --display-leading: 1.06;
+}

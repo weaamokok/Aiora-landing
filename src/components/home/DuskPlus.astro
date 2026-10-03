@@ -1,0 +1,222 @@
+---
+import Icon from '../Icon.astro';
+import { copy, fmt } from '../../i18n';
+import { localePath, type Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  /** On /plus the section is the page's hero, so its heading is the h1. */
+  asHero?: boolean;
+  showCta?: boolean;
+}
+const { locale, asHero = false, showCta = true } = Astro.props;
+const { t, app } = copy(locale);
+const days = t.plus.trialDays;
+
+const features = [
+  { icon: 'sparkle', title: app.featureRegenTitle, body: app.featureRegenSubtitle },
+  { icon: 'widget', title: app.featurePhotoTitle, body: app.featurePhotoSubtitle },
+  { icon: 'timer', title: app.featureBuddyTitle, body: app.featureBuddySubtitle },
+  { icon: 'target', title: app.featureGoalsTitle, body: app.featureGoalsSubtitle },
+] as const;
+
+const trial = [
+  { title: app.trialStepNowTitle, body: app.trialStepNowBody },
+  { title: app.trialStepMiddleTitle, body: fmt(app.trialStepMiddleBody, { days }) },
+  { title: fmt(app.trialStepEndTitle, { days }), body: app.trialStepEndBody },
+];
+const Heading = asHero ? 'h1' : 'h2';
+---
+<section class="dusk section on-dark" data-tone="dark" aria-labelledby="dusk-title">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap dusk-grid">
+    <div class="dusk-copy">
+      <Heading id="dusk-title" class="display t-section">{app.paywallHeadline}</Heading>
+      <p class="t-lede">{app.paywallSubline}</p>
+      <ul class="features">
+        {features.map((f) => (
+          <li>
+            <span class="f-icon"><Icon name={f.icon} size={20} /></span>
+            <span>
+              <strong>{f.title}</strong>
+              <span>{f.body}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="trial">
+      <p class="trial-head display">{fmt(app.trialHeadline, { days })}</p>
+      <ol class="timeline">
+        {trial.map((s, i) => (
+          <li class:list={['tl', { first: i === 0 }]}>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <strong>{s.title}</strong>
+            <span>{s.body}</span>
+          </li>
+        ))}
+      </ol>
+      <slot />
+      {showCta && (
+        <>
+          <a class="btn btn--light trial-cta" href={localePath(locale, '/plus')}>{t.plus.cta}</a>
+          <p class="trial-note">{t.plus.note}</p>
+        </>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .dusk {
+    position: relative;
+    overflow: clip;
+  }
+
+  /* The paywall's lavender glow, rising from below like the last light. */
+  .glow {
+    position: absolute;
+    inset: auto -20% -40% -20%;
+    height: 90%;
+    background:
+      radial-gradient(50% 60% at 30% 100%, rgb(201 181 227 / 0.32), transparent 70%),
+      radial-gradient(40% 50% at 80% 90%, rgb(143 185 199 / 0.18), transparent 70%);
+    pointer-events: none;
+  }
+
+  .dusk-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: var(--s-7);
+    align-items: center;
+  }
+
+  .dusk-copy .t-lede {
+    margin-top: var(--s-4);
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--s-6);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-5);
+  }
+
+  .features li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--s-3);
+  }
+
+  .features strong,
+  .features span span {
+    display: block;
+  }
+
+  .features strong {
+    font-weight: 650;
+  }
+
+  .features span span {
+    color: var(--dusk-ink-2);
+    font-size: var(--step--1);
+  }
+
+  .f-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgb(201 181 227 / 0.14);
+    color: var(--dusk-lilac);
+  }
+
+  .trial {
+    padding: var(--s-6);
+    border-radius: var(--r-lg);
+    background: rgb(34 38 43 / 0.7);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06);
+  }
+
+  .trial-head {
+    font-size: var(--step-2);
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--s-5);
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .tl {
+    position: relative;
+    display: grid;
+    padding-inline-start: 28px;
+  }
+
+  .tl::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 6px;
+    top: 18px;
+    bottom: calc(-1 * var(--s-4));
+    width: 2px;
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  .tl:last-child::before {
+    display: none;
+  }
+
+  .tl-dot {
+    position: absolute;
+    inset-inline-start: 0;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px var(--dusk-ink-2);
+  }
+
+  .tl.first .tl-dot {
+    background: var(--dusk-lilac);
+    box-shadow: 0 0 0 5px rgb(201 181 227 / 0.2);
+  }
+
+  .tl strong {
+    font-weight: 650;
+  }
+
+  .tl span:not(.tl-dot) {
+    color: var(--dusk-ink-2);
+    font-size: var(--step--1);
+  }
+
+  .trial-cta {
+    margin-top: var(--s-6);
+    width: 100%;
+  }
+
+  .trial-note {
+    margin-top: var(--s-3);
+    text-align: center;
+    font-size: var(--step--1);
+    color: var(--dusk-ink-2);
+  }
+
+  @media (max-width: 900px) {
+    .dusk-grid {
+      grid-template-columns: 1fr;
+    }
+    .features {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

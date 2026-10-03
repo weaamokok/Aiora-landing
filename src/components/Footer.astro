@@ -1,0 +1,160 @@
+---
+import Mark from './Mark.astro';
+import { copy, fmt } from '../i18n';
+import { localeMeta, localePath, STORE, SUPPORT_EMAIL, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  route: string;
+  availableIn: readonly Locale[];
+}
+const { locale, route, availableIn } = Astro.props;
+const { t } = copy(locale);
+const p = (path: string) => localePath(locale, path);
+const year = new Date().getFullYear();
+---
+<footer class="footer on-dark" data-tone="dark">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="footer-mark" href={p('/')} aria-label={t.nav.home}>
+        <Mark size={40} />
+        <span class="footer-word" aria-hidden="true">Aiora</span>
+      </a>
+      <p class="footer-tagline">{t.footer.tagline}</p>
+    </div>
+
+    <nav class="footer-cols" aria-label="Footer">
+      <div>
+        <h2 class="footer-h">{t.footer.product}</h2>
+        <ul>
+          <li><a href={`${p('/')}#how`}>{t.nav.how}</a></li>
+          <li><a href={p('/plus')}>{t.nav.plus}</a></li>
+          <li><a href={STORE.appStore} rel="noopener">App Store</a></li>
+          <li><a href={STORE.googlePlay} rel="noopener">Google Play</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">{t.footer.help}</h2>
+        <ul>
+          <li><a href={p('/faq')}>{t.nav.faq}</a></li>
+          <li><a href={p('/support')}>{t.footer.support}</a></li>
+          <li><a href={p('/account')}>{t.footer.account}</a></li>
+          <li><a href={p('/delete-account')}>{t.footer.deleteAccount}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">{t.footer.legal}</h2>
+        <ul>
+          <li><a href={p('/privacy')}>{t.footer.privacy}</a></li>
+          <li><a href={p('/terms')}>{t.footer.terms}</a></li>
+          <li><a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="wrap footer-base">
+    <p>{fmt(t.footer.rights, { year })}</p>
+    <ul class="footer-langs" aria-label={t.nav.language}>
+      {availableIn.map((l) => (
+        <li>
+          <a href={localePath(l, route)} hreflang={localeMeta[l].tag} lang={localeMeta[l].tag} aria-current={l === locale ? 'true' : undefined}>
+            {localeMeta[l].name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: var(--s-8) var(--s-6);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: var(--s-7);
+  }
+
+  .footer-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .footer-word {
+    font-family: 'Lilita One', system-ui, sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .footer-tagline {
+    margin-top: var(--s-4);
+    max-width: 28ch;
+    color: var(--dusk-ink-2);
+  }
+
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-5);
+  }
+
+  .footer-h {
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--dusk-ink-2);
+    margin-bottom: var(--s-3);
+  }
+
+  .footer ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .footer a {
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-base {
+    margin-top: var(--s-7);
+    padding-top: var(--s-5);
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--s-4);
+    color: var(--dusk-ink-2);
+    font-size: var(--step--1);
+  }
+
+  .footer-langs {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 6px 16px !important;
+  }
+
+  .footer-langs a[aria-current='true'] {
+    color: var(--dusk-ink);
+    font-weight: 650;
+  }
+
+  @media (max-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+    .footer-cols {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

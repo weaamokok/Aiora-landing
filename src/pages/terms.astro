@@ -1,0 +1,9 @@
+---
+import View from '../views/Legal.astro';
+import { legal } from '../content/legal';
+import { copy } from '../i18n';
+const locale = 'en' as const;
+const { doc, translated } = legal('terms', locale);
+const { t } = copy(locale);
+---
+<View locale={locale} route="/terms" doc={doc} fallbackNote={translated ? undefined : t.legalFallback} />

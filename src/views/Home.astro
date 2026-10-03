@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/home/Hero.astro';
+import Noise from '../components/home/Noise.astro';
+import Sort from '../components/home/Sort.astro';
+import Plan from '../components/home/Plan.astro';
+import Focus from '../components/home/Focus.astro';
+import Evening from '../components/home/Evening.astro';
+import Languages from '../components/home/Languages.astro';
+import DuskPlus from '../components/home/DuskPlus.astro';
+import Night from '../components/home/Night.astro';
+import { copy } from '../i18n';
+import { STORE, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name: 'Aiora',
+    operatingSystem: 'iOS, Android',
+    applicationCategory: 'LifestyleApplication',
+    description: t.meta.description,
+    url: 'https://aioraspace.com/',
+    installUrl: [STORE.appStore, STORE.googlePlay],
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.homeFaq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+<Base locale={locale} route="/" jsonLd={jsonLd}>
+  <Hero locale={locale} />
+  <Noise locale={locale} />
+  <Sort locale={locale} />
+  <Plan locale={locale} />
+  <Focus locale={locale} />
+  <Evening locale={locale} />
+  <Languages locale={locale} />
+  <DuskPlus locale={locale} />
+  <Night locale={locale} />
+</Base>

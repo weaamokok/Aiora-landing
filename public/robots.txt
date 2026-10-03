@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /plus/sign-in/
+Disallow: /plus/welcome/
+Disallow: /account/
+
+Sitemap: https://aioraspace.com/sitemap.xml

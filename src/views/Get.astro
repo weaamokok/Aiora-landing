@@ -1,0 +1,54 @@
+---
+// The QR code's target. On a phone it forwards straight to the right store; on
+// anything else it shows both badges.
+import Base from '../layouts/Base.astro';
+import StoreBadges from '../components/StoreBadges.astro';
+import Mark from '../components/Mark.astro';
+import { copy } from '../i18n';
+import type { Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { t } = copy(locale);
+---
+<Base locale={locale} route="/get" title={`${t.get.title} · Aiora`} description={t.get.description} noindex>
+  <section class="get wrap">
+    <Mark size={72} />
+    <h1 class="display t-title">{t.get.heading}</h1>
+    <p class="status" data-status>{t.get.choose}</p>
+    <StoreBadges locale={locale} />
+  </section>
+</Base>
+
+<script is:inline define:vars={{ redirecting: t.get.body }}>
+  (function () {
+    var ua = navigator.userAgent;
+    var ios = /iphone|ipad|ipod/i.test(ua) || (/macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+    var android = /android/i.test(ua);
+    if (!ios && !android) return;
+    document.querySelector('[data-status]').textContent = redirecting;
+    location.replace(ios ? 'https://apps.apple.com/app/aiora/id6776340428' : 'https://play.google.com/store/apps/details?id=com.glowr');
+  })();
+</script>
+
+<style>
+  .get {
+    min-height: 80svh;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--s-4);
+    text-align: center;
+    padding-block: var(--s-8);
+  }
+
+  .get :global(svg) {
+    border-radius: 18px;
+  }
+
+  .status {
+    color: var(--ink-2);
+  }
+</style>
