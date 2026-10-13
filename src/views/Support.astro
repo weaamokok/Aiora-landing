@@ -42,7 +42,9 @@ const icons = ['sparkle', 'wifi-off', 'bell', 'lock'] as const;
       <h2 id="more-h" class="sub">{s.moreTitle}</h2>
       <ul class="more">
         <li><a class="link-arrow" href={localePath(locale, '/faq')}>{s.faqLink}</a></li>
+        {/* Web purchase paused — /account is switched off until web billing exists.
         <li><a class="link-arrow" href={localePath(locale, '/account')}>{s.accountLink}</a></li>
+        */}
         <li><a class="link-arrow" href={localePath(locale, '/delete-account')}>{s.deleteLink}</a></li>
       </ul>
     </section>

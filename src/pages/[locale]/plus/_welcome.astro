@@ -1,4 +1,6 @@
 ---
+// Web purchase is paused (no web billing yet), so this route is switched off:
+// the leading underscore keeps Astro from building it. Drop the underscore to restore.
 import View from '../../../views/Welcome.astro';
 import { nonDefaultLocales, type Locale } from '../../../i18n/locales';
 

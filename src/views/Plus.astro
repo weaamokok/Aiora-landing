@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import DuskPlus from '../components/home/DuskPlus.astro';
 import Faq from '../components/Faq.astro';
 import Icon from '../components/Icon.astro';
+import StoreBadges from '../components/StoreBadges.astro';
 import { copy, fmt } from '../i18n';
 import { localePath, type Locale } from '../i18n/locales';
 
@@ -17,6 +18,8 @@ const days = t.plus.trialDays;
 <Base locale={locale} route="/plus" title={`${p.title} · Aiora`} description={p.description} tone="dark">
   <div class="plus-top">
     <DuskPlus locale={locale} asHero showCta={false}>
+      {/* Web purchase is paused until we have web billing — Plus is sold in the app only.
+         Restore this form (and the plus-page script below) to bring web checkout back.
       <form
         class="buy"
         data-buy
@@ -67,6 +70,8 @@ const days = t.plus.trialDays;
 
         <noscript><p class="buy-note">{p.inAppNote}</p></noscript>
       </form>
+      */}
+      <StoreBadges locale={locale} onDark class="buy" />
     </DuskPlus>
   </div>
 
@@ -98,10 +103,13 @@ const days = t.plus.trialDays;
           </tbody>
         </table>
       </div>
+      {/* Web purchase paused: this note only makes sense next to web checkout.
       <p class="in-app">{p.inAppNote}</p>
+      */}
     </div>
   </section>
 
+  {/* Web purchase paused: this FAQ and legal note describe web checkout and cancelling at /account.
   <section class="section plus-faq" aria-labelledby="plus-faq-h">
     <div class="wrap narrow">
       <h2 id="plus-faq-h" class="display t-title">{t.night.faqTitle}</h2>
@@ -109,10 +117,12 @@ const days = t.plus.trialDays;
       <p class="legal-note">{p.legal} <a href={localePath(locale, '/terms')}>{t.footer.terms}</a></p>
     </div>
   </section>
+  */}
 </Base>
 
 <script>
-  import '../scripts/plus-page';
+  // Web purchase paused — re-enable with the buy form above.
+  // import '../scripts/plus-page';
 </script>
 
 <style>

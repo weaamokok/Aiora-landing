@@ -1,0 +1,7 @@
+---
+// Web purchase is paused (no web billing yet), so this route is switched off:
+// the leading underscore keeps Astro from building it. Drop the underscore to restore.
+import View from '../views/Account.astro';
+const locale = 'en' as const;
+---
+<View locale={locale} />
