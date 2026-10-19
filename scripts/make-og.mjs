@@ -38,7 +38,7 @@ function card(locale) {
   .wrap{position:absolute;inset:64px 72px;display:flex;flex-direction:column}
   .brand{display:flex;align-self:flex-start;align-items:center;gap:16px;font-family:Lilita;font-size:40px}
   .brand svg{width:56px;height:56px}
-  h1{margin-top:auto;font-size:${locale === 'ar' ? 70 : 76}px;font-weight:${locale === 'ru' ? 820 : 400};${display};max-width:880px}
+  h1{margin-top:auto;font-size:${locale === 'ar' ? 70 : 76}px;font-weight:${locale === 'ru' ? 820 : 400};${display};max-width:880px;${locale === 'ar' ? 'text-wrap:balance' : ''}}
   p{margin-top:22px;font-size:30px;color:rgba(28,43,47,.74);max-width:820px}
   .chips{position:absolute;top:70px;${rtl ? 'left' : 'right'}:72px;display:flex;gap:10px;align-items:center}
   .chip{padding:10px 18px;border-radius:999px;background:#fff;font-size:22px;font-weight:600;box-shadow:0 6px 20px rgba(28,43,47,.1)}
