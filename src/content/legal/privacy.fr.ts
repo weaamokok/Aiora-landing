@@ -21,7 +21,7 @@ const doc: LegalDoc = {
       title: 'Qui nous sommes',
       body: [
         'Aiora est une app de planification pour iPhone et Android, avec ce site sur aioraspace.com. Dans cette politique, « Aiora » et « nous » désignent l’équipe qui la gère. C’est nous qui décidons de l’usage de tes données personnelles, ce qui fait de nous le responsable du traitement au sens des lois sur la protection des données comme le RGPD.',
-        'Pour toute question sur la confidentialité : hello@aioraspace.com.',
+        'Pour toute question sur la confidentialité : support@aioraspace.com.',
       ],
     },
     {
@@ -123,7 +123,7 @@ const doc: LegalDoc = {
       title: 'Tes choix et tes droits',
       body: [
         'Tu peux consulter et modifier ton plan, tes réponses et ton profil dans l’app à tout moment, et supprimer ton compte depuis ton profil dans l’app, ou sur aioraspace.com/delete-account.',
-        'Selon l’endroit où tu vis, tu as aussi le droit d’obtenir une copie de tes données, de les rectifier, de les faire effacer, de limiter leur utilisation ou de t’y opposer, de les récupérer pour les emporter ailleurs, et de retirer ton consentement à tout moment (par exemple en retirant tes photos ou en désactivant les notifications). Écris à hello@aioraspace.com et nous te répondrons sous 30 jours.',
+        'Selon l’endroit où tu vis, tu as aussi le droit d’obtenir une copie de tes données, de les rectifier, de les faire effacer, de limiter leur utilisation ou de t’y opposer, de les récupérer pour les emporter ailleurs, et de retirer ton consentement à tout moment (par exemple en retirant tes photos ou en désactivant les notifications). Écris à support@aioraspace.com et nous te répondrons sous 30 jours.',
         'Si tu es dans l’UE ou au Royaume-Uni, tu peux aussi déposer une réclamation auprès de l’autorité de protection des données de ton pays.',
         'Supprimer ton compte ne résilie pas un abonnement pris sur l’App Store ou Google Play : résilie-le dans les réglages du store.',
       ],
@@ -152,7 +152,7 @@ const doc: LegalDoc = {
     {
       id: 'contact',
       title: 'Contact',
-      body: ['Écris à hello@aioraspace.com pour toute question sur ta vie privée ou sur cette politique.'],
+      body: ['Écris à support@aioraspace.com pour toute question sur ta vie privée ou sur cette politique.'],
     },
   ],
 };

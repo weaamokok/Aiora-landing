@@ -48,5 +48,5 @@ export const STORE = {
   googlePlay: 'https://play.google.com/store/apps/details?id=com.glowr',
 } as const;
 
-export const SUPPORT_EMAIL = 'hello@aioraspace.com';
+export const SUPPORT_EMAIL = 'support@aioraspace.com';
 export const API_BASE = 'https://api.aioraspace.com';

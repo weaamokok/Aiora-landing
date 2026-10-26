@@ -21,7 +21,7 @@ const doc: LegalDoc = {
       title: 'Quiénes somos',
       body: [
         'Aiora es una app de planificación para iPhone y Android, con esta web en aioraspace.com. En esta política, «Aiora» y «nosotros» se refieren al equipo que la gestiona. Somos quienes deciden cómo se usan tus datos personales, lo que nos convierte en responsables del tratamiento según leyes de protección de datos como el RGPD.',
-        'Las preguntas sobre privacidad van a hello@aioraspace.com.',
+        'Las preguntas sobre privacidad van a support@aioraspace.com.',
       ],
     },
     {
@@ -123,7 +123,7 @@ const doc: LegalDoc = {
       title: 'Tus opciones y tus derechos',
       body: [
         'Puedes ver y editar tu plan, tus respuestas y tu perfil en la app cuando quieras, y borrar tu cuenta desde tu perfil en la app o en aioraspace.com/delete-account.',
-        'Según dónde vivas, también tienes derecho a obtener una copia de tus datos, a corregirlos, a que se borren, a limitar u oponerte a su uso, a llevártelos y a retirar tu consentimiento en cualquier momento (por ejemplo, quitando tus fotos o desactivando las notificaciones). Escribe a hello@aioraspace.com y te responderemos en un plazo de 30 días.',
+        'Según dónde vivas, también tienes derecho a obtener una copia de tus datos, a corregirlos, a que se borren, a limitar u oponerte a su uso, a llevártelos y a retirar tu consentimiento en cualquier momento (por ejemplo, quitando tus fotos o desactivando las notificaciones). Escribe a support@aioraspace.com y te responderemos en un plazo de 30 días.',
         'Si estás en la UE o el Reino Unido, también puedes presentar una reclamación ante la autoridad de protección de datos de tu país.',
         'Borrar tu cuenta no cancela una suscripción comprada en la App Store o Google Play: cancélala en los ajustes de la tienda.',
       ],
@@ -152,7 +152,7 @@ const doc: LegalDoc = {
     {
       id: 'contact',
       title: 'Contacto',
-      body: ['Escribe a hello@aioraspace.com con cualquier pregunta sobre tu privacidad o sobre esta política.'],
+      body: ['Escribe a support@aioraspace.com con cualquier pregunta sobre tu privacidad o sobre esta política.'],
     },
   ],
 };

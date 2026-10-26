@@ -21,7 +21,7 @@ const doc: LegalDoc = {
       title: 'Sisi ni nani',
       body: [
         'Aiora ni programu ya kupanga siku kwa iPhone na Android, na tovuti hii iko aioraspace.com. Katika sera hii, “Aiora” na “sisi” zinamaanisha timu inayoiendesha. Sisi ndio tunaoamua jinsi data yako binafsi inavyotumika, na hilo linatufanya kuwa mdhibiti wa data hiyo chini ya sheria za ulinzi wa data kama GDPR.',
-        'Maswali kuhusu faragha yatumwe kwa hello@aioraspace.com.',
+        'Maswali kuhusu faragha yatumwe kwa support@aioraspace.com.',
       ],
     },
     {
@@ -123,7 +123,7 @@ const doc: LegalDoc = {
       title: 'Chaguo na haki zako',
       body: [
         'Unaweza kuona na kuhariri mpango wako, majibu yako na wasifu wako kwenye programu wakati wowote, na kufuta akaunti yako kutoka kwenye wasifu wako ndani ya programu, au kupitia aioraspace.com/delete-account.',
-        'Kulingana na unakoishi, una pia haki ya kupata nakala ya data yako, kuirekebisha, kuifuta, kuzuia au kupinga jinsi tunavyoitumia, kuichukua na kuihamisha, na kuondoa ridhaa yako wakati wowote (kwa mfano, kwa kuondoa picha zako au kuzima arifa). Tuandikie kwa hello@aioraspace.com na tutakujibu ndani ya siku 30.',
+        'Kulingana na unakoishi, una pia haki ya kupata nakala ya data yako, kuirekebisha, kuifuta, kuzuia au kupinga jinsi tunavyoitumia, kuichukua na kuihamisha, na kuondoa ridhaa yako wakati wowote (kwa mfano, kwa kuondoa picha zako au kuzima arifa). Tuandikie kwa support@aioraspace.com na tutakujibu ndani ya siku 30.',
         'Ukiwa katika EU au Uingereza, unaweza pia kuwasilisha malalamiko kwa mamlaka ya ulinzi wa data ya nchi yako.',
         'Kufuta akaunti yako hakughairi usajili ulionunuliwa kupitia App Store au Google Play; ughairi kwenye mipangilio ya duka lako.',
       ],
@@ -152,7 +152,7 @@ const doc: LegalDoc = {
     {
       id: 'contact',
       title: 'Mawasiliano',
-      body: ['Tuandikie kwa hello@aioraspace.com kwa swali lolote kuhusu faragha yako au sera hii.'],
+      body: ['Tuandikie kwa support@aioraspace.com kwa swali lolote kuhusu faragha yako au sera hii.'],
     },
   ],
 };

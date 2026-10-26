@@ -26,7 +26,7 @@ const doc: LegalDoc = {
       title: 'Who we are',
       body: [
         'Aiora is a planning app for iPhone and Android, with this website at aioraspace.com. In this policy, “Aiora”, “we” and “us” mean the team that runs it. We decide how your personal data is used, which makes us the controller of that data under data-protection laws such as the GDPR.',
-        'Questions about privacy go to hello@aioraspace.com.',
+        'Questions about privacy go to support@aioraspace.com.',
       ],
     },
     {
@@ -128,7 +128,7 @@ const doc: LegalDoc = {
       title: 'Your choices and rights',
       body: [
         'You can see and edit your plan, answers and profile in the app at any time, and delete your account from your profile in the app, or through aioraspace.com/delete-account.',
-        'Depending on where you live, you also have the right to access a copy of your data, to correct it, to have it erased, to restrict or object to how we use it, to take it with you, and to withdraw consent at any time (for example, by removing your photos or turning off notifications). Email hello@aioraspace.com and we’ll respond within 30 days.',
+        'Depending on where you live, you also have the right to access a copy of your data, to correct it, to have it erased, to restrict or object to how we use it, to take it with you, and to withdraw consent at any time (for example, by removing your photos or turning off notifications). Email support@aioraspace.com and we’ll respond within 30 days.',
         'If you’re in the EU or UK, you can also complain to your local data-protection authority.',
         'Deleting your account doesn’t cancel a subscription bought through the App Store or Google Play; cancel it in your store settings.',
       ],
@@ -157,7 +157,7 @@ const doc: LegalDoc = {
     {
       id: 'contact',
       title: 'Contact',
-      body: ['Email hello@aioraspace.com with any question about your privacy or this policy.'],
+      body: ['Email support@aioraspace.com with any question about your privacy or this policy.'],
     },
   ],
 };

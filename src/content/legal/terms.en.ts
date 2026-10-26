@@ -53,7 +53,7 @@ const doc: LegalDoc = {
         '**Bought on aioraspace.com.** Payment is processed by Stripe. Your subscription renews automatically at the end of each billing period at the price shown when you subscribed, until you cancel. You can cancel at any time at aioraspace.com/account; you keep Plus until the end of the period you’ve paid for.',
         '**Free trials.** If a plan includes a free trial, you won’t be charged during the trial. Unless you cancel before it ends, your subscription starts and you’re charged on the last day of the trial.',
         '**Price changes.** If the price of your subscription changes, we (or the store) will tell you in advance, and the new price applies from your next renewal. You can cancel before then.',
-        '**Refunds.** For store purchases, refunds are decided by Apple or Google. For web purchases, email hello@aioraspace.com; we honour every refund and withdrawal right your local law gives you.',
+        '**Refunds.** For store purchases, refunds are decided by Apple or Google. For web purchases, email support@aioraspace.com; we honour every refund and withdrawal right your local law gives you.',
         'Plus is tied to your Aiora account, not to a device or a store. If you end up with two active subscriptions for the same account, contact us and we’ll help you cancel and refund the duplicate.',
       ],
     },
@@ -110,7 +110,7 @@ const doc: LegalDoc = {
     {
       id: 'contact',
       title: 'Contact',
-      body: ['Questions about these terms go to hello@aioraspace.com.'],
+      body: ['Questions about these terms go to support@aioraspace.com.'],
     },
   ],
 };

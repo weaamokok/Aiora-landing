@@ -227,7 +227,7 @@ export const en = {
           { q: 'Is Aiora free?', a: 'Yes, to download and to use every day. The mind dump, your thoughts inbox, tasks, calendar, focus sessions, shopping list, widgets, reminders and your first AI plan are all free.' },
           { q: 'What does Aiora Plus add?', a: 'Unlimited plan regenerations, plans shaped by your photos, every focus buddy and stretch level, and as many weekly goals as the week can hold.' },
           { q: 'How much is Plus?', a: 'You’ll see the price in your currency in the app, or at aioraspace.com/plus, before you pay. There’s a monthly and an annual plan, and the annual plan starts with a 7-day free trial.' },
-          { q: 'How do I cancel?', a: 'If you subscribed in the app, cancel in your App Store or Google Play subscription settings. If you subscribed on this website, cancel at aioraspace.com/account. Either way, you keep Plus until the end of the period you’ve paid for.' },
+          { q: 'How do I cancel?', a: 'Cancel in your App Store or Google Play subscription settings. You keep Plus until the end of the period you’ve paid for.' },
           { q: 'I bought Plus but the app doesn’t show it.', a: 'Make sure you’re signed in with the same account you used to buy it, then close and reopen Aiora. For App Store and Google Play purchases, you can also use “Restore purchases” on the Plus screen. Still stuck? Email us.' },
         ],
       },
@@ -283,9 +283,10 @@ export const en = {
       'You’re signed out on every device straight away.',
       'Your profile, answers, plan, thoughts, shopping list, focus history and photos are permanently erased from our servers within 30 days.',
       'We keep subscription and billing records only for as long as tax law requires, separate from everything else.',
+      'One thing outlives a deleted account: a one-way coded fingerprint of your email or sign-in ID, which can’t be turned back into either. It only records that the free first plan has been used, so deleting and signing up again doesn’t give out another one.',
     ],
     subsTitle: 'Subscriptions aren’t cancelled automatically',
-    subsBody: 'If you have Aiora Plus from the App Store or Google Play, cancel it in your store subscription settings. If you subscribed on this website, cancel it at aioraspace.com/account before deleting your account.',
+    subsBody: 'If you have Aiora Plus from the App Store or Google Play, cancel it in your store subscription settings.',
   },
 
   plusPage: {
@@ -323,7 +324,7 @@ export const en = {
       { q: 'Is the trial really free?', a: 'Yes. The annual plan starts with 7 days free. You’re not charged if you cancel before the trial ends.' },
       { q: 'Will Plus work in the app?', a: 'Yes. Plus belongs to your Aiora account. Open the app signed in with the same account and it’s there.' },
       { q: 'How do I cancel?', a: 'At aioraspace.com/account, any time. You keep Plus until the end of the period you’ve paid for.' },
-      { q: 'Can I get a refund?', a: 'Email hello@aioraspace.com. We honour every refund and withdrawal right your local law gives you.' },
+      { q: 'Can I get a refund?', a: 'Email support@aioraspace.com. We honour every refund and withdrawal right your local law gives you.' },
     ],
   },
 
@@ -367,7 +368,7 @@ export const en = {
     storeManaged: 'This subscription was bought in the {store}. Manage or cancel it in your store settings.',
     manage: 'Manage or cancel',
     opening: 'Opening your billing page…',
-    portalUnavailable: 'The billing page isn’t available right now. Email hello@aioraspace.com and we’ll cancel or change your subscription for you.',
+    portalUnavailable: 'The billing page isn’t available right now. Email support@aioraspace.com and we’ll cancel or change your subscription for you.',
     getPlus: 'See Aiora Plus',
     appStore: 'App Store',
     googlePlay: 'Google Play',

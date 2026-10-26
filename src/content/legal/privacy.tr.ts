@@ -21,7 +21,7 @@ const doc: LegalDoc = {
       title: 'Biz kimiz',
       body: [
         'Aiora, iPhone ve Android için bir planlama uygulaması; bu da aioraspace.com adresindeki sitesi. Bu politikada “Aiora” ve “biz”, uygulamayı yöneten ekip anlamına gelir. Kişisel verilerinin nasıl kullanılacağına biz karar veririz; bu da bizi GDPR gibi veri koruma yasaları kapsamında veri sorumlusu yapar.',
-        'Gizlilikle ilgili sorular için: hello@aioraspace.com.',
+        'Gizlilikle ilgili sorular için: support@aioraspace.com.',
       ],
     },
     {
@@ -123,7 +123,7 @@ const doc: LegalDoc = {
       title: 'Seçeneklerin ve hakların',
       body: [
         'Planını, cevaplarını ve profilini uygulamada istediğin zaman görebilir ve düzenleyebilir; hesabını uygulamadaki profilinden ya da aioraspace.com/delete-account adresinden silebilirsin.',
-        'Yaşadığın yere bağlı olarak verilerinin bir kopyasını alma, düzeltme, sildirme, kullanımını kısıtlama ya da itiraz etme, başka yere taşıma ve rızanı istediğin zaman geri çekme (örneğin fotoğraflarını kaldırarak ya da bildirimleri kapatarak) hakların da var. hello@aioraspace.com adresine yaz, 30 gün içinde yanıt verelim.',
+        'Yaşadığın yere bağlı olarak verilerinin bir kopyasını alma, düzeltme, sildirme, kullanımını kısıtlama ya da itiraz etme, başka yere taşıma ve rızanı istediğin zaman geri çekme (örneğin fotoğraflarını kaldırarak ya da bildirimleri kapatarak) hakların da var. support@aioraspace.com adresine yaz, 30 gün içinde yanıt verelim.',
         'AB’de ya da Birleşik Krallık’taysan, ülkendeki veri koruma otoritesine de şikâyette bulunabilirsin.',
         'Hesabını silmek, App Store ya da Google Play’den alınan bir aboneliği iptal etmez; onu mağaza ayarlarından iptal et.',
       ],
@@ -152,7 +152,7 @@ const doc: LegalDoc = {
     {
       id: 'contact',
       title: 'İletişim',
-      body: ['Gizliliğinle ya da bu politikayla ilgili her soru için hello@aioraspace.com adresine yaz.'],
+      body: ['Gizliliğinle ya da bu politikayla ilgili her soru için support@aioraspace.com adresine yaz.'],
     },
   ],
 };
