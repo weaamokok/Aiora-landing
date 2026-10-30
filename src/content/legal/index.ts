@@ -1,5 +1,5 @@
 import type { LegalDoc } from './types';
-import type { Locale } from '../../i18n/locales';
+import { locales, type Locale } from '../../i18n/locales';
 
 const docs = import.meta.glob<{ default: LegalDoc }>('./*.*.ts', { eager: true });
 
@@ -8,4 +8,9 @@ export function legal(kind: 'privacy' | 'terms', locale: Locale): { doc: LegalDo
   const own = docs[`./${kind}.${locale}.ts`]?.default;
   if (own) return { doc: own, translated: true };
   return { doc: docs[`./${kind}.en.ts`]!.default, translated: locale === 'en' };
+}
+
+/** The locales a document is actually written in. The rest fall back to English. */
+export function legalLocales(kind: 'privacy' | 'terms'): readonly Locale[] {
+  return locales.filter((l) => docs[`./${kind}.${l}.ts`]);
 }

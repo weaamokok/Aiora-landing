@@ -3,7 +3,7 @@
 
 export default {
   meta: {
-    title: 'Aiora — aklındaki her şey, gerçekleşeceği bir yerde',
+    title: 'Aiora: Zihin Alanın, Zihin Boşaltma ve Günlük Planlama Uygulaması',
     description: 'Aklındakileri boşalt. Aiora onları görevlere, alışverişe ve hedeflere ayırır, sana uyan bir gün kurar. iPhone ve Android’de ücretsiz.',
   },
   nav: { home: 'Aiora ana sayfa', how: 'Nasıl çalışır', plus: 'Plus', faq: 'SSS', getApp: 'Aiora’yı indir', language: 'Dil', skip: 'İçeriğe geç' },

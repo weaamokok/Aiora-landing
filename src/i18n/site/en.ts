@@ -10,7 +10,7 @@
 
 export const en = {
   meta: {
-    title: 'Aiora — everything in your head, somewhere it’ll happen',
+    title: 'Aiora: Your Mind Space, a Brain Dump & Daily Planner App',
     description:
       'Dump what’s on your mind. Aiora sorts it into tasks, shopping and goals, and builds a day that fits your life. Free on iPhone and Android.',
   },

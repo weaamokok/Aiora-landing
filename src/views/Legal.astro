@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Prose from '../components/Prose.astro';
 import type { LegalDoc } from '../content/legal/types';
+import { legalLocales } from '../content/legal';
 import type { Locale } from '../i18n/locales';
 
 interface Props {
@@ -12,8 +13,9 @@ interface Props {
   fallbackNote?: string;
 }
 const { locale, route, doc, fallbackNote } = Astro.props;
+const kind = route === '/terms' ? 'terms' : 'privacy';
 ---
-<Base locale={locale} route={route} title={`${doc.title} · Aiora`} description={doc.description}>
+<Base locale={locale} route={route} title={`${doc.title} · Aiora`} description={doc.description} availableIn={legalLocales(kind)} noindex={Boolean(fallbackNote)}>
   <article class="legal wrap">
     <header class="legal-head">
       <h1 class="display t-section">{doc.title}</h1>

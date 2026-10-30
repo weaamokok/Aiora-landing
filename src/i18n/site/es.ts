@@ -3,7 +3,7 @@
 
 export default {
   meta: {
-    title: 'Aiora — todo lo que tienes en la cabeza, en un sitio donde pasará',
+    title: 'Aiora: tu espacio mental para vaciar la cabeza y planificar tu día',
     description: 'Suelta lo que tienes en mente. Aiora lo ordena en tareas, compras y metas, y arma un día a tu medida. Gratis en iPhone y Android.',
   },
   nav: { home: 'Inicio de Aiora', how: 'Cómo funciona', plus: 'Plus', faq: 'Preguntas', getApp: 'Descargar Aiora', language: 'Idioma', skip: 'Ir al contenido' },

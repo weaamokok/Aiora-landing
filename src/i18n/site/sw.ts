@@ -3,7 +3,7 @@
 
 export default {
   meta: {
-    title: 'Aiora — kila kilicho akilini mwako, mahali kitakapotokea',
+    title: 'Aiora: nafasi yako ya akili, kumimina mawazo na kupanga siku',
     description: 'Mimina kilicho akilini. Aiora hukipanga kuwa kazi, manunuzi na malengo, na hujenga siku inayokufaa. Bure kwenye iPhone na Android.',
   },
   nav: { home: 'Ukurasa wa mwanzo wa Aiora', how: 'Inavyofanya kazi', plus: 'Plus', faq: 'Maswali', getApp: 'Pata Aiora', language: 'Lugha', skip: 'Ruka hadi maudhui' },

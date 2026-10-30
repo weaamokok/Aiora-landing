@@ -3,7 +3,7 @@
 
 export default {
   meta: {
-    title: 'Aiora — tout ce que tu as en tête, quelque part où ça arrivera',
+    title: 'Aiora : ton espace mental pour vider ta tête et planifier ta journée',
     description: 'Vide ta tête. Aiora trie tes pensées en tâches, courses et objectifs, et construit une journée à ta mesure. Gratuit sur iPhone et Android.',
   },
   nav: { home: 'Accueil Aiora', how: 'Comment ça marche', plus: 'Plus', faq: 'FAQ', getApp: 'Obtenir Aiora', language: 'Langue', skip: 'Aller au contenu' },
