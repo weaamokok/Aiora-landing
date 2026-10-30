@@ -11,7 +11,7 @@ import type { LegalDoc } from './types';
 const doc: LegalDoc = {
   title: 'Privacy policy',
   description: 'What Aiora collects, why, who it’s shared with, and how to delete it.',
-  updated: '19 October 2026',
+  updated: '30 October 2026',
   summaryTitle: 'The short version',
   summary: [
     'We collect what Aiora needs to plan your days: your account, your answers, your plan, your thoughts and lists, and, if you add them, your photos.',
@@ -40,7 +40,7 @@ const doc: LegalDoc = {
         '**Photos, if you add them.** Up to three photos (head, side and full length), used to shape your plan. Adding photos is optional and part of Aiora Plus. An AI model looks at them once and writes a short description of what’s useful for your plan (for example your skin and posture), which we keep with your profile.',
         '**Subscriptions.** If you buy Aiora Plus, which plan you chose, its status and renewal date, and the transaction reference from Apple or Google. We never receive your card number.',
         '**Sign-in sessions.** For each device you’re signed in on, the IP address and device details it signed in from, so we can keep your account secure and sign a device out.',
-        '**Device and usage.** The identifier we need to send you push notifications, your device platform, how many AI plans you’ve generated this month, and app usage events (for example, which screens are opened and which features are used). Usage events describe what you did in the app, not what you wrote. On Android, if you installed Aiora from a link someone shared, we also record which campaign and share code that link carried.',
+        '**Device and usage.** The identifier we need to send you push notifications, your device platform, how many AI plans you’ve generated this month, and app usage events (for example, which screens are opened and which features are used). Usage events describe what you did in the app, not what you wrote. On Android, if you installed Aiora from a link someone shared, we also record which campaign and share code that link carried. If the app crashes, it sends a crash report with your device model, operating system, app version and the screen you were on.',
         '**Approximate location, if you allow it.** Used only to show the weather on your home screen. It’s sent to our weather provider, and your phone’s own location service may turn it into a place name. We don’t store it.',
         '**Messages you send us.** If you email us, we keep the conversation so we can help.',
       ],
@@ -87,8 +87,8 @@ const doc: LegalDoc = {
             head: ['Provider', 'What for', 'Where'],
             rows: [
               ['Hetzner', 'Hosting our servers and database, including stored photos', 'Germany (EU)'],
-              ['AI model providers (for example Groq and OpenRouter)', 'Generating plans from your answers, and describing your photos with Plus', 'United States'],
-              ['Google (Firebase)', 'Usage analytics and remote app settings', 'United States'],
+              ['AI model providers (these change as better models come out; email us for the current list)', 'Generating plans from your answers, and describing your photos with Plus', 'United States'],
+              ['Google (Firebase)', 'Usage analytics, crash reports and remote app settings', 'United States'],
               ['OneSignal', 'Delivering push notifications', 'United States'],
               ['Brevo', 'Sending account emails', 'France (EU)'],
               ['OpenWeatherMap', 'Weather for your approximate location', 'United Kingdom'],
@@ -118,6 +118,7 @@ const doc: LegalDoc = {
             'One thing outlives a deleted account: a one-way coded fingerprint of your email or sign-in ID, which can’t be turned back into either. It only records that the free first plan has been used, so deleting and signing up again doesn’t give out another one.',
             'Subscription and billing records: as long as tax and accounting law requires, kept separate from the rest of your data.',
             'Usage analytics: no longer than 14 months.',
+            'Crash reports: 90 days.',
             'Emails with us: up to two years after the conversation ends.',
           ],
         },

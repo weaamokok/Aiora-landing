@@ -6,7 +6,7 @@ import type { LegalDoc } from './types';
 const doc: LegalDoc = {
   title: 'Sera ya faragha',
   description: 'Kile Aiora inachokusanya, kwa nini, inashirikiwa na nani, na jinsi ya kukifuta.',
-  updated: '19 Oktoba 2026',
+  updated: '30 Oktoba 2026',
   summaryTitle: 'Kwa ufupi',
   summary: [
     'Tunakusanya kile Aiora inachohitaji kupanga siku zako: akaunti yako, majibu yako, mpango wako, mawazo na orodha zako, na, ukiziongeza, picha zako.',
@@ -35,7 +35,7 @@ const doc: LegalDoc = {
         '**Picha, ukiziongeza.** Hadi picha tatu (kichwa, ubavu na mwili mzima), zinazotumika kuunda mpango wako. Kuongeza picha ni hiari na ni sehemu ya Aiora Plus. Modeli ya AI huziangalia mara moja na kuandika maelezo mafupi ya kinachofaa kwa mpango wako (kwa mfano ngozi yako na mkao wako), ambayo tunayahifadhi pamoja na wasifu wako.',
         '**Usajili.** Ukinunua Aiora Plus: mpango uliouchagua, hali yake na tarehe ya kuhuishwa, pamoja na namba ya muamala kutoka Apple au Google. Hatupokei kamwe namba ya kadi yako.',
         '**Vipindi vya kuingia.** Kwa kila kifaa ambacho umeingia, anwani ya IP na taarifa za kifaa ulichoingilia, ili kulinda akaunti yako na kuweza kukitoa kifaa kwenye akaunti.',
-        '**Kifaa na matumizi.** Kitambulisho tunachohitaji kukutumia arifa, aina ya mfumo wa kifaa chako, idadi ya mipango ya AI uliyotengeneza mwezi huu, na matukio ya matumizi ya programu (kwa mfano, skrini zinazofunguliwa na vipengele vinavyotumika). Matukio haya yanaeleza ulichofanya kwenye programu, si ulichoandika. Kwenye Android, ukisakinisha Aiora kupitia kiungo alichoshiriki mtu, tunarekodi pia kampeni na msimbo wa kushiriki uliokuwa kwenye kiungo hicho.',
+        '**Kifaa na matumizi.** Kitambulisho tunachohitaji kukutumia arifa, aina ya mfumo wa kifaa chako, idadi ya mipango ya AI uliyotengeneza mwezi huu, na matukio ya matumizi ya programu (kwa mfano, skrini zinazofunguliwa na vipengele vinavyotumika). Matukio haya yanaeleza ulichofanya kwenye programu, si ulichoandika. Kwenye Android, ukisakinisha Aiora kupitia kiungo alichoshiriki mtu, tunarekodi pia kampeni na msimbo wa kushiriki uliokuwa kwenye kiungo hicho. Programu ikianguka, hutuma ripoti ya hitilafu yenye aina ya kifaa chako, mfumo wa uendeshaji, toleo la programu na skrini uliyokuwa.',
         '**Mahali ulipo kwa makadirio, ukiruhusu.** Hutumika tu kuonyesha hali ya hewa kwenye skrini yako ya mwanzo. Hutumwa kwa mtoa huduma wetu wa hali ya hewa, na huduma ya mahali ya simu yako inaweza kuligeuza kuwa jina la mahali. Hatulihifadhi.',
         '**Ujumbe unaotutumia.** Ukituandikia, tunahifadhi mazungumzo ili tuweze kukusaidia.',
       ],
@@ -82,8 +82,8 @@ const doc: LegalDoc = {
             head: ['Mtoa huduma', 'Kwa ajili ya', 'Wapi'],
             rows: [
               ['Hetzner', 'Kuhifadhi seva na hifadhidata yetu, ikiwemo picha zilizohifadhiwa', 'Ujerumani (EU)'],
-              ['Watoa huduma wa modeli za AI (kwa mfano Groq na OpenRouter)', 'Kutengeneza mipango kutokana na majibu yako, na kueleza picha zako ukiwa na Plus', 'Marekani'],
-              ['Google (Firebase)', 'Takwimu za matumizi na mipangilio ya programu ya mbali', 'Marekani'],
+              ['Watoa huduma wa modeli za AI (hubadilika kadiri modeli bora zinavyotoka; tutumie barua pepe kupata orodha ya sasa)', 'Kutengeneza mipango kutokana na majibu yako, na kueleza picha zako ukiwa na Plus', 'Marekani'],
+              ['Google (Firebase)', 'Takwimu za matumizi, ripoti za hitilafu na mipangilio ya programu ya mbali', 'Marekani'],
               ['OneSignal', 'Kuwasilisha arifa', 'Marekani'],
               ['Brevo', 'Kutuma barua pepe za akaunti', 'Ufaransa (EU)'],
               ['OpenWeatherMap', 'Hali ya hewa ya mahali ulipo kwa makadirio', 'Uingereza'],
@@ -113,6 +113,7 @@ const doc: LegalDoc = {
             'Kitu kimoja hubaki baada ya akaunti kufutwa: alama ya kidijitali iliyosimbwa kwa njia moja ya barua pepe yako au kitambulisho chako cha kuingia, ambayo haiwezi kurudishwa kuwa mojawapo. Inarekodi tu kwamba mpango wa kwanza wa bure umeshatumika, ili kufuta akaunti na kujisajili upya kusitoe mpango mwingine wa bure.',
             'Kumbukumbu za usajili na malipo: kwa muda unaotakiwa na sheria za kodi na uhasibu, zikiwa zimetenganishwa na data yako nyingine.',
             'Takwimu za matumizi: zisizozidi miezi 14.',
+            'Ripoti za hitilafu: siku 90.',
             'Barua pepe zako nasi: hadi miaka miwili baada ya mazungumzo kuisha.',
           ],
         },

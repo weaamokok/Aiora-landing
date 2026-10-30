@@ -6,7 +6,7 @@ import type { LegalDoc } from './types';
 const doc: LegalDoc = {
   title: 'Politique de confidentialité',
   description: 'Ce qu’Aiora collecte, pourquoi, avec qui c’est partagé, et comment le supprimer.',
-  updated: '19 octobre 2026',
+  updated: '30 octobre 2026',
   summaryTitle: 'En bref',
   summary: [
     'Nous collectons ce dont Aiora a besoin pour planifier tes journées : ton compte, tes réponses, ton plan, tes pensées et tes listes et, si tu en ajoutes, tes photos.',
@@ -35,7 +35,7 @@ const doc: LegalDoc = {
         '**Tes photos, si tu en ajoutes.** Jusqu’à trois photos (visage, profil et en pied), utilisées pour adapter ton plan. Ajouter des photos est facultatif et fait partie d’Aiora Plus. Un modèle d’IA les regarde une fois et rédige une courte description de ce qui est utile pour ton plan (par exemple ta peau et ta posture), que nous gardons avec ton profil.',
         '**Abonnements.** Si tu achètes Aiora Plus : la formule choisie, son statut et sa date de renouvellement, et la référence de transaction d’Apple ou de Google. Nous ne recevons jamais ton numéro de carte.',
         '**Sessions de connexion.** Pour chaque appareil sur lequel tu es connecté·e, l’adresse IP et les informations de l’appareil depuis lequel tu t’es connecté·e, pour sécuriser ton compte et pouvoir déconnecter un appareil.',
-        '**Appareil et utilisation.** L’identifiant nécessaire pour t’envoyer des notifications, la plateforme de ton appareil, le nombre de plans générés par IA ce mois-ci, et des événements d’utilisation de l’app (par exemple, les écrans ouverts et les fonctionnalités utilisées). Ces événements décrivent ce que tu as fait dans l’app, pas ce que tu as écrit. Sur Android, si tu as installé Aiora depuis un lien partagé par quelqu’un, nous enregistrons aussi la campagne et le code de partage de ce lien.',
+        '**Appareil et utilisation.** L’identifiant nécessaire pour t’envoyer des notifications, la plateforme de ton appareil, le nombre de plans générés par IA ce mois-ci, et des événements d’utilisation de l’app (par exemple, les écrans ouverts et les fonctionnalités utilisées). Ces événements décrivent ce que tu as fait dans l’app, pas ce que tu as écrit. Sur Android, si tu as installé Aiora depuis un lien partagé par quelqu’un, nous enregistrons aussi la campagne et le code de partage de ce lien. Si l’app plante, elle envoie un rapport de plantage avec le modèle de ton appareil, le système d’exploitation, la version de l’app et l’écran où tu étais.',
         '**Position approximative, si tu l’autorises.** Utilisée uniquement pour afficher la météo sur ton écran d’accueil. Elle est envoyée à notre fournisseur météo, et le service de localisation de ton téléphone peut la convertir en nom de lieu. Nous ne la conservons pas.',
         '**Les messages que tu nous envoies.** Si tu nous écris, nous gardons l’échange pour pouvoir t’aider.',
       ],
@@ -82,8 +82,8 @@ const doc: LegalDoc = {
             head: ['Prestataire', 'Pour quoi faire', 'Où'],
             rows: [
               ['Hetzner', 'Héberger nos serveurs et notre base de données, y compris les photos stockées', 'Allemagne (UE)'],
-              ['Fournisseurs de modèles d’IA (par exemple Groq et OpenRouter)', 'Générer des plans à partir de tes réponses, et décrire tes photos avec Plus', 'États-Unis'],
-              ['Google (Firebase)', 'Statistiques d’utilisation et réglages de l’app à distance', 'États-Unis'],
+              ['Fournisseurs de modèles d’IA (ils changent à mesure que de meilleurs modèles sortent ; écris-nous pour la liste actuelle)', 'Générer des plans à partir de tes réponses, et décrire tes photos avec Plus', 'États-Unis'],
+              ['Google (Firebase)', 'Statistiques d’utilisation, rapports de plantage et réglages de l’app à distance', 'États-Unis'],
               ['OneSignal', 'Envoyer les notifications', 'États-Unis'],
               ['Brevo', 'Envoyer les e-mails liés au compte', 'France (UE)'],
               ['OpenWeatherMap', 'La météo pour ta position approximative', 'Royaume-Uni'],
@@ -113,6 +113,7 @@ const doc: LegalDoc = {
             'Une seule chose survit à un compte supprimé : une empreinte codée à sens unique de ton e-mail ou de ton identifiant de connexion, qui ne permet de retrouver ni l’un ni l’autre. Elle indique seulement que le premier plan gratuit a été utilisé, pour qu’on ne puisse pas en obtenir un autre en supprimant son compte puis en se réinscrivant.',
             'Abonnements et justificatifs de facturation : aussi longtemps que l’exigent les lois fiscales et comptables, séparément du reste de tes données.',
             'Statistiques d’utilisation : 14 mois au maximum.',
+            'Rapports de plantage : 90 jours.',
             'Nos échanges par e-mail : jusqu’à deux ans après la fin de la conversation.',
           ],
         },

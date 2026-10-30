@@ -6,7 +6,7 @@ import type { LegalDoc } from './types';
 const doc: LegalDoc = {
   title: 'Gizlilik politikası',
   description: 'Aiora neleri topluyor, neden, kimlerle paylaşıyor ve nasıl silebilirsin.',
-  updated: '19 Ekim 2026',
+  updated: '30 Ekim 2026',
   summaryTitle: 'Kısaca',
   summary: [
     'Aiora’nın günlerini planlamak için ihtiyaç duyduklarını topluyoruz: hesabın, cevapların, planın, düşüncelerin ve listelerin, eklersen de fotoğrafların.',
@@ -35,7 +35,7 @@ const doc: LegalDoc = {
         '**Eklersen fotoğrafların.** Planını şekillendirmek için kullanılan en fazla üç fotoğraf (yüz, yan profil ve boydan). Fotoğraf eklemek isteğe bağlıdır ve Aiora Plus’ın bir parçasıdır. Bir yapay zekâ modeli onlara bir kez bakar ve planın için işe yarayanların (örneğin cildin ve duruşun) kısa bir tarifini yazar; bunu profilinle birlikte saklarız.',
         '**Abonelikler.** Aiora Plus satın alırsan: seçtiğin plan, durumu ve yenilenme tarihi ile Apple veya Google’ın işlem referansı. Kart numaranı asla almayız.',
         '**Oturumlar.** Giriş yaptığın her cihaz için, hesabını güvende tutmak ve bir cihazın oturumunu kapatabilmek amacıyla, giriş yapılan IP adresi ve cihaz bilgileri.',
-        '**Cihaz ve kullanım.** Sana bildirim göndermek için gereken kimlik, cihazının platformu, bu ay yapay zekâyla kaç plan oluşturduğun ve uygulama kullanım olayları (örneğin hangi ekranların açıldığı ve hangi özelliklerin kullanıldığı). Kullanım olayları uygulamada ne yaptığını anlatır, ne yazdığını değil. Android’de, Aiora’yı birinin paylaştığı bir bağlantıdan yüklediysen, o bağlantının taşıdığı kampanyayı ve paylaşım kodunu da kaydederiz.',
+        '**Cihaz ve kullanım.** Sana bildirim göndermek için gereken kimlik, cihazının platformu, bu ay yapay zekâyla kaç plan oluşturduğun ve uygulama kullanım olayları (örneğin hangi ekranların açıldığı ve hangi özelliklerin kullanıldığı). Kullanım olayları uygulamada ne yaptığını anlatır, ne yazdığını değil. Android’de, Aiora’yı birinin paylaştığı bir bağlantıdan yüklediysen, o bağlantının taşıdığı kampanyayı ve paylaşım kodunu da kaydederiz. Uygulama çökerse cihaz modelini, işletim sistemini, uygulama sürümünü ve bulunduğun ekranı içeren bir çökme raporu gönderir.',
         '**İzin verirsen yaklaşık konumun.** Yalnızca ana ekranında hava durumunu göstermek için kullanılır. Hava durumu sağlayıcımıza gönderilir ve telefonunun kendi konum hizmeti onu bir yer adına çevirebilir. Biz saklamayız.',
         '**Bize gönderdiğin mesajlar.** Bize yazarsan, sana yardım edebilmek için yazışmayı saklarız.',
       ],
@@ -82,8 +82,8 @@ const doc: LegalDoc = {
             head: ['Sağlayıcı', 'Ne için', 'Nerede'],
             rows: [
               ['Hetzner', 'Saklanan fotoğraflar dahil sunucularımızı ve veritabanımızı barındırmak', 'Almanya (AB)'],
-              ['Yapay zekâ model sağlayıcıları (örneğin Groq ve OpenRouter)', 'Cevaplarından plan oluşturmak, Plus ile fotoğraflarını tarif etmek', 'ABD'],
-              ['Google (Firebase)', 'Kullanım istatistikleri ve uzaktan uygulama ayarları', 'ABD'],
+              ['Yapay zekâ model sağlayıcıları (daha iyi modeller çıktıkça değişir; güncel liste için bize e-posta gönder)', 'Cevaplarından plan oluşturmak, Plus ile fotoğraflarını tarif etmek', 'ABD'],
+              ['Google (Firebase)', 'Kullanım istatistikleri, çökme raporları ve uzaktan uygulama ayarları', 'ABD'],
               ['OneSignal', 'Bildirimleri iletmek', 'ABD'],
               ['Brevo', 'Hesap e-postalarını göndermek', 'Fransa (AB)'],
               ['OpenWeatherMap', 'Yaklaşık konumun için hava durumu', 'Birleşik Krallık'],
@@ -113,6 +113,7 @@ const doc: LegalDoc = {
             'Silinen bir hesaptan geriye tek bir şey kalır: e-postanın ya da giriş kimliğinin, ikisine de geri çevrilemeyen tek yönlü kodlanmış bir parmak izi. Yalnızca ilk ücretsiz planın kullanıldığını kaydeder; böylece hesabı silip yeniden kaydolmak bir ücretsiz plan daha vermez.',
             'Abonelik ve fatura kayıtları: vergi ve muhasebe mevzuatının gerektirdiği süre boyunca, diğer verilerinden ayrı olarak.',
             'Kullanım istatistikleri: en fazla 14 ay.',
+            'Çökme raporları: 90 gün.',
             'Bizimle yazışmaların: yazışma bittikten sonra en fazla iki yıl.',
           ],
         },

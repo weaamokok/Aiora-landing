@@ -6,7 +6,7 @@ import type { LegalDoc } from './types';
 const doc: LegalDoc = {
   title: 'Política de privacidad',
   description: 'Qué recoge Aiora, por qué, con quién lo comparte y cómo borrarlo.',
-  updated: '19 de octubre de 2026',
+  updated: '30 de octubre de 2026',
   summaryTitle: 'En pocas palabras',
   summary: [
     'Recogemos lo que Aiora necesita para planificar tus días: tu cuenta, tus respuestas, tu plan, tus pensamientos y tus listas y, si las añades, tus fotos.',
@@ -35,7 +35,7 @@ const doc: LegalDoc = {
         '**Fotos, si las añades.** Hasta tres fotos (cabeza, perfil y cuerpo entero), que se usan para ajustar tu plan. Añadir fotos es opcional y forma parte de Aiora Plus. Un modelo de IA las mira una vez y escribe una breve descripción de lo que sirve para tu plan (por ejemplo, tu piel y tu postura), que guardamos con tu perfil.',
         '**Suscripciones.** Si compras Aiora Plus: el plan que elegiste, su estado y su fecha de renovación, y la referencia de la transacción de Apple o Google. Nunca recibimos el número de tu tarjeta.',
         '**Sesiones iniciadas.** Para cada dispositivo en el que tienes la sesión iniciada, la dirección IP y los datos del dispositivo desde el que la iniciaste, para mantener tu cuenta segura y poder cerrar la sesión de un dispositivo.',
-        '**Dispositivo y uso.** El identificador que necesitamos para enviarte notificaciones, la plataforma de tu dispositivo, cuántos planes has generado con IA este mes y eventos de uso de la app (por ejemplo, qué pantallas se abren y qué funciones se usan). Los eventos de uso describen lo que hiciste en la app, no lo que escribiste. En Android, si instalaste Aiora desde un enlace que alguien compartió, también registramos la campaña y el código de invitación de ese enlace.',
+        '**Dispositivo y uso.** El identificador que necesitamos para enviarte notificaciones, la plataforma de tu dispositivo, cuántos planes has generado con IA este mes y eventos de uso de la app (por ejemplo, qué pantallas se abren y qué funciones se usan). Los eventos de uso describen lo que hiciste en la app, no lo que escribiste. En Android, si instalaste Aiora desde un enlace que alguien compartió, también registramos la campaña y el código de invitación de ese enlace. Si la app falla, envía un informe del fallo con el modelo de tu dispositivo, el sistema operativo, la versión de la app y la pantalla en la que estabas.',
         '**Ubicación aproximada, si la permites.** Solo se usa para mostrar el tiempo en tu pantalla de inicio. Se envía a nuestro proveedor del tiempo, y el servicio de ubicación de tu teléfono puede convertirla en el nombre de un lugar. No la guardamos.',
         '**Los mensajes que nos envías.** Si nos escribes, guardamos la conversación para poder ayudarte.',
       ],
@@ -82,8 +82,8 @@ const doc: LegalDoc = {
             head: ['Proveedor', 'Para qué', 'Dónde'],
             rows: [
               ['Hetzner', 'Alojar nuestros servidores y nuestra base de datos, incluidas las fotos guardadas', 'Alemania (UE)'],
-              ['Proveedores de modelos de IA (por ejemplo Groq y OpenRouter)', 'Generar planes a partir de tus respuestas, y describir tus fotos con Plus', 'Estados Unidos'],
-              ['Google (Firebase)', 'Estadísticas de uso y ajustes remotos de la app', 'Estados Unidos'],
+              ['Proveedores de modelos de IA (cambian a medida que salen mejores modelos; escríbenos para pedir la lista actual)', 'Generar planes a partir de tus respuestas, y describir tus fotos con Plus', 'Estados Unidos'],
+              ['Google (Firebase)', 'Estadísticas de uso, informes de fallos y ajustes remotos de la app', 'Estados Unidos'],
               ['OneSignal', 'Enviar notificaciones', 'Estados Unidos'],
               ['Brevo', 'Enviar correos de la cuenta', 'Francia (UE)'],
               ['OpenWeatherMap', 'El tiempo para tu ubicación aproximada', 'Reino Unido'],
@@ -113,6 +113,7 @@ const doc: LegalDoc = {
             'Solo una cosa sobrevive a una cuenta borrada: una huella codificada de un solo sentido de tu correo o de tu identificador de inicio de sesión, con la que no se puede recuperar ninguno de los dos. Solo indica que ya se usó el primer plan gratis, para que borrar la cuenta y volver a registrarse no dé otro.',
             'Registros de suscripción y facturación: el tiempo que exijan las leyes fiscales y contables, separados del resto de tus datos.',
             'Estadísticas de uso: no más de 14 meses.',
+            'Informes de fallos: 90 días.',
             'Correos con nosotros: hasta dos años después de terminar la conversación.',
           ],
         },
