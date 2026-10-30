@@ -1,17 +1,21 @@
 import type { LegalDoc } from './types';
 
 // Legal review pending — see Linear AIO-58. Prices are never written here: they
-// are shown by the App Store, Google Play or Stripe at the moment of purchase.
+// are shown by the App Store or Google Play at the moment of purchase.
+//
+// Web billing is paused (Plus is sold in the app only), so web purchases,
+// Stripe and aioraspace.com/account are left out, as in the privacy policy.
+// Put them back when the /plus checkout returns.
 
 const doc: LegalDoc = {
   title: 'Terms of service',
   description: 'The agreement between you and Aiora when you use the app, this website and Aiora Plus.',
-  updated: '17 September 2026',
+  updated: '30 October 2026',
   summaryTitle: 'The short version',
   summary: [
     'Aiora helps you plan. Its AI suggestions aren’t medical advice, so listen to your body and your doctor.',
     'Your thoughts, plans and photos are yours. We only use them to run Aiora for you.',
-    'Aiora Plus renews until you cancel. Cancel any time: your store settings for app purchases, aioraspace.com/account for web purchases.',
+    'Aiora Plus renews until you cancel. Cancel any time in your App Store or Google Play settings.',
     'Be kind to the service and other people, and we’ll keep working to make Aiora worth opening.',
   ],
   contentsLabel: 'On this page',
@@ -49,12 +53,11 @@ const doc: LegalDoc = {
       title: 'Aiora Plus',
       body: [
         'Aiora is free to use. Aiora Plus is an optional subscription that removes limits, such as how often you can regenerate your plan, and adds features such as photo-shaped plans. What Plus includes is described in the app and at aioraspace.com/plus when you buy it.',
-        '**Bought in the App Store or Google Play.** Your purchase is handled by Apple or Google under their terms, including billing, renewals, refunds and cancellations. Manage or cancel it in your store account settings.',
-        '**Bought on aioraspace.com.** Payment is processed by Stripe. Your subscription renews automatically at the end of each billing period at the price shown when you subscribed, until you cancel. You can cancel at any time at aioraspace.com/account; you keep Plus until the end of the period you’ve paid for.',
+        '**Buying Plus.** Plus is sold in the app through the App Store or Google Play. Your purchase is handled by Apple or Google under their terms, including billing, renewals, refunds and cancellations. Your subscription renews automatically at the end of each billing period until you cancel, and you keep Plus until the end of the period you’ve paid for. Manage or cancel it in your store account settings.',
         '**Free trials.** If a plan includes a free trial, you won’t be charged during the trial. Unless you cancel before it ends, your subscription starts and you’re charged on the last day of the trial.',
         '**Price changes.** If the price of your subscription changes, we (or the store) will tell you in advance, and the new price applies from your next renewal. You can cancel before then.',
-        '**Refunds.** For store purchases, refunds are decided by Apple or Google. For web purchases, email support@aioraspace.com; we honour every refund and withdrawal right your local law gives you.',
-        'Plus is tied to your Aiora account, not to a device or a store. If you end up with two active subscriptions for the same account, contact us and we’ll help you cancel and refund the duplicate.',
+        '**Refunds.** Refunds are decided by Apple or Google under their policies. This doesn’t limit any refund or withdrawal right your local law gives you.',
+        'Plus is tied to your Aiora account, not to a device or a store. If you end up with two active subscriptions for the same account, for example one from each store, contact us and we’ll help you cancel the duplicate and ask the store for a refund.',
       ],
     },
     {
@@ -83,7 +86,9 @@ const doc: LegalDoc = {
       id: 'ours',
       title: 'Our part',
       body: [
-        'The Aiora name, logo, app and website are ours. You may use them only to use Aiora as intended. We work to keep Aiora available and your data safe, but we can’t promise it will always be uninterrupted or error-free. We may add, change or remove features over time; if we remove something you pay for, we’ll tell you and treat you fairly.',
+        'The Aiora name, logo, app and website are ours. We give you a personal, non-exclusive, non-transferable licence to use the Aiora app and website for your own non-commercial use, under these terms. You may not copy, sell, rent or sublicense Aiora, or use it to build a competing product.',
+        'If you send us ideas or feedback, we may use them to improve Aiora without owing you anything for them.',
+        'We work to keep Aiora available and your data safe, but we can’t promise it will always be uninterrupted or error-free. We may add, change or remove features over time; if we remove something you pay for, we’ll tell you and treat you fairly.',
       ],
     },
     {
@@ -98,6 +103,7 @@ const doc: LegalDoc = {
       title: 'Ending the agreement',
       body: [
         'You can stop using Aiora and delete your account at any time. Deleting your account doesn’t cancel a store subscription, so cancel that in your store settings too. We may end these terms for an account that seriously or repeatedly breaks them.',
+        'The parts of these terms that are meant to last, such as our rights in Aiora, the liability section and your consumer rights, continue after the agreement ends.',
       ],
     },
     {
