@@ -4,7 +4,7 @@
 export default {
   meta: {
     title: 'Aiora: Zihin Alanın, Zihin Boşaltma ve Günlük Planlama Uygulaması',
-    description: 'Aklındakileri boşalt. Aiora onları görevlere, alışverişe ve hedeflere ayırır, sana uyan bir gün kurar. iPhone ve Android’de ücretsiz.',
+    description: 'Aklındakileri boşalt. Aiora her düşüncenin nereye gideceğini önerir (bir görev, alışveriş listen ya da bir hedef) ve sana uyan bir gün kurar. iPhone ve Android’de ücretsiz.',
   },
   nav: { home: 'Aiora ana sayfa', how: 'Nasıl çalışır', plus: 'Plus', faq: 'SSS', getApp: 'Aiora’yı indir', language: 'Dil', skip: 'İçeriğe geç' },
   store: {
@@ -19,11 +19,11 @@ export default {
     idle: 'Yazmaya başla, Aiora nereye gideceğini önersin.',
     try: 'Ya da dene',
     examples: ['yarın dişçiyi ara', 'şampuan ve süt al', 'her gün kitap oku'],
-    save: 'Ayır',
+    save: 'Kaydet',
     again: 'Bir düşünce daha',
     continue: 'Uygulamada devam et',
     phoneLabel: 'Aiora ana ekranı, düşüncenin vardığı yeri gösteriyor',
-    runsLocally: 'Tam burada, tarayıcında, uygulamadaki gibi ayrılır. Yazdığın hiçbir şey bir yere gönderilmez.',
+    runsLocally: 'Öneri tam burada, tarayıcında, uygulamadaki gibi hesaplanır. Yazdığın hiçbir şey bir yere gönderilmez.',
   },
   phone: {
     date: 'Salı',
@@ -107,7 +107,7 @@ export default {
     { q: 'Aiora ücretsiz mi?', a: 'Evet, indirmesi de her gün kullanması da. Düşünce boşaltma, düşünce kutun, görevler, takvim, odak seansları, alışveriş listesi, widget’lar ve hatırlatmalar ücretsiz; ilk yapay zekâ planın da öyle. Aiora Plus isteğe bağlı: sınırsız plan yenileme, fotoğraflarına göre şekillenen planlar, tüm odak arkadaşları ve esneme seviyeleri, haftanın alabildiği kadar haftalık hedef ekler.' },
     { q: 'Aiora planımı nasıl kurar?', a: 'Beş kısa soruyu yanıtlarsın: biraz kendin, işin, günlerinin genelde nasıl geçtiği, neyin peşinde olduğun ve Plus ile birkaç fotoğraf. Aiora’nın yapay zekâsı bunu sabah, öğleden sonra ve akşam olarak bölünmüş günlük bir plana çevirir. Yaklaşık bir dakika sürer, sonra her şeyi değiştirebilirsin.' },
     { q: 'Yazdıklarıma ne oluyor?', a: 'Bir düşüncenin nereye ait olduğu önerisi telefonunda hesaplanır. Düşüncelerin, görevlerin ve planın cihazların arasında senkronize olsun diye hesabına kaydedilir. Verilerini satmıyoruz; hesabını ve içindeki her şeyi istediğin zaman uygulamadan silebilirsin.' },
-    { q: 'Hesap gerekli mi?', a: 'Hayır. Misafir olarak başlayabilir, planını yedeklemek, başka bir cihazda kullanmak ya da Plus almak istediğinde hesap oluşturabilirsin.' },
+    { q: 'Hesap gerekli mi?', a: 'Evet, ücretsiz bir hesap. Düşüncelerini, planını ve alışveriş listeni yedekler; giriş yaptığın her cihazda seninle olur. İlk planının sorularını hesabı oluşturmadan önce yanıtlayabilirsin.' },
     { q: 'İnternetsiz çalışır mı?', a: 'Evet. Günün, düşüncelerin ve alışveriş listen bağlantı olmadan çalışır, tekrar çevrimiçi olduğunda senkronize olur. Yeni bir yapay zekâ planı için bağlantı gerekir.' },
     { q: 'Aiora hangi dilleri konuşuyor?', a: 'Türkçe, İngilizce, Arapça, Fransızca, İspanyolca, Rusça ve Svahili; uygulamada ve bu sitede.' },
   ],
@@ -143,7 +143,7 @@ export default {
       {
         title: 'Gizlilik ve verilerin',
         items: [
-          { q: 'Hesap gerekli mi?', a: 'Hayır. Misafir olarak başlayabilir, planını yedeklemek, başka bir cihazda kullanmak ya da Plus almak istediğinde hesap oluşturabilirsin.' },
+          { q: 'Hesap gerekli mi?', a: 'Evet, ücretsiz bir hesap. Düşüncelerini, planını ve alışveriş listeni yedekler; giriş yaptığın her cihazda seninle olur. İlk planının sorularını hesabı oluşturmadan önce yanıtlayabilirsin.' },
           { q: 'Yazdıklarıma ne oluyor?', a: 'Bir düşüncenin nereye ait olduğu önerisi telefonunda hesaplanır. Düşüncelerin, görevlerin ve planın cihazların arasında senkronize olsun diye hesabına kaydedilir. Asla bir yapay zekâ modeline gönderilmezler ve verilerini satmıyoruz.' },
           { q: 'Fotoğraflarıma ne oluyor?', a: 'Fotoğraflar isteğe bağlıdır ve Plus’ın parçasıdır. Eklersen, planın yeniden kurulabilsin diye profilinle birlikte AB’deki sunucularımızda saklanır ve bir plan oluşturulduğunda Google’ın Gemini modeline gönderilir. Hesabını sildiğinde silinirler.' },
           { q: 'Hesabımı nasıl silerim?', a: 'Uygulamadaki profilinden ya da aioraspace.com/delete-account adresinden. Hemen çıkış yaparsın ve verilerin 30 gün içinde sunucularımızdan silinir. Hesabı silmek mağaza aboneliğini iptal etmez; onu da mağaza ayarlarından iptal et.' },

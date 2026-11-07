@@ -4,7 +4,7 @@
 export default {
   meta: {
     title: 'Aiora: tu espacio mental para vaciar la cabeza y planificar tu día',
-    description: 'Suelta lo que tienes en mente. Aiora lo ordena en tareas, compras y metas, y arma un día a tu medida. Gratis en iPhone y Android.',
+    description: 'Suelta lo que tienes en mente. Aiora sugiere dónde va cada pensamiento (una tarea, tu lista de la compra o una meta) y arma un día a tu medida. Gratis en iPhone y Android.',
   },
   nav: { home: 'Inicio de Aiora', how: 'Cómo funciona', plus: 'Plus', faq: 'Preguntas', getApp: 'Descargar Aiora', language: 'Idioma', skip: 'Ir al contenido' },
   store: {
@@ -19,11 +19,11 @@ export default {
     idle: 'Empieza a escribir. Aiora te sugiere dónde va.',
     try: 'O prueba',
     examples: ['llamar al dentista mañana', 'comprar champú y leche', 'leer más cada semana'],
-    save: 'Ordenar',
+    save: 'Guardar',
     again: 'Soltar otro pensamiento',
     continue: 'Sigue en la app',
     phoneLabel: 'La pantalla de inicio de Aiora, con el pensamiento donde aterrizó',
-    runsLocally: 'Se ordena aquí mismo, en tu navegador, igual que en la app. Nada de lo que escribes se envía a ningún sitio.',
+    runsLocally: 'La sugerencia se calcula aquí mismo, en tu navegador, igual que en la app. Nada de lo que escribes se envía a ningún sitio.',
   },
   phone: {
     date: 'Martes',
@@ -107,7 +107,7 @@ export default {
     { q: '¿Aiora es gratis?', a: 'Sí, para descargar y para usar cada día. Soltar pensamientos, tu bandeja de pensamientos, las tareas, el calendario, las sesiones de enfoque, la lista de la compra, los widgets y los recordatorios son gratis, igual que tu primer plan con IA. Aiora Plus es opcional: añade regeneraciones ilimitadas del plan, planes adaptados a tus fotos, todos los compañeros de enfoque y niveles de estiramiento, y tantas metas semanales como quepan en la semana.' },
     { q: '¿Cómo arma Aiora mi plan?', a: 'Respondes cinco preguntas cortas: un poco sobre ti, tu trabajo, cómo suelen ser tus días, lo que persigues y, con Plus, algunas fotos. La IA de Aiora lo convierte en un plan diario dividido en mañana, tarde y noche. Tarda un minuto y después puedes cambiar lo que quieras.' },
     { q: '¿Qué pasa con lo que escribo?', a: 'La sugerencia de dónde va un pensamiento se calcula en tu móvil. Tus pensamientos, tareas y plan se guardan en tu cuenta para sincronizarse entre tus dispositivos. No vendemos tus datos, y puedes borrar tu cuenta y todo su contenido desde la app cuando quieras.' },
-    { q: '¿Necesito una cuenta?', a: 'No. Puedes empezar como invitado y crear una cuenta cuando quieras guardar tu plan, usarlo en otro dispositivo o tener Plus.' },
+    { q: '¿Necesito una cuenta?', a: 'Sí, una gratuita. Guarda tus pensamientos, tu plan y tu lista de la compra, y los tienes en cada dispositivo donde inicies sesión. Puedes responder las preguntas de tu primer plan antes de crearla.' },
     { q: '¿Funciona sin conexión?', a: 'Sí. Tu día, tus pensamientos y tu lista de la compra funcionan sin conexión y se sincronizan cuando vuelves. Crear un plan nuevo con IA necesita conexión.' },
     { q: '¿Qué idiomas habla Aiora?', a: 'Español, inglés, árabe, francés, ruso, turco y suajili, en la app y en esta web.' },
   ],
@@ -143,7 +143,7 @@ export default {
       {
         title: 'Privacidad y tus datos',
         items: [
-          { q: '¿Necesito una cuenta?', a: 'No. Puedes empezar como invitado y crear una cuenta cuando quieras guardar tu plan, usarlo en otro dispositivo o tener Plus.' },
+          { q: '¿Necesito una cuenta?', a: 'Sí, una gratuita. Guarda tus pensamientos, tu plan y tu lista de la compra, y los tienes en cada dispositivo donde inicies sesión. Puedes responder las preguntas de tu primer plan antes de crearla.' },
           { q: '¿Qué pasa con lo que escribo?', a: 'La sugerencia de dónde va un pensamiento se calcula en tu móvil. Tus pensamientos, tareas y plan se guardan en tu cuenta para sincronizarse entre tus dispositivos. Nunca se envían a un modelo de IA y no vendemos tus datos.' },
           { q: '¿Qué pasa con mis fotos?', a: 'Las fotos son opcionales y forman parte de Plus. Si las añades, se guardan con tu perfil en nuestros servidores de la UE para poder rehacer tu plan, y se envían al modelo Gemini de Google cuando se genera un plan. Se borran cuando borras tu cuenta.' },
           { q: '¿Cómo borro mi cuenta?', a: 'Desde tu perfil en la app, o en aioraspace.com/delete-account. Se cierra tu sesión al momento y tus datos se borran de nuestros servidores en un plazo de 30 días. Borrar la cuenta no cancela una suscripción de tienda: cancélala también en los ajustes de la tienda.' },
