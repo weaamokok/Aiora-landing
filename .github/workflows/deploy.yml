@@ -28,6 +28,13 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+        # Site analytics (AIO-67). Repo Settings → Secrets and variables → Actions → Variables.
+        # Unset, the provider is `none` and the site loads and sends nothing.
+        env:
+          PUBLIC_ANALYTICS_PROVIDER: ${{ vars.PUBLIC_ANALYTICS_PROVIDER }}
+          PUBLIC_ANALYTICS_SRC: ${{ vars.PUBLIC_ANALYTICS_SRC }}
+          PUBLIC_ANALYTICS_SITE_ID: ${{ vars.PUBLIC_ANALYTICS_SITE_ID }}
+          PUBLIC_ANALYTICS_DOMAIN: ${{ vars.PUBLIC_ANALYTICS_DOMAIN }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

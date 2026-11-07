@@ -25,11 +25,12 @@ type Props = Record<string, string | number | boolean>;
 declare global {
   interface Window {
     plausible?: (event: string, opts?: { props?: Props }) => void;
-    umami?: { track: (event: string, props?: Props) => void };
+    umami?: { track: (event?: string, props?: Props) => void };
   }
 }
 
-const provider = (import.meta.env.PUBLIC_ANALYTICS_PROVIDER ?? 'none') as 'plausible' | 'umami' | 'none';
+// `||`, not `??`: an unset GitHub Actions variable arrives as an empty string.
+const provider = (import.meta.env.PUBLIC_ANALYTICS_PROVIDER || 'none') as 'plausible' | 'umami' | 'none';
 const debug = typeof location !== 'undefined' && new URLSearchParams(location.search).get('analytics') === 'debug';
 
 /** Honour Do Not Track and Global Privacy Control, and never count ourselves. */
@@ -63,7 +64,12 @@ export function track(event: string, props?: Props): void {
 function send(event: string, props?: Props) {
   try {
     if (provider === 'plausible') window.plausible?.(event, props ? { props } : undefined);
-    else if (provider === 'umami') window.umami?.track(event, props);
+    // Umami counts a page view only from a bare `track()`; `track('pageview')` would file it
+    // as a custom event and leave the Views chart at zero. The locale is in the URL already.
+    else if (provider === 'umami') {
+      if (event === 'pageview') window.umami?.track();
+      else window.umami?.track(event, props);
+    }
   } catch {
     // Measurement must never break the page.
   }
@@ -103,7 +109,7 @@ if (!off && provider !== 'none' && !debug) {
     s.src = src;
     s.defer = true;
     if (provider === 'plausible') {
-      s.dataset.domain = import.meta.env.PUBLIC_ANALYTICS_DOMAIN ?? location.hostname;
+      s.dataset.domain = import.meta.env.PUBLIC_ANALYTICS_DOMAIN || location.hostname;
       // Queue shim, exactly as Plausible documents it.
       window.plausible =
         window.plausible ||
@@ -111,7 +117,7 @@ if (!off && provider !== 'none' && !debug) {
           ((window.plausible as unknown as { q?: unknown[] }).q ??= []).push(args);
         };
     } else if (provider === 'umami') {
-      s.dataset.websiteId = import.meta.env.PUBLIC_ANALYTICS_SITE_ID ?? '';
+      s.dataset.websiteId = import.meta.env.PUBLIC_ANALYTICS_SITE_ID || '';
       s.dataset.autoTrack = 'false';
     }
     s.addEventListener('load', flush);
