@@ -4,7 +4,7 @@
 export default {
   meta: {
     title: 'Aiora: nafasi yako ya akili, kumimina mawazo na kupanga siku',
-    description: 'Mimina kilicho akilini. Aiora hukipanga kuwa kazi, manunuzi na malengo, na hujenga siku inayokufaa. Bure kwenye iPhone na Android.',
+    description: 'Mimina kilicho akilini. Aiora hupendekeza kila wazo linakostahili, iwe kazi, manunuzi au lengo, na hujenga siku inayokufaa. Bure kwenye iPhone na Android.',
   },
   nav: { home: 'Ukurasa wa mwanzo wa Aiora', how: 'Inavyofanya kazi', plus: 'Plus', faq: 'Maswali', getApp: 'Pata Aiora', language: 'Lugha', skip: 'Ruka hadi maudhui' },
   store: {
@@ -19,11 +19,11 @@ export default {
     idle: 'Anza kuandika. Aiora itapendekeza kinakoenda.',
     try: 'Au jaribu',
     examples: ['piga simu kwa daktari kesho', 'nunua shampuu na maziwa', 'soma kila siku'],
-    save: 'Panga',
+    save: 'Hifadhi',
     again: 'Wazo jingine',
     continue: 'Endelea kwenye programu',
     phoneLabel: 'Skrini kuu ya Aiora, ikionyesha wazo lilipotua',
-    runsLocally: 'Linapangwa hapa hapa kwenye kivinjari chako, kama kwenye programu. Hakuna unachoandika kinachotumwa popote.',
+    runsLocally: 'Pendekezo linahesabiwa hapa hapa kwenye kivinjari chako, kama kwenye programu. Hakuna unachoandika kinachotumwa popote.',
   },
   phone: {
     date: 'Jumanne',
@@ -107,7 +107,7 @@ export default {
     { q: 'Je, Aiora ni bure?', a: 'Ndiyo, kupakua na kutumia kila siku. Kumimina mawazo, sanduku la mawazo, kazi, kalenda, vipindi vya umakini, orodha ya manunuzi, wijeti na vikumbusho ni bure, pamoja na mpango wako wa kwanza wa AI. Aiora Plus ni hiari: inaongeza kutengeneza mpango upya bila kikomo, mipango inayozingatia picha zako, wenzi wote wa umakini na viwango vyote vya kunyoosha, na malengo ya wiki kadiri wiki inavyoweza kubeba.' },
     { q: 'Aiora hujengaje mpango wangu?', a: 'Unajibu maswali matano mafupi: kidogo kukuhusu, kazi yako, siku zako zinavyokwenda kwa kawaida, unachokilenga, na kwa Plus, picha chache. AI ya Aiora hugeuza hilo kuwa mpango wa kila siku uliogawanywa asubuhi, mchana na jioni. Huchukua takriban dakika moja, na unaweza kubadilisha chochote baadaye.' },
     { q: 'Kinachotokea kwa ninachoandika ni nini?', a: 'Pendekezo la wazo linakostahili linahesabiwa kwenye simu yako. Mawazo, kazi na mpango wako huhifadhiwa kwenye akaunti yako ili visawazishwe kati ya vifaa vyako. Hatuuzi data yako, na unaweza kufuta akaunti yako na kila kilichomo kutoka kwenye programu wakati wowote.' },
-    { q: 'Je, ninahitaji akaunti?', a: 'Hapana. Unaweza kuanza kama mgeni, na kufungua akaunti unapotaka kuhifadhi mpango wako, kuutumia kwenye kifaa kingine, au kupata Plus.' },
+    { q: 'Je, ninahitaji akaunti?', a: 'Ndiyo, ya bure. Inahifadhi mawazo yako, mpango wako na orodha ya manunuzi, na unayapata kwenye kila kifaa unachoingia nacho. Unaweza kujibu maswali ya mpango wako wa kwanza kabla ya kuifungua.' },
     { q: 'Inafanya kazi bila mtandao?', a: 'Ndiyo. Siku yako, mawazo yako na orodha ya manunuzi hufanya kazi bila mtandao na husawazishwa ukirudi mtandaoni. Kujenga mpango mpya wa AI kunahitaji mtandao.' },
     { q: 'Aiora inazungumza lugha zipi?', a: 'Kiswahili, Kiingereza, Kiarabu, Kifaransa, Kihispania, Kirusi na Kituruki, kwenye programu na kwenye tovuti hii.' },
   ],
@@ -143,7 +143,7 @@ export default {
       {
         title: 'Faragha na data yako',
         items: [
-          { q: 'Je, ninahitaji akaunti?', a: 'Hapana. Unaweza kuanza kama mgeni, na kufungua akaunti unapotaka kuhifadhi mpango wako, kuutumia kwenye kifaa kingine, au kupata Plus.' },
+          { q: 'Je, ninahitaji akaunti?', a: 'Ndiyo, ya bure. Inahifadhi mawazo yako, mpango wako na orodha ya manunuzi, na unayapata kwenye kila kifaa unachoingia nacho. Unaweza kujibu maswali ya mpango wako wa kwanza kabla ya kuifungua.' },
           { q: 'Kinachotokea kwa ninachoandika ni nini?', a: 'Pendekezo la wazo linakostahili linahesabiwa kwenye simu yako. Mawazo, kazi na mpango wako huhifadhiwa kwenye akaunti yako ili visawazishwe kati ya vifaa vyako. Havitumwi kamwe kwa modeli ya AI, na hatuuzi data yako.' },
           { q: 'Picha zangu zinafanywa nini?', a: 'Picha ni hiari na ni sehemu ya Plus. Ukiziongeza, zinahifadhiwa pamoja na wasifu wako kwenye seva zetu za Umoja wa Ulaya ili mpango wako uweze kujengwa upya, na zinatumwa kwa modeli ya Gemini ya Google mpango unapotengenezwa. Zinafutwa unapofuta akaunti yako.' },
           { q: 'Ninafutaje akaunti yangu?', a: 'Kutoka kwenye wasifu wako ndani ya programu, au kwenye aioraspace.com/delete-account. Unatolewa kwenye akaunti mara moja na data yako inafutwa kwenye seva zetu ndani ya siku 30. Kufuta akaunti hakughairi usajili wa duka la programu, kwa hiyo ughairi pia kwenye mipangilio ya duka.' },

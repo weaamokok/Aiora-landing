@@ -12,7 +12,7 @@ export const en = {
   meta: {
     title: 'Aiora: Your Mind Space, a Brain Dump & Daily Planner App',
     description:
-      'Dump what’s on your mind. Aiora sorts it into tasks, shopping and goals, and builds a day that fits your life. Free on iPhone and Android.',
+      'Dump what’s on your mind. Aiora suggests where each thought belongs (a task, your shopping list or a goal) and builds a day that fits your life. Free on iPhone and Android.',
   },
 
   nav: {
@@ -38,11 +38,11 @@ export const en = {
     idle: 'Start typing. Aiora suggests where it goes.',
     try: 'Or try',
     examples: ['call the dentist on thursday', 'buy shampoo and oat milk', 'run three times a week'],
-    save: 'Sort it',
+    save: 'Save it',
     again: 'Dump another',
     continue: 'Keep going in the app',
     phoneLabel: 'Aiora’s home screen, showing where your thought landed',
-    runsLocally: 'Sorted right here in your browser, the way the app does it. Nothing you type is sent anywhere.',
+    runsLocally: 'Suggested right here in your browser, the way the app does it. Nothing you type is sent anywhere.',
   },
 
   phone: {
@@ -178,7 +178,7 @@ export const en = {
     },
     {
       q: 'Do I need an account?',
-      a: 'No. You can start as a guest. Create an account when you want your plan backed up, on another device, or to use Plus.',
+      a: 'Yes, a free one. It keeps your thoughts, plan and shopping list backed up and on every device you sign in on. You can answer the questions for your first plan before you create it.',
     },
     {
       q: 'Does it work offline?',
@@ -234,7 +234,7 @@ export const en = {
       {
         title: 'Privacy and your data',
         items: [
-          { q: 'Do I need an account?', a: 'No. You can start as a guest. Create an account when you want your plan backed up, on another device, or to use Plus.' },
+          { q: 'Do I need an account?', a: 'Yes, a free one. It keeps your thoughts, plan and shopping list backed up and on every device you sign in on. You can answer the questions for your first plan before you create it.' },
           { q: 'What happens to what I type?', a: 'The suggestion for where a thought belongs is worked out on your phone. Your thoughts, tasks and plan are saved to your account so they sync between your devices. They’re never sent to an AI model and we don’t sell your data.' },
           { q: 'What happens to my photos?', a: 'Photos are optional and part of Plus. If you add them, they’re stored with your profile on our servers in the EU so your plan can be rebuilt, and they’re sent to Google’s Gemini model when a plan is generated. They’re deleted when you delete your account.' },
           { q: 'How do I delete my account?', a: 'From your profile in the app, or at aioraspace.com/delete-account. You’re signed out straight away and your data is erased from our servers within 30 days. Deleting your account doesn’t cancel a store subscription, so cancel that in your store settings too.' },
