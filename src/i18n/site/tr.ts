@@ -87,7 +87,8 @@ export default {
     water: 'Su',
     in: '{time} sonra',
     lockScreen: 'Sen çalışırken kilit ekranında kalır.',
-    points: ['Süreyi seç, Aiora zamanı tutsun', 'Hafiften tama esneme molaları', 'Zamanında bir bardak su', 'Her seans geçmişine kaydedilir'],
+    points: ['Süreyi seç, Aiora zamanı tutsun', 'Seansa hedef koy, ilerledikçe işaretle', 'Hafiften tama esneme molaları', 'Zamanında bir bardak su', 'Her seans geçmişine kaydedilir'],
+    goals: ['Girişi yaz', 'Ev sahibine cevap ver', 'Slaytları hazırla'],
   },
   evening: {
     title: 'Zaten baktığın yerde karşına çıkar.',
@@ -126,7 +127,7 @@ export default {
           { q: 'Düşünce boşaltma nedir?', a: 'Uygulamanın altında hep duran alan. Aklına gelir gelmez her şeyi yaz. Aiora nereye gideceğini önerir ama senin yerine hiçbir şey seçilmez: tek dokunuşla seç ya da düşünce olarak kaydet ve sonra karar ver. Karar bekleyen en yeni düşünce ana ekranda seni bekler; saklayabilir, göreve ya da alışverişe çevirebilir veya bırakabilirsin.' },
           { q: 'Aiora planımı nasıl kurar?', a: 'Beş kısa soruyu yanıtlarsın: biraz kendin, işin, günlerinin nasıl geçtiği, neyin peşinde olduğun ve Plus ile birkaç fotoğraf. Yapay zekâ bunu yaklaşık bir dakikada sabah, öğleden sonra ve akşam olarak bölünmüş bir plana çevirir.' },
           { q: 'Planımı değiştirebilir miyim?', a: 'Evet. Her şeyi ekle, düzenle, taşı ya da sil; işleri yapıldı veya atlandı olarak işaretle, haftalık hedeflerini belirle. Hayatın değiştiğinde tüm planı yeniden oluşturabilirsin. Ücretsiz sürüm ayda birkaç yenileme içerir; Plus bunları sınırsız yapar.' },
-          { q: 'Odak seansları nedir?', a: 'Bedenini de önemseyen bir odaklı çalışma sayacı. Süreyi seç; Aiora zamanı tutar, esnemeni (hafif, orta ya da tam) ve su içmeni hatırlatır, her seansı geçmişine kaydeder. iPhone’da devam eden seans kilit ekranında kalır.' },
+          { q: 'Odak seansları nedir?', a: 'Bedenini de önemseyen bir odaklı çalışma sayacı. Süreyi seç; Aiora zamanı tutar, esnemeni (hafif, orta ya da tam) ve su içmeni hatırlatır, her seansı geçmişine kaydeder. Seansa hedefler ekleyip ilerledikçe işaretleyebilirsin. iPhone’da devam eden seans kilit ekranında kalır.' },
           { q: 'İnternetsiz çalışır mı?', a: 'Evet. Günün, düşüncelerin ve alışveriş listen bağlantı olmadan çalışır ve tekrar çevrimiçi olduğunda senkronize olur. Yeni bir yapay zekâ planı için bağlantı gerekir.' },
         ],
       },

@@ -25,6 +25,8 @@
   "upNext": "다음",
   "now": "지금",
   "weeksGoals": "이번 주 목표",
+  "sessionGoalProgress": "{{total}}개 중 {{current}}개",
+  "sessionGoalsAllDone": "모두 완료",
   "generatingSteps": [
     "답변을 읽고 있어요",
     "아침 시간을 짜고 있어요",

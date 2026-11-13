@@ -25,6 +25,8 @@
   "upNext": "التالي",
   "now": "الآن",
   "weeksGoals": "أهداف الأسبوع",
+  "sessionGoalProgress": "{{current}} من {{total}}",
+  "sessionGoalsAllDone": "خلصت الكل",
   "generatingSteps": [
     "نقرأ إجاباتك",
     "نرتّب صباحك",

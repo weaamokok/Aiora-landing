@@ -8,8 +8,10 @@ interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
-const { t } = copy(locale);
-const icons = ['timer', 'stretch', 'water', 'calendar'] as const;
+const { t, app } = copy(locale);
+const icons = ['timer', 'check', 'stretch', 'water', 'calendar'] as const;
+const progress = (current: number) =>
+  app.sessionGoalProgress.replace('{{current}}', String(current)).replace('{{total}}', String(t.focus.goals.length));
 const R = 118;
 const C = 2 * Math.PI * R;
 ---
@@ -56,6 +58,23 @@ const C = 2 * Math.PI * R;
           <Icon name="water" size={18} />
           <span>{t.focus.water}</span>
           <b data-cue="water" data-in={t.focus.in}>09:59</b>
+        </span>
+      </div>
+
+      <!-- The session's goals: one quiet line under the timer, like the app -->
+      <div
+        class="goal"
+        data-goal
+        data-goals={JSON.stringify(t.focus.goals)}
+        data-progress={app.sessionGoalProgress}
+        data-all-done={app.sessionGoalsAllDone}
+      >
+        <span class="goal-check" data-goal-check>
+          <Icon name="check" size={16} />
+        </span>
+        <span class="goal-text" data-goal-text>
+          <span class="goal-title" data-goal-title>{t.focus.goals[0]}</span>
+          <span class="goal-progress" data-goal-progress>{progress(1)}</span>
         </span>
       </div>
     </div>
@@ -250,12 +269,84 @@ const C = 2 * Math.PI * R;
     inset-inline-start: -14%;
   }
 
+  .goal {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: min(100%, 340px);
+    min-height: 64px;
+    margin-top: calc(var(--s-6) * -0.5);
+    padding-block: 10px;
+    padding-inline: 12px 18px;
+    border-radius: 20px;
+    background: rgb(255 255 255 / 0.1);
+    border: 1px solid rgb(255 255 255 / 0.16);
+  }
+
+  .goal-check {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgb(255 255 255 / 0.55);
+    color: transparent;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, scale 0.25s ease;
+  }
+
+  .goal[data-done] .goal-check {
+    background: #fff;
+    border-color: #fff;
+    color: var(--primary);
+  }
+
+  .goal-text {
+    display: grid;
+    min-width: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .goal-text.is-swapping {
+    opacity: 0;
+  }
+
+  .goal-title {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .goal[data-done] .goal-title {
+    opacity: 0.6;
+  }
+
+  .goal-progress {
+    font-size: 0.8rem;
+    opacity: 0.65;
+  }
+
+  .goal-progress:empty {
+    display: none;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
+    .goal[data-done] .goal-check {
+      animation: tick 0.35s ease;
+    }
+
     .cue {
       animation: float 6s ease-in-out infinite alternate;
     }
     .cue--water {
       animation-delay: -3s;
+    }
+  }
+
+  @keyframes tick {
+    50% {
+      scale: 1.18;
     }
   }
 

@@ -25,6 +25,8 @@
   "upNext": "Sırada",
   "now": "Şimdi",
   "weeksGoals": "Haftanın Hedefleri",
+  "sessionGoalProgress": "{{current}} / {{total}}",
+  "sessionGoalsAllDone": "Hepsi tamam",
   "generatingSteps": [
     "Cevapların okunuyor",
     "Sabahların şekilleniyor",

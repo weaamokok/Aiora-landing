@@ -25,6 +25,8 @@
   "upNext": "Up next",
   "now": "Now",
   "weeksGoals": "Week’s Goals",
+  "sessionGoalProgress": "{{current}} of {{total}}",
+  "sessionGoalsAllDone": "All done",
   "generatingSteps": [
     "Reading your answers",
     "Shaping your mornings",
