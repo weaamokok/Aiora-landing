@@ -87,7 +87,8 @@ export default {
     water: 'Maji',
     in: 'baada ya {time}',
     lockScreen: 'Kinabaki kwenye skrini iliyofungwa unapofanya kazi.',
-    points: ['Chagua muda, Aiora inahesabu', 'Mapumziko ya kunyoosha, mepesi hadi kamili', 'Glasi ya maji kwa wakati wake', 'Kila kipindi kinahifadhiwa kwenye historia'],
+    points: ['Chagua muda, Aiora inahesabu', 'Weka malengo ya kipindi, uyatie alama unapoendelea', 'Mapumziko ya kunyoosha, mepesi hadi kamili', 'Glasi ya maji kwa wakati wake', 'Kila kipindi kinahifadhiwa kwenye historia'],
+    goals: ['Andika utangulizi', 'Mjibu mwenye nyumba', 'Andaa slaidi'],
   },
   evening: {
     title: 'Inakukuta pale unapotazama tayari.',
@@ -126,7 +127,7 @@ export default {
           { q: 'Kumimina mawazo ni nini?', a: 'Sehemu iliyo chini ya programu kila wakati. Andika chochote mara kinapokujia. Aiora inapendekeza kinakoenda, lakini hakuna kinachochaguliwa kwa niaba yako: chagua kwa mguso mmoja, au kihifadhi kama wazo na uamue baadaye. Wazo jipya zaidi ambalo bado halijaamuliwa linakusubiri kwenye skrini kuu, ambapo unaweza kulitunza, kulifanya kazi au bidhaa ya kununua, au kuliacha liende.' },
           { q: 'Aiora hujengaje mpango wangu?', a: 'Unajibu maswali matano mafupi: kidogo kukuhusu, kazi yako, siku zako zinavyokwenda, unachokilenga, na kwa Plus, picha chache. AI hugeuza hilo kuwa mpango wa kila siku uliogawanywa asubuhi, mchana na jioni, kwa takriban dakika moja.' },
           { q: 'Je, naweza kubadilisha mpango wangu?', a: 'Ndiyo. Ongeza, hariri, hamisha au futa chochote, weka alama kazi zilizofanyika au kurukwa, na weka malengo yako ya wiki. Unaweza pia kutengeneza mpango mzima upya maisha yanapobadilika. Toleo la bure lina mara chache kila mwezi; Plus huyafanya bila kikomo.' },
-          { q: 'Vipindi vya umakini ni nini?', a: 'Kipima muda cha kazi ya umakini kinachojali mwili wako pia. Chagua muda na Aiora inahesabu, inakukumbusha kunyoosha mwili (kidogo, wastani au kamili) na kunywa maji, na inahifadhi kila kipindi kwenye historia yako. Kwenye iPhone, kipindi kinachoendelea kinabaki kwenye skrini iliyofungwa.' },
+          { q: 'Vipindi vya umakini ni nini?', a: 'Kipima muda cha kazi ya umakini kinachojali mwili wako pia. Chagua muda na Aiora inahesabu, inakukumbusha kunyoosha mwili (kidogo, wastani au kamili) na kunywa maji, na inahifadhi kila kipindi kwenye historia yako. Unaweza kuongeza malengo ya kipindi na kuyatia alama unapoendelea. Kwenye iPhone, kipindi kinachoendelea kinabaki kwenye skrini iliyofungwa.' },
           { q: 'Inafanya kazi bila mtandao?', a: 'Ndiyo. Siku yako, mawazo yako na orodha ya manunuzi hufanya kazi bila mtandao na husawazishwa ukirudi mtandaoni. Kujenga mpango mpya wa AI kunahitaji mtandao.' },
         ],
       },

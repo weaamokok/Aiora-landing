@@ -25,6 +25,8 @@
   "upNext": "Далее",
   "now": "Сейчас",
   "weeksGoals": "Цели недели",
+  "sessionGoalProgress": "{{current}} из {{total}}",
+  "sessionGoalsAllDone": "Всё сделано",
   "generatingSteps": [
     "Читаем ваши ответы",
     "Выстраиваем утро",

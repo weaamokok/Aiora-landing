@@ -89,7 +89,8 @@ export default {
     water: 'Acqua',
     in: 'tra {time}',
     lockScreen: 'Resta sulla schermata di blocco mentre lavori.',
-    points: ['Scegli la durata, Aiora tiene il tempo', 'Pause stretching, da leggere a complete', 'Un bicchiere d’acqua, all’ora giusta', 'Ogni sessione salvata nella tua cronologia'],
+    points: ['Scegli la durata, Aiora tiene il tempo', 'Fissa qualche obiettivo e spuntalo man mano', 'Pause stretching, da leggere a complete', 'Un bicchiere d’acqua, all’ora giusta', 'Ogni sessione salvata nella tua cronologia'],
+    goals: ['Scrivere l’introduzione', 'Rispondere al padrone di casa', 'Preparare le slide'],
   },
   evening: {
     title: 'Ti trova dove guardi già.',
@@ -128,7 +129,7 @@ export default {
           { q: 'Che cos’è lo svuota-pensieri?', a: 'Il campo sempre presente in fondo all’app. Scrivi qualsiasi cosa, appena ti viene in mente. Aiora ti suggerisce dove dovrebbe andare, ma niente viene scelto al posto tuo: scegli con un tocco, oppure salvalo come pensiero e decidi più tardi. Il pensiero più recente ancora in sospeso ti aspetta nella schermata Home, dove puoi tenerlo, trasformarlo in un’attività o in qualcosa da comprare, oppure lasciarlo andare.' },
           { q: 'Come costruisce Aiora il mio programma?', a: 'Rispondi a cinque domande brevi: qualcosa su di te, il tuo lavoro, come vanno di solito le tue giornate, a cosa stai lavorando e, con Plus, qualche foto. L’IA di Aiora lo trasforma in un programma giornaliero diviso in mattina, pomeriggio e sera. Ci vuole circa un minuto.' },
           { q: 'Posso cambiare il mio programma?', a: 'Sì. Aggiungi, modifica, sposta o elimina quello che vuoi, segna le azioni come fatte o saltate e fissa i tuoi obiettivi settimanali. Puoi anche rigenerare tutto il programma quando la vita cambia. La versione gratuita include qualche rigenerazione al mese; con Plus sono illimitate.' },
-          { q: 'Cosa sono le sessioni di concentrazione?', a: 'Un timer per lavorare concentrati che si prende cura anche del tuo corpo. Scegli la durata e Aiora tiene il tempo, ti ricorda di fare stretching (leggero, medio o completo) e di bere acqua, e salva ogni sessione nella tua cronologia. Su iPhone, la sessione in corso resta sulla schermata di blocco.' },
+          { q: 'Cosa sono le sessioni di concentrazione?', a: 'Un timer per lavorare concentrati che si prende cura anche del tuo corpo. Scegli la durata e Aiora tiene il tempo, ti ricorda di fare stretching (leggero, medio o completo) e di bere acqua, e salva ogni sessione nella tua cronologia. Puoi aggiungere degli obiettivi alla sessione e spuntarli man mano. Su iPhone, la sessione in corso resta sulla schermata di blocco.' },
           { q: 'Funziona offline?', a: 'Sì. La tua giornata, i tuoi pensieri e la lista della spesa funzionano senza connessione e si sincronizzano quando torni online. Per creare un nuovo programma con l’IA serve la connessione.' },
         ],
       },

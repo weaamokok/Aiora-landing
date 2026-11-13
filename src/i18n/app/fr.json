@@ -25,6 +25,8 @@
   "upNext": "À suivre",
   "now": "Maintenant",
   "weeksGoals": "Objectifs de la semaine",
+  "sessionGoalProgress": "{{current}} sur {{total}}",
+  "sessionGoalsAllDone": "Tout est fait",
   "generatingSteps": [
     "Lecture de vos réponses",
     "Construction de vos matinées",

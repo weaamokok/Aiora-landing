@@ -25,6 +25,8 @@
   "upNext": "Inayofuata",
   "now": "Sasa",
   "weeksGoals": "Malengo ya Wiki",
+  "sessionGoalProgress": "{{current}} kati ya {{total}}",
+  "sessionGoalsAllDone": "Yote yamekamilika",
   "generatingSteps": [
     "Tunasoma majibu yako",
     "Tunapanga asubuhi zako",

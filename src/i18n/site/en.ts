@@ -130,7 +130,8 @@ export const en = {
     water: 'Water',
     in: 'in {time}',
     lockScreen: 'Stays on your Lock Screen while you work.',
-    points: ['Pick the length, Aiora keeps the time', 'Stretch breaks, light to full', 'A glass of water, on schedule', 'Every session saved to your history'],
+    points: ['Pick the length, Aiora keeps the time', 'Set a few goals, tick them off as you go', 'Stretch breaks, light to full', 'A glass of water, on schedule', 'Every session saved to your history'],
+    goals: ['Draft the intro', 'Reply to the landlord', 'Outline the slides'],
   },
 
   evening: {
@@ -217,7 +218,7 @@ export const en = {
           { q: 'What is the mind dump?', a: 'The always-there field at the bottom of the app. Type anything, the moment you think of it. Aiora suggests where it should go, but nothing is chosen for you: pick one with a tap, or save it as a thought and decide later. The newest undecided thought waits on your home screen, where you can keep it, turn it into a task or shopping item, or let it go.' },
           { q: 'How does Aiora build my plan?', a: 'You answer five short questions: a little about you, your work, how your days usually go, what you’re working toward, and, with Plus, a few photos. Aiora’s AI turns that into a daily plan grouped into morning, afternoon and evening. It takes about a minute.' },
           { q: 'Can I change my plan?', a: 'Yes. Add, edit, move or delete anything, mark actions done or skipped, and set your own weekly goals. You can also regenerate the whole plan when life changes. The free plan includes a few regenerations each month; Plus makes them unlimited.' },
-          { q: 'What are focus sessions?', a: 'A timer for focused work that looks after your body too. Pick a length and Aiora keeps time, reminds you to stretch (light, mid or full) and to drink water, and saves each session to your history. On iPhone, a running session stays on your Lock Screen.' },
+          { q: 'What are focus sessions?', a: 'A timer for focused work that looks after your body too. Pick a length and Aiora keeps time, reminds you to stretch (light, mid or full) and to drink water, and saves each session to your history. You can add goals for the session and tick them off as you go. On iPhone, a running session stays on your Lock Screen.' },
           { q: 'Does it work offline?', a: 'Yes. Your day, your thoughts and your shopping list work without a connection and sync when you’re back online. Building a new AI plan needs a connection.' },
         ],
       },

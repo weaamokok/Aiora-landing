@@ -95,6 +95,8 @@ const keys = {
   upNext: 'homeScreen.dayView.upNext',
   now: 'homeScreen.dayView.now',
   weeksGoals: 'homeScreen.weeklyGoals.title',
+  sessionGoalProgress: 'focusSessionGoals.progress',
+  sessionGoalsAllDone: 'focusSessionGoals.allDone',
   generatingSteps: 'promptSteps.generatingSteps',
   aboutYouQuestion: 'promptSteps.aboutYouQuestion',
   workQuestion: 'promptSteps.workQuestion',

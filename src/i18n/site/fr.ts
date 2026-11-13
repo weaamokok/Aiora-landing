@@ -87,7 +87,8 @@ export default {
     water: 'Eau',
     in: 'dans {time}',
     lockScreen: 'Reste sur ton écran verrouillé pendant que tu travailles.',
-    points: ['Choisis la durée, Aiora garde le temps', 'Pauses étirements, de légères à complètes', 'Un verre d’eau, au bon moment', 'Chaque session enregistrée dans ton historique'],
+    points: ['Choisis la durée, Aiora garde le temps', 'Fixe-toi quelques objectifs, coche-les au fur et à mesure', 'Pauses étirements, de légères à complètes', 'Un verre d’eau, au bon moment', 'Chaque session enregistrée dans ton historique'],
+    goals: ['Rédiger l’intro', 'Répondre au proprio', 'Préparer les diapos'],
   },
   evening: {
     title: 'Il te retrouve là où tu regardes déjà.',
@@ -126,7 +127,7 @@ export default {
           { q: 'C’est quoi, le vide-tête ?', a: 'Le champ toujours présent en bas de l’app. Écris n’importe quoi, dès que ça te vient. Aiora suggère une destination, mais rien n’est choisi à ta place : choisis d’un tap, ou garde-la comme pensée et décide plus tard. La pensée la plus récente encore en attente t’attend sur l’écran d’accueil : garde-la, transforme-la en tâche ou en course, ou laisse-la partir.' },
           { q: 'Comment Aiora construit-il mon plan ?', a: 'Tu réponds à cinq questions courtes : un peu sur toi, ton travail, le déroulé de tes journées, ce que tu vises et, avec Plus, quelques photos. L’IA en fait un plan quotidien réparti entre matin, après-midi et soir, en une minute environ.' },
           { q: 'Puis-je modifier mon plan ?', a: 'Oui. Ajoute, modifie, déplace ou supprime ce que tu veux, marque les actions comme faites ou passées, et fixe tes objectifs de la semaine. Tu peux aussi régénérer tout le plan quand ta vie change. La version gratuite en inclut quelques-unes par mois ; Plus les rend illimitées.' },
-          { q: 'Que sont les sessions de concentration ?', a: 'Un minuteur de travail concentré qui prend aussi soin de ton corps. Choisis une durée : Aiora garde le temps, te rappelle de t’étirer (léger, moyen ou complet) et de boire, et enregistre chaque session dans ton historique. Sur iPhone, la session en cours reste sur l’écran verrouillé.' },
+          { q: 'Que sont les sessions de concentration ?', a: 'Un minuteur de travail concentré qui prend aussi soin de ton corps. Choisis une durée : Aiora garde le temps, te rappelle de t’étirer (léger, moyen ou complet) et de boire, et enregistre chaque session dans ton historique. Tu peux ajouter des objectifs à la session et les cocher au fur et à mesure. Sur iPhone, la session en cours reste sur l’écran verrouillé.' },
           { q: 'Ça marche hors connexion ?', a: 'Oui. Ta journée, tes pensées et ta liste de courses fonctionnent sans connexion et se synchronisent à ton retour. Créer un nouveau plan IA nécessite une connexion.' },
         ],
       },

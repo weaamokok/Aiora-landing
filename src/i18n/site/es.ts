@@ -87,7 +87,8 @@ export default {
     water: 'Agua',
     in: 'en {time}',
     lockScreen: 'Se queda en tu pantalla bloqueada mientras trabajas.',
-    points: ['Elige la duración, Aiora lleva el tiempo', 'Pausas para estirar, de suaves a completas', 'Un vaso de agua, a su hora', 'Cada sesión guardada en tu historial'],
+    points: ['Elige la duración, Aiora lleva el tiempo', 'Ponte unas metas y márcalas sobre la marcha', 'Pausas para estirar, de suaves a completas', 'Un vaso de agua, a su hora', 'Cada sesión guardada en tu historial'],
+    goals: ['Escribir la intro', 'Responder al casero', 'Preparar las diapositivas'],
   },
   evening: {
     title: 'Te encuentra donde ya miras.',
@@ -126,7 +127,7 @@ export default {
           { q: '¿Qué es soltar pensamientos?', a: 'El campo que siempre está abajo en la app. Escribe cualquier cosa en cuanto se te ocurra. Aiora sugiere dónde va, pero nada se elige por ti: elige con un toque, o guárdalo como pensamiento y decide luego. El pensamiento pendiente más reciente te espera en la pantalla de inicio, donde puedes guardarlo, convertirlo en tarea o compra, o dejarlo ir.' },
           { q: '¿Cómo arma Aiora mi plan?', a: 'Respondes cinco preguntas cortas: un poco sobre ti, tu trabajo, cómo suelen ser tus días, lo que persigues y, con Plus, algunas fotos. La IA lo convierte en un plan diario dividido en mañana, tarde y noche, en un minuto más o menos.' },
           { q: '¿Puedo cambiar mi plan?', a: 'Sí. Añade, edita, mueve o borra lo que quieras, marca acciones como hechas u omitidas y define tus metas de la semana. También puedes regenerar el plan entero cuando cambie tu vida. La versión gratis incluye algunas al mes; Plus las hace ilimitadas.' },
-          { q: '¿Qué son las sesiones de enfoque?', a: 'Un temporizador para trabajar concentrado que también cuida tu cuerpo. Elige la duración y Aiora lleva el tiempo, te recuerda estirarte (suave, medio o completo) y beber agua, y guarda cada sesión en tu historial. En iPhone, la sesión en curso se queda en la pantalla bloqueada.' },
+          { q: '¿Qué son las sesiones de enfoque?', a: 'Un temporizador para trabajar concentrado que también cuida tu cuerpo. Elige la duración y Aiora lleva el tiempo, te recuerda estirarte (suave, medio o completo) y beber agua, y guarda cada sesión en tu historial. Puedes añadir metas a la sesión y marcarlas sobre la marcha. En iPhone, la sesión en curso se queda en la pantalla bloqueada.' },
           { q: '¿Funciona sin conexión?', a: 'Sí. Tu día, tus pensamientos y tu lista de la compra funcionan sin conexión y se sincronizan cuando vuelves. Crear un plan nuevo con IA necesita conexión.' },
         ],
       },
