@@ -54,3 +54,17 @@ test('arabic lexicon merges with english', () => {
 test('french double-quoted entry survived the sync', () => {
   assert.equal(score("appeler le médecin aujourd'hui", 'task', 'fr'), 0.8);
 });
+
+test('korean matches entries inside words, past glued-on particles', () => {
+  // `우유를` (milk + object particle) and `내일까지` (tomorrow + "by") are single
+  // tokens; a whole-token match would find neither.
+  assert.equal(top('우유를 사야 해', 'ko').target, 'shopping');
+  assert.ok(score('내일까지 보고서 끝내기', 'task', 'ko') > 0.3);
+  // `전화하기` starts with the task verb `전화`, so it counts as leading.
+  assert.equal(score('전화하기 오늘', 'task', 'ko'), 0.8);
+});
+
+test('other languages still match whole tokens only', () => {
+  // `latteria` (dairy shop) contains `latte` but isn't a shopping item.
+  assert.equal(score('latteria', 'shopping', 'it'), 0);
+});

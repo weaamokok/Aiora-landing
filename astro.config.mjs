@@ -1,14 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-export const locales = ['en', 'ar', 'fr', 'es', 'ru', 'tr', 'sw'];
+export const locales = ['en', 'ar', 'fr', 'es', 'ru', 'tr', 'sw', 'it', 'ko'];
 
 export default defineConfig({
   site: 'https://aioraspace.com',
   trailingSlash: 'ignore',
   // Astro 7 defaults to 'jsx', which strips whitespace between inline elements
   // ("<strong>Plus</strong> takes" → "Plustakes"). This site is prose-heavy in
-  // seven languages; keep HTML-aware whitespace.
+  // nine languages; keep HTML-aware whitespace.
   compressHTML: true,
   build: { format: 'directory' },
   i18n: {

@@ -117,3 +117,18 @@
   --display-tracking: -0.02em;
   --display-leading: 1.06;
 }
+
+/* Korean: Black Han Sans for display, like the app (AppTextStyles.displayFamily) —
+   Lilita has no Hangul and it's the closest match to Lilita's weight. Body text
+   keeps Roboto Flex for Latin and falls back per glyph to the system's Korean
+   face, as the app does. Hangul needs looser leading, no negative tracking, and
+   word-level line breaks (keep-all) so a word never splits mid-syllable-block. */
+:root:lang(ko) {
+  --font-display: 'Black Han Sans', 'Roboto Flex Variable', system-ui, sans-serif;
+  --font-body: 'Roboto Flex Variable', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  --display-tracking: 0;
+  --display-leading: 1.2;
+  --body-leading: 1.7;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}

@@ -100,7 +100,7 @@ export default {
     privacyLink: 'Cómo trata Aiora tus datos',
     streakDays: 'Racha de 12 días',
   },
-  languages: { title: 'Planifica en el idioma en el que piensas.', body: 'Siete idiomas en la app y en esta web, incluido uno de derecha a izquierda.' },
+  languages: { title: 'Planifica en el idioma en el que piensas.', body: 'Nueve idiomas en la app y en esta web, incluido uno de derecha a izquierda.' },
   plus: { note: 'Todo lo anterior sigue siendo gratis. Plus está ahí cuando quieras más.', cta: 'Descubre Aiora Plus', trialDays: 7 },
   night: { faqTitle: 'Preguntas y respuestas', allQuestions: 'Todas las preguntas', closing: 'Mañana ya está ordenado.', closingBody: 'Gratis en iPhone y Android. Tu primer plan corre de nuestra cuenta.' },
   homeFaq: [
@@ -109,7 +109,7 @@ export default {
     { q: '¿Qué pasa con lo que escribo?', a: 'La sugerencia de dónde va un pensamiento se calcula en tu móvil. Tus pensamientos, tareas y plan se guardan en tu cuenta para sincronizarse entre tus dispositivos. No vendemos tus datos, y puedes borrar tu cuenta y todo su contenido desde la app cuando quieras.' },
     { q: '¿Necesito una cuenta?', a: 'Sí, una gratuita. Guarda tus pensamientos, tu plan y tu lista de la compra, y los tienes en cada dispositivo donde inicies sesión. Puedes responder las preguntas de tu primer plan antes de crearla.' },
     { q: '¿Funciona sin conexión?', a: 'Sí. Tu día, tus pensamientos y tu lista de la compra funcionan sin conexión y se sincronizan cuando vuelves. Crear un plan nuevo con IA necesita conexión.' },
-    { q: '¿Qué idiomas habla Aiora?', a: 'Español, inglés, árabe, francés, ruso, turco y suajili, en la app y en esta web.' },
+    { q: '¿Qué idiomas habla Aiora?', a: 'Español, inglés, árabe, francés, ruso, turco, suajili, italiano y coreano, en la app y en esta web.' },
   ],
   footer: { tagline: 'Todo lo que tienes en la cabeza, en un sitio donde pasará.', product: 'Producto', help: 'Ayuda', legal: 'Legal', support: 'Soporte', deleteAccount: 'Borrar tu cuenta', privacy: 'Política de privacidad', terms: 'Términos del servicio', account: 'Gestionar suscripción web', rights: '© {year} Aiora' },
   faqPage: {
@@ -152,7 +152,7 @@ export default {
       {
         title: 'Idiomas y dispositivos',
         items: [
-          { q: '¿Qué idiomas habla Aiora?', a: 'Español, inglés, árabe, francés, ruso, turco y suajili, en la app y en esta web.' },
+          { q: '¿Qué idiomas habla Aiora?', a: 'Español, inglés, árabe, francés, ruso, turco, suajili, italiano y coreano, en la app y en esta web.' },
           { q: '¿En qué dispositivos funciona Aiora?', a: 'iPhone (desde el App Store) y móviles Android (desde Google Play), con widgets de pantalla de inicio en ambos. Tu cuenta se sincroniza entre ellos.' },
         ],
       },

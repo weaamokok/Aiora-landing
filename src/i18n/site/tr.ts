@@ -100,7 +100,7 @@ export default {
     privacyLink: 'Aiora verilerini nasıl kullanır',
     streakDays: '12 günlük seri',
   },
-  languages: { title: 'Düşündüğün dilde planla.', body: 'Uygulamada ve bu sitede yedi dil, sağdan sola yazılan da dahil.' },
+  languages: { title: 'Düşündüğün dilde planla.', body: 'Uygulamada ve bu sitede dokuz dil, sağdan sola yazılan da dahil.' },
   plus: { note: 'Yukarıdakilerin hepsi ücretsiz kalır. Daha fazlasını istediğinde Plus orada.', cta: 'Aiora Plus’ı keşfet', trialDays: 7 },
   night: { faqTitle: 'Sorular ve cevaplar', allQuestions: 'Tüm sorular', closing: 'Yarın çoktan düzenlendi.', closingBody: 'iPhone ve Android’de ücretsiz. İlk planın bizden.' },
   homeFaq: [
@@ -109,7 +109,7 @@ export default {
     { q: 'Yazdıklarıma ne oluyor?', a: 'Bir düşüncenin nereye ait olduğu önerisi telefonunda hesaplanır. Düşüncelerin, görevlerin ve planın cihazların arasında senkronize olsun diye hesabına kaydedilir. Verilerini satmıyoruz; hesabını ve içindeki her şeyi istediğin zaman uygulamadan silebilirsin.' },
     { q: 'Hesap gerekli mi?', a: 'Evet, ücretsiz bir hesap. Düşüncelerini, planını ve alışveriş listeni yedekler; giriş yaptığın her cihazda seninle olur. İlk planının sorularını hesabı oluşturmadan önce yanıtlayabilirsin.' },
     { q: 'İnternetsiz çalışır mı?', a: 'Evet. Günün, düşüncelerin ve alışveriş listen bağlantı olmadan çalışır, tekrar çevrimiçi olduğunda senkronize olur. Yeni bir yapay zekâ planı için bağlantı gerekir.' },
-    { q: 'Aiora hangi dilleri konuşuyor?', a: 'Türkçe, İngilizce, Arapça, Fransızca, İspanyolca, Rusça ve Svahili; uygulamada ve bu sitede.' },
+    { q: 'Aiora hangi dilleri konuşuyor?', a: 'Türkçe, İngilizce, Arapça, Fransızca, İspanyolca, Rusça, Svahili, İtalyanca ve Korece; uygulamada ve bu sitede.' },
   ],
   footer: { tagline: 'Aklındaki her şey, gerçekleşeceği bir yerde.', product: 'Ürün', help: 'Yardım', legal: 'Yasal', support: 'Destek', deleteAccount: 'Hesabını sil', privacy: 'Gizlilik politikası', terms: 'Hizmet şartları', account: 'Web aboneliğini yönet', rights: '© {year} Aiora' },
   faqPage: {
@@ -152,7 +152,7 @@ export default {
       {
         title: 'Diller ve cihazlar',
         items: [
-          { q: 'Aiora hangi dilleri konuşuyor?', a: 'Türkçe, İngilizce, Arapça, Fransızca, İspanyolca, Rusça ve Svahili; uygulamada ve bu sitede.' },
+          { q: 'Aiora hangi dilleri konuşuyor?', a: 'Türkçe, İngilizce, Arapça, Fransızca, İspanyolca, Rusça, Svahili, İtalyanca ve Korece; uygulamada ve bu sitede.' },
           { q: 'Aiora hangi cihazlarda çalışır?', a: 'iPhone (App Store’dan) ve Android telefonlar (Google Play’den), ikisinde de ana ekran widget’larıyla. Hesabın ikisi arasında senkronize olur.' },
         ],
       },

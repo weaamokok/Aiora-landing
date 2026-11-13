@@ -100,7 +100,7 @@ export default {
     privacyLink: 'Jinsi Aiora inavyoshughulikia data yako',
     streakDays: 'Mfululizo wa siku 12',
   },
-  languages: { title: 'Panga kwa lugha unayofikiria nayo.', body: 'Lugha saba kwenye programu na kwenye tovuti hii, ikiwemo inayoandikwa kulia kwenda kushoto.' },
+  languages: { title: 'Panga kwa lugha unayofikiria nayo.', body: 'Lugha tisa kwenye programu na kwenye tovuti hii, ikiwemo inayoandikwa kulia kwenda kushoto.' },
   plus: { note: 'Kila kilicho juu kinabaki bure. Plus ipo unapotaka zaidi.', cta: 'Tazama Aiora Plus', trialDays: 7 },
   night: { faqTitle: 'Maswali na majibu', allQuestions: 'Maswali yote', closing: 'Kesho imeshapangwa.', closingBody: 'Bure kwenye iPhone na Android. Mpango wako wa kwanza ni juu yetu.' },
   homeFaq: [
@@ -109,7 +109,7 @@ export default {
     { q: 'Kinachotokea kwa ninachoandika ni nini?', a: 'Pendekezo la wazo linakostahili linahesabiwa kwenye simu yako. Mawazo, kazi na mpango wako huhifadhiwa kwenye akaunti yako ili visawazishwe kati ya vifaa vyako. Hatuuzi data yako, na unaweza kufuta akaunti yako na kila kilichomo kutoka kwenye programu wakati wowote.' },
     { q: 'Je, ninahitaji akaunti?', a: 'Ndiyo, ya bure. Inahifadhi mawazo yako, mpango wako na orodha ya manunuzi, na unayapata kwenye kila kifaa unachoingia nacho. Unaweza kujibu maswali ya mpango wako wa kwanza kabla ya kuifungua.' },
     { q: 'Inafanya kazi bila mtandao?', a: 'Ndiyo. Siku yako, mawazo yako na orodha ya manunuzi hufanya kazi bila mtandao na husawazishwa ukirudi mtandaoni. Kujenga mpango mpya wa AI kunahitaji mtandao.' },
-    { q: 'Aiora inazungumza lugha zipi?', a: 'Kiswahili, Kiingereza, Kiarabu, Kifaransa, Kihispania, Kirusi na Kituruki, kwenye programu na kwenye tovuti hii.' },
+    { q: 'Aiora inazungumza lugha zipi?', a: 'Kiswahili, Kiingereza, Kiarabu, Kifaransa, Kihispania, Kirusi, Kituruki, Kiitaliano na Kikorea, kwenye programu na kwenye tovuti hii.' },
   ],
   footer: { tagline: 'Kila kilicho akilini mwako, mahali kitakapotokea.', product: 'Bidhaa', help: 'Msaada', legal: 'Kisheria', support: 'Msaada', deleteAccount: 'Futa akaunti yako', privacy: 'Sera ya faragha', terms: 'Masharti ya huduma', account: 'Dhibiti usajili wa wavuti', rights: '© {year} Aiora' },
   faqPage: {
@@ -152,7 +152,7 @@ export default {
       {
         title: 'Lugha na vifaa',
         items: [
-          { q: 'Aiora inazungumza lugha zipi?', a: 'Kiswahili, Kiingereza, Kiarabu, Kifaransa, Kihispania, Kirusi na Kituruki, kwenye programu na kwenye tovuti hii.' },
+          { q: 'Aiora inazungumza lugha zipi?', a: 'Kiswahili, Kiingereza, Kiarabu, Kifaransa, Kihispania, Kirusi, Kituruki, Kiitaliano na Kikorea, kwenye programu na kwenye tovuti hii.' },
           { q: 'Aiora inafanya kazi kwenye vifaa gani?', a: 'iPhone (kutoka App Store) na simu za Android (kutoka Google Play), zikiwa na wijeti za skrini kuu kwa zote mbili. Akaunti yako husawazishwa kati yake.' },
         ],
       },

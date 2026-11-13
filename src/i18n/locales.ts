@@ -1,4 +1,4 @@
-export const locales = ['en', 'ar', 'fr', 'es', 'ru', 'tr', 'sw'] as const;
+export const locales = ['en', 'ar', 'fr', 'es', 'ru', 'tr', 'sw', 'it', 'ko'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'en';
 
@@ -22,6 +22,8 @@ export const localeMeta: Record<Locale, LocaleMeta> = {
   ru: { name: 'Русский', dir: 'ltr', tag: 'ru', og: 'ru_RU', appStoreBadge: 'ru-ru', playBadge: 'ru' },
   tr: { name: 'Türkçe', dir: 'ltr', tag: 'tr', og: 'tr_TR', appStoreBadge: 'tr-tr', playBadge: 'tr' },
   sw: { name: 'Kiswahili', dir: 'ltr', tag: 'sw', og: 'sw_KE', appStoreBadge: 'en-us', playBadge: 'sw' },
+  it: { name: 'Italiano', dir: 'ltr', tag: 'it', og: 'it_IT', appStoreBadge: 'it-it', playBadge: 'it' },
+  ko: { name: '한국어', dir: 'ltr', tag: 'ko', og: 'ko_KR', appStoreBadge: 'ko-kr', playBadge: 'ko' },
 };
 
 /** `/faq` → `/fr/faq/`; the default locale has no prefix. Always a trailing slash. */

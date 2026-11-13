@@ -15,7 +15,7 @@ import { join, resolve } from 'node:path';
 import { parse } from 'yaml';
 
 const appRoot = resolve(process.argv[2] ?? '../glow');
-const locales = ['en', 'ar', 'fr', 'es', 'ru', 'tr', 'sw'];
+const locales = ['en', 'ar', 'fr', 'es', 'ru', 'tr', 'sw', 'it', 'ko'];
 
 // ─── 1. Lexicons ────────────────────────────────────────────────────────────
 const dart = readFileSync(
@@ -33,6 +33,9 @@ function parseLexicon(block) {
       (x) => (x[1] ?? x[2]).replace(/\\(.)/g, '$1'),
     );
   }
+  // Korean glues particles onto words, so the app matches its entries inside
+  // tokens instead of as whole tokens.
+  if (/matchInsideWords:\s*true/.test(block)) out.matchInsideWords = true;
   return out;
 }
 

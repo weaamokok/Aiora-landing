@@ -7,7 +7,7 @@
 import { readFileSync, mkdirSync } from 'node:fs';
 import puppeteer from 'puppeteer-core';
 
-const locales = ['en', 'ar', 'fr', 'es', 'ru', 'tr', 'sw'];
+const locales = ['en', 'ar', 'fr', 'es', 'ru', 'tr', 'sw', 'it', 'ko'];
 const chrome = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 const font = (path) => `data:font/woff2;base64,${readFileSync(`node_modules/${path}`).toString('base64')}`;
@@ -21,6 +21,11 @@ const faces = `
 @font-face{font-family:Cairo;font-weight:200 1000;src:url(${font('@fontsource-variable/cairo/files/cairo-arabic-wght-normal.woff2')})}
 `;
 
+// Black Han Sans (Korean display) ships as ~100 unicode-range subsets; inline
+// the package's own CSS with each file as a data URI, only for the Korean card.
+const hangulFaces = readFileSync('node_modules/@fontsource/black-han-sans/index.css', 'utf8')
+  .replace(/url\(\.\/files\/([^)]+\.woff2)\) format\('woff2'\), url\([^)]+\) format\('woff'\)/g, (_, f) => `url(${font(`@fontsource/black-han-sans/files/${f}`)}) format('woff2')`);
+
 const mark = readFileSync('public/favicon.svg', 'utf8');
 const sparkle = `<svg viewBox="24 20 52 60" width="44" height="50"><path fill="#8A63B8" d="M50 25C50 36 59 50 71 50C59 50 50 64 50 75C50 64 41 50 29 50C41 50 50 36 50 25Z"/></svg>`;
 
@@ -28,10 +33,10 @@ function card(locale) {
   const app = JSON.parse(readFileSync(`src/i18n/app/${locale}.json`, 'utf8'));
   const rtl = locale === 'ar';
   const display =
-    locale === 'ar' ? "font-family:Lalezar;line-height:1.35" : locale === 'ru' ? "font-family:Flex;font-weight:820;letter-spacing:-.02em;line-height:1.05" : "font-family:Lilita;letter-spacing:-.01em;line-height:1.03";
-  const body = locale === 'ar' ? 'font-family:Cairo' : 'font-family:Flex';
+    locale === 'ar' ? "font-family:Lalezar;line-height:1.35" : locale === 'ko' ? "font-family:'Black Han Sans';line-height:1.2;word-break:keep-all" : locale === 'ru' ? "font-family:Flex;font-weight:820;letter-spacing:-.02em;line-height:1.05" : "font-family:Lilita;letter-spacing:-.01em;line-height:1.03";
+  const body = locale === 'ar' ? 'font-family:Cairo' : locale === 'ko' ? "font-family:Flex,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;word-break:keep-all" : 'font-family:Flex';
   const chips = [app.chipTask, app.chipShopping, app.chipWeeklyGoal, app.chipThought];
-  return `<!doctype html><html lang="${locale}" dir="${rtl ? 'rtl' : 'ltr'}"><head><meta charset="utf-8"><style>${faces}
+  return `<!doctype html><html lang="${locale}" dir="${rtl ? 'rtl' : 'ltr'}"><head><meta charset="utf-8"><style>${faces}${locale === 'ko' ? hangulFaces : ''}
   *{margin:0;box-sizing:border-box}
   body{width:1200px;height:630px;overflow:hidden;color:#1c2b2f;${body};
     background:radial-gradient(60% 70% at ${rtl ? '10%' : '90%'} 15%,rgba(179,153,212,.45),transparent 70%),radial-gradient(50% 50% at ${rtl ? '100%' : '0%'} 100%,rgba(115,183,155,.22),transparent 70%),#eae6f2}
