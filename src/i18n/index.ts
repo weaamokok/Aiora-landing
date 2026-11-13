@@ -7,6 +7,8 @@ import appEs from './app/es.json';
 import appRu from './app/ru.json';
 import appTr from './app/tr.json';
 import appSw from './app/sw.json';
+import appIt from './app/it.json';
+import appKo from './app/ko.json';
 
 export type AppCopy = typeof appEn;
 
@@ -14,7 +16,7 @@ type DeepPartial<T> = T extends readonly unknown[] ? T : T extends object ? { [K
 
 const siteLoaders = import.meta.glob<{ default: DeepPartial<SiteCopy> }>('./site/*.ts', { eager: true });
 
-const app: Record<Locale, AppCopy> = { en: appEn, ar: appAr, fr: appFr, es: appEs, ru: appRu, tr: appTr, sw: appSw };
+const app: Record<Locale, AppCopy> = { en: appEn, ar: appAr, fr: appFr, es: appEs, ru: appRu, tr: appTr, sw: appSw, it: appIt, ko: appKo };
 
 function merge<T>(base: T, over: DeepPartial<T> | undefined): T {
   if (over == null) return base;

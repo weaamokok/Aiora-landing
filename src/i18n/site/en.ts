@@ -147,7 +147,7 @@ export const en = {
 
   languages: {
     title: 'Plan in the language you think in.',
-    body: 'Seven languages in the app and on this site, right-to-left included.',
+    body: 'Nine languages in the app and on this site, right-to-left included.',
   },
 
   plus: {
@@ -186,7 +186,7 @@ export const en = {
     },
     {
       q: 'Which languages does Aiora speak?',
-      a: 'English, Arabic, French, Spanish, Russian, Turkish and Swahili, in the app and on this site.',
+      a: 'English, Arabic, French, Spanish, Russian, Turkish, Swahili, Italian and Korean, in the app and on this site.',
     },
   ],
 
@@ -243,7 +243,7 @@ export const en = {
       {
         title: 'Languages and devices',
         items: [
-          { q: 'Which languages does Aiora speak?', a: 'English, Arabic, French, Spanish, Russian, Turkish and Swahili, in the app and on this site.' },
+          { q: 'Which languages does Aiora speak?', a: 'English, Arabic, French, Spanish, Russian, Turkish, Swahili, Italian and Korean, in the app and on this site.' },
           { q: 'Which devices does Aiora run on?', a: 'iPhone (from the App Store) and Android phones (from Google Play), with home-screen widgets on both. Your account syncs between them.' },
         ],
       },

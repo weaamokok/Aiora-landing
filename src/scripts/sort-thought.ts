@@ -15,7 +15,15 @@ export interface Suggestion {
   score: number;
 }
 
-type LexiconData = Record<'shoppingVerbs' | 'shoppingNouns' | 'taskVerbs' | 'timeWords' | 'habitWords', string[]>;
+type ListKey = 'shoppingVerbs' | 'shoppingNouns' | 'taskVerbs' | 'timeWords' | 'habitWords';
+type LexiconData = Record<ListKey, string[]> & { matchInsideWords?: boolean };
+interface Lexicon {
+  lists: Record<ListKey, Set<string>>;
+  /** Korean glues particles onto words (`우유를`), so entries match inside tokens. */
+  matchInsideWords: boolean;
+}
+
+const LIST_KEYS: ListKey[] = ['shoppingVerbs', 'shoppingNouns', 'taskVerbs', 'timeWords', 'habitWords'];
 
 // Enum order in the app (`MindDumpTarget`) — the stable tie-break.
 const TARGET_ORDER: Target[] = ['task', 'shopping', 'weeklyGoal', 'thought'];
@@ -25,7 +33,7 @@ const THOUGHT_BASELINE = 0.3;
 const CLOCK = /\b\d{1,2}(:\d{2})?\s*(am|pm)?\b/;
 const SPLIT = /[\s,.!?؟،;:()[\]"«»]+/;
 
-const cache = new Map<string, Record<keyof LexiconData, Set<string>>>();
+const cache = new Map<string, Lexicon>();
 
 function lexiconFor(language: string) {
   const hit = cache.get(language);
@@ -33,26 +41,29 @@ function lexiconFor(language: string) {
   const data = lexicons as Record<string, LexiconData>;
   const en = data.en;
   const loc = data[language];
-  const keys = Object.keys(en) as (keyof LexiconData)[];
+  const own = loc && language !== 'en' ? loc : undefined;
   // Locale lexicon merged with English — English words are always detected.
-  const merged = Object.fromEntries(
-    keys.map((k) => [k, new Set([...en[k], ...(loc && language !== 'en' ? loc[k] : [])])]),
-  ) as Record<keyof LexiconData, Set<string>>;
+  const lists = Object.fromEntries(
+    LIST_KEYS.map((k) => [k, new Set([...en[k], ...(own ? own[k] : [])])]),
+  ) as Record<ListKey, Set<string>>;
+  const merged: Lexicon = { lists, matchInsideWords: own?.matchInsideWords === true };
   cache.set(language, merged);
   return merged;
 }
 
 export function rankSuggestions(text: string, language: string): Suggestion[] {
   const normalized = text.trim().toLowerCase();
-  const lex = lexiconFor(language);
+  const { lists: lex, matchInsideWords } = lexiconFor(language);
   const tokens = normalized.split(SPLIT).filter((t) => t.length > 0);
   const tokenSet = new Set(tokens);
 
-  // Multi-word entries match as substrings; single words match whole tokens.
+  // Multi-word entries match as substrings; single words match whole tokens,
+  // or anywhere inside one for a language that glues particles onto words.
   const hasAny = (words: Set<string>) =>
-    [...words].some((w) => (w.includes(' ') ? normalized.includes(w) : tokenSet.has(w)));
+    [...words].some((w) => (w.includes(' ') || matchInsideWords ? normalized.includes(w) : tokenSet.has(w)));
   const startsWithAny = (words: Set<string>) =>
-    tokens.length > 0 && [...words].some((w) => !w.includes(' ') && tokens[0] === w);
+    tokens.length > 0 &&
+    [...words].some((w) => !w.includes(' ') && (matchInsideWords ? tokens[0].startsWith(w) : tokens[0] === w));
 
   let shopping = 0;
   let task = 0;
